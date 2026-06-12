@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Learn about Sculpt Lagree - Lagos premier Lagree & Pilates studio. Our philosophy, mission, and commitment to wellness."
+    />
+    <title>About Us | Sculpt Lagree Lagos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="./assets/img/sculpt_logo_round.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <style>
+      .stats-highlight {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--terracotta),
+          var(--terracotta-dark)
+        );
+        padding: 3rem;
+        border-radius: var(--radius-xl);
+        margin: 2rem 0;
+      }
+
+      .stat-highlight {
+        text-align: center;
+        color: var(--white);
+      }
+
+      .stat-highlight .number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        font-family: "Cormorant Garamond", serif;
+        display: block;
+      }
+
+      .stat-highlight .label {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.9;
+      }
+
+      .journey-timeline {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .timeline-item {
+        flex: 1;
+        text-align: center;
+        position: relative;
+      }
+
+      .timeline-year {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--terracotta);
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      .inline-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin: 1.5rem 0 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .inline-list li {
+        display: inline-flex;
+        align-items: center;
+        background: var(--terracotta-soft);
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-full);
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--terracotta-dark);
+      }
+
+      .inline-list li:before {
+        content: "✓";
+        margin-right: 0.5rem;
+        color: var(--terracotta);
+      }
+
+      .section-first {
+        padding-top: 3rem;
+      }
+
+      /* Hero Image Section */
+      .about-hero {
+        position: relative;
+        width: 100%;
+        height: 65vh;
+        min-height: 500px;
+        background-image: url("https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?auto=format&fit=crop&w=2000&q=80");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+      }
+
+      .about-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(0, 0, 0, 0.2) 100%
+        );
+      }
+
+      .about-hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: var(--white);
+        max-width: 800px;
+        padding: 0 2rem;
+      }
+
+      .about-hero-content .eyebrow {
+        color: var(--cream);
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+      }
+
+      .about-hero-content h1 {
+        color: var(--white);
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        margin-bottom: 1rem;
+      }
+
+      .about-hero-content p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+      }
+
+      @media (max-width: 768px) {
+        .stats-highlight {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        }
+        .journey-timeline {
+          flex-direction: column;
+        }
+        .about-hero {
+          height: 50vh;
+          min-height: 400px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sticky Booking Button -->
+    <a href="schedule.html" class="sticky-book">
+      <i class="fas fa-calendar-check"></i>
+      <span>Book Your Class</span>
+    </a>
+
+    <!-- Floating WhatsApp -->
+    <a href="#" class="whatsapp-float" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="brand">
+          <div class="logo-icon">
+            <img
+              src="./assets/img/sculpt-logo.jpg"
+              alt="Sculpt Lagree Logo"
+              class="logo-img"
+            />
+          </div>
+        </a>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <nav class="nav" id="nav">
+          <a href="index.html">Home</a>
+          <a href="about.html" class="active">About Us</a>
+          <a href="classes.html">Classes</a>
+          <a href="schedule.html">Schedule</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="teams.html">Our Team</a>
+          <a href="contact.html">Contact</a>
+          <a href="schedule.html" class="btn-book">Book Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Image Section - NEW -->
+    <div class="about-hero">
+      <div class="about-hero-content">
+        <span class="eyebrow">Since 2023</span>
+        <h1>A studio built on care.</h1>
+        <p>Movement, mindfulness, and community in the heart of Lagos</p>
+      </div>
+    </div>
+
+    <!-- Philosophy Section -->
+    <section class="section section-first">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <span class="eyebrow">Our Philosophy</span>
+            <h2>Movement as medicine.</h2>
+            <p>
+              At Sculpt Lagree, we believe that movement should feel good—not
+              punishing. Our approach combines the precision of Pilates with the
+              intensity of the Lagree Method, creating workouts that challenge
+              without strain.
+            </p>
+            <p>
+              Every class is an opportunity to connect with your body, build
+              sustainable strength, and leave feeling energized rather than
+              depleted. We've created a space where wellness feels accessible,
+              luxurious, and deeply personal.
+            </p>
+
+            <ul class="inline-list">
+              <li>Boutique Lagree Megaformers</li>
+              <li>Internationally Certified</li>
+              <li>Small Class Sizes</li>
+              <li>Design-led Environment</li>
+              <li>Personalized Attention</li>
+              <li>Luxury Amenities</li>
+            </ul>
+          </div>
+          <div class="card">
+            <img
+              src="./assets/img/sculpt_inside.png"
+              alt="Studio interior"
+              class="card-image"
+              style="height: 450px"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Highlight Section -->
+    <section class="section" style="background: var(--bg-warm)">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem">
+          <span class="eyebrow">By The Numbers</span>
+          <h2>Sculpt in statistics</h2>
+          <p>What we've achieved since opening our doors</p>
+        </div>
+        <div class="stats-highlight">
+          <div class="stat-highlight">
+            <span class="number">1500+</span>
+            <span class="label">Happy Clients</span>
+          </div>
+          <div class="stat-highlight">
+            <span class="number">4500+</span>
+            <span class="label">Classes Taught</span>
+          </div>
+          <div class="stat-highlight">
+            <span class="number">12+</span>
+            <span class="label">Expert Trainers</span>
+          </div>
+          <div class="stat-highlight">
+            <span class="number">5.0 ★</span>
+            <span class="label">Google Rating</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Journey Timeline -->
+    <section class="section">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem">
+          <span class="eyebrow">Our Journey</span>
+          <h2>The Sculpt story</h2>
+          <p>From vision to Victoria Island's premier wellness destination</p>
+        </div>
+        <div class="journey-timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2021</div>
+            <h4>The Vision</h4>
+            <p>
+              Founder Chidinma Okonkwo envisioned a world-class Lagree studio in
+              Lagos.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2022</div>
+            <h4>The Space</h4>
+            <p>
+              Found the perfect location in Victoria Island. Renovation begins.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2023</div>
+            <h4>The Opening</h4>
+            <p>Sculpt Lagree opens its doors to Lagos' wellness community.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <h4>The Expansion</h4>
+            <p>Added new class formats and expanded trainer team.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Statement -->
+    <section class="section" style="background: var(--bg-warm)">
+      <div class="container">
+        <div
+          class="mission-statement"
+          style="
+            background: var(--white);
+            padding: 4rem;
+            border-radius: var(--radius-xl);
+            text-align: center;
+          "
+        >
+          <i
+            class="fas fa-quote-left"
+            style="font-size: 3rem; color: var(--terracotta); opacity: 0.5"
+          ></i>
+          <h2 style="margin: 1rem 0">
+            To empower every body that walks through our doors.
+          </h2>
+          <p style="max-width: 600px; margin: 0 auto">
+            We're building a community where strength meets grace, and where
+            every workout brings you closer to your most powerful self.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section">
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem">
+          <span class="eyebrow">Why Choose Us</span>
+          <h2>More than a workout</h2>
+          <p>What makes Sculpt the preferred choice for wellness in Lagos</p>
+        </div>
+        <div class="grid-3">
+          <div style="text-align: center; padding: 1.5rem">
+            <i
+              class="fas fa-hand-holding-heart"
+              style="
+                font-size: 2.5rem;
+                color: var(--terracotta);
+                margin-bottom: 1rem;
+              "
+            ></i>
+            <h3>Personalized Approach</h3>
+            <p>
+              Every client receives individualized attention and form
+              correction.
+            </p>
+          </div>
+          <div style="text-align: center; padding: 1.5rem">
+            <i
+              class="fas fa-calendar-alt"
+              style="
+                font-size: 2.5rem;
+                color: var(--terracotta);
+                margin-bottom: 1rem;
+              "
+            ></i>
+            <h3>Flexible Scheduling</h3>
+            <p>
+              Early morning, lunch, and evening classes to fit your lifestyle.
+            </p>
+          </div>
+          <div style="text-align: center; padding: 1.5rem">
+            <i
+              class="fas fa-spa"
+              style="
+                font-size: 2.5rem;
+                color: var(--terracotta);
+                margin-bottom: 1rem;
+              "
+            ></i>
+            <h3>Holistic Wellness</h3>
+            <p>Beyond fitness—we nurture mental and emotional wellbeing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Love Section -->
+    <section class="section" style="background: var(--bg-warm)">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem">
+          <span class="eyebrow">Community Love</span>
+          <h2>What makes us different</h2>
+        </div>
+        <div class="grid-2" style="align-items: center">
+          <div>
+            <p style="font-size: 1.1rem; font-style: italic">
+              "Sculpt isn't just a studio—it's a family. From the moment you
+              walk in, you're greeted with warmth and genuine care. The
+              instructors remember your name, your goals, and your progress.
+              That's rare to find."
+            </p>
+            <p style="margin-top: 1rem">
+              <strong>— Adeola K.</strong>, 2-year member
+            </p>
+          </div>
+          <div>
+            <p style="font-size: 1.1rem; font-style: italic">
+              "I've tried every fitness studio in Lagos. Sculpt is different.
+              The attention to detail, the quality of equipment, the expertise
+              of trainers—it's world-class."
+            </p>
+            <p style="margin-top: 1rem">
+              <strong>— Michael O.</strong>, 150+ classes
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet the Founder Section -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-2" style="align-items: center">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80"
+              alt="Founder portrait"
+              class="card-image"
+              style="height: 400px"
+            />
+          </div>
+          <div>
+            <span class="eyebrow">Meet the Founder</span>
+            <h2>Chidinma Okonkwo</h2>
+            <p>
+              After years as a corporate professional in London, Chidinma
+              returned to Lagos with a vision: to bring world-class Lagree
+              training to Nigeria's wellness landscape. Certified in both
+              classical Pilates and the Lagree Method, she's created Sculpt as a
+              sanctuary for intentional movement.
+            </p>
+            <p>
+              "I wanted a space where women and men could build strength without
+              intimidation—where every workout feels like self-care, not
+              punishment. Sculpt is that dream realized."
+            </p>
+            <div style="margin-top: 1.5rem">
+              <span
+                class="difficulty difficulty-intermediate"
+                style="display: inline-block; margin-right: 0.5rem"
+                >Certified Lagree Instructor</span
+              >
+              <span
+                class="difficulty difficulty-beginner"
+                style="display: inline-block"
+                >Pilates Specialist</span
+              >
+            </div>
+            <ul class="inline-list" style="margin-top: 1.5rem">
+              <li>10+ Years Experience</li>
+              <li>International Training</li>
+              <li>Wellness Advocate</li>
+              <li>Lagos Native</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section" style="background: var(--bg-warm)">
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem">
+          <span class="eyebrow">Our Core Values</span>
+          <h2>What guides us</h2>
+          <p>
+            The principles that shape every decision, every class, every
+            interaction.
+          </p>
+        </div>
+        <div class="grid-3">
+          <div style="text-align: center; padding: 2rem">
+            <i
+              class="fas fa-hand-sparkles"
+              style="
+                font-size: 2.5rem;
+                color: var(--terracotta);
+                margin-bottom: 1rem;
+              "
+            ></i>
+            <h3>Intentional Movement</h3>
+            <p>
+              Every exercise has purpose. We prioritize quality over quantity.
+            </p>
+          </div>
+          <div style="text-align: center; padding: 2rem">
+            <i
+              class="fas fa-heart"
+              style="
+                font-size: 2.5rem;
+                color: var(--terracotta);
+                margin-bottom: 1rem;
+              "
+            ></i>
+            <h3>Radical Welcome</h3>
+            <p>All bodies, all levels, all goals—you belong here.</p>
+          </div>
+          <div style="text-align: center; padding: 2rem">
+            <i
+              class="fas fa-leaf"
+              style="
+                font-size: 2.5rem;
+                color: var(--terracotta);
+                margin-bottom: 1rem;
+              "
+            ></i>
+            <h3>Holistic Wellness</h3>
+            <p>
+              Strength is physical, mental, and emotional. We nurture all three.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="section">
+      <div class="container">
+        <div
+          class="cta-section"
+          style="
+            background: linear-gradient(
+              135deg,
+              var(--terracotta) 0%,
+              var(--terracotta-dark) 100%
+            );
+            border-radius: var(--radius-xl);
+            padding: 4rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+          "
+        >
+          <div
+            style="
+              position: absolute;
+              top: -50px;
+              right: -50px;
+              width: 200px;
+              height: 200px;
+              background: rgba(255, 255, 255, 0.05);
+              border-radius: 50%;
+              pointer-events: none;
+            "
+          ></div>
+          <div
+            style="
+              position: absolute;
+              bottom: -80px;
+              left: -80px;
+              width: 250px;
+              height: 250px;
+              background: rgba(255, 255, 255, 0.05);
+              border-radius: 50%;
+              pointer-events: none;
+            "
+          ></div>
+
+          <div style="position: relative; z-index: 2">
+            <span
+              class="eyebrow"
+              style="
+                color: var(--cream);
+                letter-spacing: 0.2em;
+                font-size: 0.7rem;
+              "
+              >JOIN OUR COMMUNITY</span
+            >
+            <h2
+              style="
+                color: var(--white);
+                margin: 1rem 0 1rem 0;
+                font-size: clamp(1.8rem, 4vw, 2.5rem);
+              "
+            >
+              Ready to start your journey?
+            </h2>
+            <p
+              style="
+                color: var(--cream);
+                max-width: 550px;
+                margin: 0 auto 1.5rem auto;
+                opacity: 0.9;
+              "
+            >
+              Book your first class today and experience the Sculpt difference.
+              New clients get special introductory pricing.
+            </p>
+            <a
+              href="schedule.html"
+              class="btn-cta"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                background: var(--white);
+                color: var(--terracotta);
+                padding: 1rem 2rem;
+                border-radius: var(--radius-full);
+                text-decoration: none;
+                font-weight: 700;
+                font-family: &quot;Manrope&quot;, sans-serif;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+              "
+              onmouseover="
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+              "
+              onmouseout="
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+              "
+            >
+              Book Your First Class
+              <i
+                class="fas fa-arrow-right"
+                style="transition: transform 0.3s ease"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="brand" style="margin-bottom: 1rem">
+              <div class="logo-icon" style="width: 40px; height: 40px">
+                <img
+                  src="./assets/img/sculpt-logo.jpg"
+                  alt="Sculpt Lagree Logo"
+                  class="logo-img"
+                />
+              </div>
+            </div>
+            <p>
+              Boutique Lagree and reformer-inspired training. Strong, graceful
+              movement in a warm Lagos studio.
+            </p>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem">
+              <a href="#" style="display: inline-block"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" style="display: inline-block"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" style="display: inline-block"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
+          <div>
+            <h4>Studio</h4>
+            <a href="about.html">About Us</a>
+            <a href="lagree-method.html">Lagree Method</a>
+            <a href="classes.html">Classes</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="trainers.html">Trainers</a>
+          </div>
+          <div>
+            <h4>Programs</h4>
+            <a href="classes.html">Signature Sculpt</a>
+            <a href="classes.html">Beginner Foundations</a>
+            <a href="classes.html">Private Sessions</a>
+            <a href="classes.html">Stretch & Recovery</a>
+            <a href="memberships.html">Memberships</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <p>23b Karimu Kotun, Victoria Island<br />Lagos, Nigeria</p>
+            <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>
+            © 2026 Sculpt Lagree. All rights reserved. 
+            
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+
+    <script>
+      function toggleMenu() {
+        document.getElementById("nav").classList.toggle("active");
+      }
+    </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/6a2c39a78705f01c3509b4f3/1jquc2ea7";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+    <!--End of Tawk.to Script-->
+  </body>
+</html>

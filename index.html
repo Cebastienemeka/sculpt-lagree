@@ -66,7 +66,7 @@
       }
 
       .hero-image::before {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
@@ -127,7 +127,7 @@
       }
 
       .category-title:after {
-        content: "";
+        content: '';
         position: absolute;
         bottom: -10px;
         left: 0;
@@ -257,7 +257,7 @@
       }
 
       .offer-card::before {
-        content: "";
+        content: '';
         position: absolute;
         top: -50%;
         right: -30%;
@@ -269,7 +269,7 @@
       }
 
       .offer-card::after {
-        content: "";
+        content: '';
         position: absolute;
         bottom: -30%;
         left: -20%;
@@ -315,7 +315,7 @@
         font-size: 3.5rem;
         font-weight: 800;
         color: var(--white);
-        font-family: "Cormorant Garamond", serif;
+        font-family: 'Cormorant Garamond', serif;
         margin: 1rem 0;
       }
 
@@ -362,7 +362,7 @@
       }
 
       .offer-circle:before {
-        content: "";
+        content: '';
         position: absolute;
         width: 140px;
         height: 140px;
@@ -427,7 +427,7 @@
       }
 
       .newsletter-card::before {
-        content: "";
+        content: '';
         position: absolute;
         top: -30%;
         left: -20%;
@@ -439,7 +439,7 @@
       }
 
       .newsletter-card::after {
-        content: "";
+        content: '';
         position: absolute;
         bottom: -30%;
         right: -10%;
@@ -493,7 +493,7 @@
         padding: 1rem 1.25rem;
         border: none;
         border-radius: var(--radius-full);
-        font-family: "Manrope", sans-serif;
+        font-family: 'Manrope', sans-serif;
         background: rgba(255, 255, 255, 0.95);
         color: var(--deep-charcoal);
       }
@@ -514,7 +514,7 @@
         font-weight: 700;
         cursor: pointer;
         transition: all 0.3s ease;
-        font-family: "Manrope", sans-serif;
+        font-family: 'Manrope', sans-serif;
       }
 
       .newsletter-form-inline button:hover {
@@ -665,13 +665,12 @@
           alt="Sculpt Lagree Studio"
           class="hero-bg-image"
         />
-        <div class="hero-card">
+        <!-- <div class="hero-card">
           <i class="fas fa-star"></i>
           <strong>#1 Pilates Studio in Lagos</strong>
           <span style="display: block; font-size: 0.875rem"
-            >5.0 ★ Google Reviews</span
-          >
-        </div>
+            >5.0 ★ Google Reviews</span>
+        </div> -->
       </div>
     </section>
 
@@ -681,7 +680,7 @@
         <div class="grid-2">
           <div class="welcome-card">
             <img
-              src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=1000&q=80"
+              src="./assets/img/sculpt_action.jpeg"
               alt="Lagree studio interior"
               class="welcome-card-image"
             />
@@ -861,20 +860,11 @@
         </div>
         <div class="instagram-feed" id="instagramFeed">
           <img src="./assets/img/sculpt_studio.png" alt="Studio" />
-          <img src="./assets/img/sculpt_inside.png" alt="Workout" />
-          <img src="./assets/img/sculpt_inside.png" alt="Trainer" />
-          <img
-            src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=400&q=80"
-            alt="Class"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?auto=format&fit=crop&w=400&q=80"
-            alt="Megaformer"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=400&q=80"
-            alt="Stretch"
-          />
+          <img src="./assets/img/sculpt_inside.jpeg" alt="Workout" />
+          <img src="./assets/img/sculpt_inside.jpeg" alt="Trainer" />
+          <img src="./assets/img/sculpt_cafe.jpeg" alt="Cafe" />
+          <img src="./assets/img/sculpt_reception.jpeg" alt="Reception" />
+          <img src="./assets/img/sculpt_outdoor.jpeg" alt="outdoor" />
         </div>
       </div>
     </section>
@@ -918,8 +908,8 @@
               </div>
             </div>
             <p>
-              Boutique Lagree and reformer-inspired training. Strong, graceful
-              movement in a warm Lagos studio.
+              Lagos’ first Lagree studio. Strong, graceful movement through
+              expertly guided classes in the heart of Lagos.
             </p>
             <div style="display: flex; gap: 1rem; margin-top: 1rem">
               <a href="#"><i class="fab fa-instagram"></i></a>
@@ -944,7 +934,9 @@
           </div>
           <div>
             <h4>Contact</h4>
-            <p>23b Karimu Kotun, Victoria Island<br />Lagos, Nigeria</p>
+            <p>
+              10 Agoro Odiyan St, Victoria Island,<br />Lagos 106104, Nigeria
+            </p>
             <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
           </div>
         </div>
@@ -958,16 +950,16 @@
     <script>
       // Mobile menu toggle
       function toggleMenu() {
-        document.getElementById("nav").classList.toggle("active");
+        document.getElementById('nav').classList.toggle('active');
       }
 
       // Newsletter submission
       document
-        .getElementById("newsletterForm")
-        ?.addEventListener("submit", function (e) {
+        .getElementById('newsletterForm')
+        ?.addEventListener('submit', function (e) {
           e.preventDefault();
           alert(
-            "Thank you for subscribing! Check your email for wellness tips.",
+            'Thank you for subscribing! Check your email for wellness tips.',
           );
           this.reset();
         });
@@ -978,12 +970,12 @@
       var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();
       (function () {
-        var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
+        var s1 = document.createElement('script'),
+          s0 = document.getElementsByTagName('script')[0];
         s1.async = true;
-        s1.src = "https://embed.tawk.to/6a2c39a78705f01c3509b4f3/1jquc2ea7";
-        s1.charset = "UTF-8";
-        s1.setAttribute("crossorigin", "*");
+        s1.src = 'https://embed.tawk.to/6a2c39a78705f01c3509b4f3/1jquc2ea7';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
         s0.parentNode.insertBefore(s1, s0);
       })();
     </script>

@@ -1,1356 +1,1786 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="View weekly class schedule at Sculpt Lagree Lagos. Book Lagree, Pilates, and signature sculpt classes online." />
+    <meta
+      name="description"
+      content="View weekly class schedule at Sculpt Lagree Lagos. Book Lagree, Pilates, and signature sculpt classes online."
+    />
     <title>Schedule | Sculpt Lagree Lagos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="shortcut icon" href="./assets/img/sculpt_logo_round.png" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="./assets/img/sculpt_logo_round.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
     <!-- Paystack Script -->
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <style>
-        /* Calendar Specific Styles */
-        .calendar-container {
-            background: var(--white);
-            border-radius: var(--radius-xl);
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
-        }
+      /* Calendar Specific Styles */
+      .calendar-container {
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+      }
 
-        /* View Toggle Buttons */
-        .view-toggle {
-            display: flex;
-            gap: 0.5rem;
-            background: var(--bg-warm);
-            padding: 0.25rem;
-            border-radius: var(--radius-full);
-        }
+      /* View Toggle Buttons */
+      .view-toggle {
+        display: flex;
+        gap: 0.5rem;
+        background: var(--bg-warm);
+        padding: 0.25rem;
+        border-radius: var(--radius-full);
+      }
 
-        .view-btn {
-            padding: 0.5rem 1.25rem;
-            border: none;
-            background: transparent;
-            border-radius: var(--radius-full);
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: all var(--transition-fast);
-            color: var(--stone);
-        }
+      .view-btn {
+        padding: 0.5rem 1.25rem;
+        border: none;
+        background: transparent;
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.8rem;
+        transition: all var(--transition-fast);
+        color: var(--stone);
+      }
 
-        .view-btn.active {
-            background: var(--terracotta);
-            color: var(--white);
-        }
+      .view-btn.active {
+        background: var(--terracotta);
+        color: var(--white);
+      }
 
-        .view-btn:hover:not(.active) {
-            background: var(--terracotta-soft);
-            color: var(--terracotta);
-        }
+      .view-btn:hover:not(.active) {
+        background: var(--terracotta-soft);
+        color: var(--terracotta);
+      }
 
-        /* Calendar Header with Navigation */
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+      /* Calendar Header with Navigation */
+      .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
 
-        .calendar-nav {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
+      .calendar-nav {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
 
-        .calendar-nav-btn {
-            background: var(--bg-warm);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all var(--transition-fast);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
+      .calendar-nav-btn {
+        background: var(--bg-warm);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: all var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-        .calendar-nav-btn:hover {
-            background: var(--terracotta);
-            color: var(--white);
-        }
+      .calendar-nav-btn:hover {
+        background: var(--terracotta);
+        color: var(--white);
+      }
 
-        .current-display {
-            font-size: 1.5rem;
-            font-weight: 600;
-            font-family: "Cormorant Garamond", serif;
-            color: var(--deep-charcoal);
-            min-width: 200px;
-            text-align: center;
-        }
+      .current-display {
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-family: "Cormorant Garamond", serif;
+        color: var(--deep-charcoal);
+        min-width: 200px;
+        text-align: center;
+      }
 
-        /* Date Selector Dropdowns */
-        .date-selector {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+      /* Date Selector Dropdowns */
+      .date-selector {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
 
-        .date-select {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--warm-gray);
-            border-radius: var(--radius-full);
-            background: var(--white);
-            font-family: "Manrope", sans-serif;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-        }
+      .date-select {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--warm-gray);
+        border-radius: var(--radius-full);
+        background: var(--white);
+        font-family: "Manrope", sans-serif;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+      }
 
-        .date-select:hover {
-            border-color: var(--terracotta);
-        }
+      .date-select:hover {
+        border-color: var(--terracotta);
+      }
 
-        .date-select:focus {
-            outline: none;
-            border-color: var(--terracotta);
-            box-shadow: 0 0 0 2px var(--terracotta-soft);
-        }
+      .date-select:focus {
+        outline: none;
+        border-color: var(--terracotta);
+        box-shadow: 0 0 0 2px var(--terracotta-soft);
+      }
 
-        .today-btn {
-            background: transparent;
-            border: 1px solid var(--terracotta);
-            padding: 0.5rem 1.25rem;
-            border-radius: var(--radius-full);
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--terracotta);
-            transition: all var(--transition-fast);
-        }
+      .today-btn {
+        background: transparent;
+        border: 1px solid var(--terracotta);
+        padding: 0.5rem 1.25rem;
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--terracotta);
+        transition: all var(--transition-fast);
+      }
 
-        .today-btn:hover {
-            background: var(--terracotta);
-            color: var(--white);
-        }
+      .today-btn:hover {
+        background: var(--terracotta);
+        color: var(--white);
+      }
 
-        /* Filter Bar */
-        .filter-bar {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--warm-gray);
-        }
+      /* Filter Bar */
+      .filter-bar {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--warm-gray);
+      }
 
-        .filter-chip {
-            background: var(--bg-warm);
-            border: none;
-            padding: 0.6rem 1.25rem;
-            border-radius: var(--radius-full);
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: all var(--transition-fast);
-            color: var(--charcoal);
-        }
+      .filter-chip {
+        background: var(--bg-warm);
+        border: none;
+        padding: 0.6rem 1.25rem;
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.8rem;
+        transition: all var(--transition-fast);
+        color: var(--charcoal);
+      }
 
-        .filter-chip.active,
-        .filter-chip:hover {
-            background: var(--terracotta);
-            color: var(--white);
-        }
+      .filter-chip.active,
+      .filter-chip:hover {
+        background: var(--terracotta);
+        color: var(--white);
+      }
 
-        /* Month View Grid */
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
+      /* Month View Grid */
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+      }
 
-        /* Week View Grid */
-        .week-view-container {
-            display: none;
-        }
+      /* Week View Grid */
+      .week-view-container {
+        display: none;
+      }
 
-        .week-view-container.active {
-            display: block;
-        }
+      .week-view-container.active {
+        display: block;
+      }
 
-        .week-grid {
-            display: grid;
-            grid-template-columns: 100px repeat(7, 1fr);
-            gap: 0.5rem;
-            overflow-x: auto;
-            min-width: 800px;
-        }
+      .week-grid {
+        display: grid;
+        grid-template-columns: 100px repeat(7, 1fr);
+        gap: 0.5rem;
+        overflow-x: auto;
+        min-width: 800px;
+      }
 
-        .week-time-slot {
-            background: var(--bg-warm);
-            padding: 0.75rem;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            text-align: center;
-            font-size: 0.8rem;
-        }
+      .week-time-slot {
+        background: var(--bg-warm);
+        padding: 0.75rem;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        text-align: center;
+        font-size: 0.8rem;
+      }
 
-        .week-class-slot {
-            background: var(--terracotta-soft);
-            padding: 0.75rem;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-        }
+      .week-class-slot {
+        background: var(--terracotta-soft);
+        padding: 0.75rem;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: all var(--transition-fast);
+      }
 
-        .week-class-slot:hover {
-            background: var(--terracotta);
-            color: var(--white);
-            transform: scale(0.98);
-        }
+      .week-class-slot:hover {
+        background: var(--terracotta);
+        color: var(--white);
+        transform: scale(0.98);
+      }
 
-        .week-class-name {
-            font-weight: 700;
-            font-size: 0.75rem;
-        }
+      .week-class-name {
+        font-weight: 700;
+        font-size: 0.75rem;
+      }
 
-        .week-class-instructor {
-            font-size: 0.65rem;
-            opacity: 0.8;
-        }
+      .week-class-instructor {
+        font-size: 0.65rem;
+        opacity: 0.8;
+      }
 
-        .week-book-btn {
-            background: var(--white);
-            border: none;
-            padding: 0.2rem 0.4rem;
-            border-radius: var(--radius-full);
-            margin-top: 0.5rem;
-            font-size: 0.65rem;
-            cursor: pointer;
-            width: 100%;
-        }
+      .week-book-btn {
+        background: var(--white);
+        border: none;
+        padding: 0.2rem 0.4rem;
+        border-radius: var(--radius-full);
+        margin-top: 0.5rem;
+        font-size: 0.65rem;
+        cursor: pointer;
+        width: 100%;
+      }
 
-        .week-empty-slot {
-            background: var(--bg-warm);
-            padding: 0.75rem;
-            border-radius: var(--radius-md);
-            text-align: center;
-            font-size: 0.7rem;
-            color: var(--stone);
-        }
+      .week-empty-slot {
+        background: var(--bg-warm);
+        padding: 0.75rem;
+        border-radius: var(--radius-md);
+        text-align: center;
+        font-size: 0.7rem;
+        color: var(--stone);
+      }
 
-        .calendar-day-header {
-            text-align: center;
-            padding: 1rem 0.5rem;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--stone);
-        }
+      .calendar-day-header {
+        text-align: center;
+        padding: 1rem 0.5rem;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--stone);
+      }
 
-        .calendar-day {
-            background: var(--bg-light);
-            border-radius: var(--radius-lg);
-            padding: 0.75rem;
-            min-height: 120px;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            border: 1px solid transparent;
-        }
+      .calendar-day {
+        background: var(--bg-light);
+        border-radius: var(--radius-lg);
+        padding: 0.75rem;
+        min-height: 120px;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        border: 1px solid transparent;
+      }
 
-        .calendar-day:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--terracotta-soft);
-        }
+      .calendar-day:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--terracotta-soft);
+      }
 
-        .calendar-day.today {
-            border: 2px solid var(--terracotta);
-            background: var(--terracotta-soft);
-        }
+      .calendar-day.today {
+        border: 2px solid var(--terracotta);
+        background: var(--terracotta-soft);
+      }
 
-        .calendar-day.selected {
-            background: var(--terracotta);
-            color: var(--white);
-        }
+      .calendar-day.selected {
+        background: var(--terracotta);
+        color: var(--white);
+      }
 
-        .calendar-day.selected .day-number {
-            color: var(--white);
-        }
+      .calendar-day.selected .day-number {
+        color: var(--white);
+      }
 
-        .day-number {
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            display: block;
-            color: var(--deep-charcoal);
-        }
+      .day-number {
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        display: block;
+        color: var(--deep-charcoal);
+      }
 
-        .day-class-indicator {
-            font-size: 0.7rem;
-            color: var(--terracotta);
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            flex-wrap: wrap;
-        }
+      .day-class-indicator {
+        font-size: 0.7rem;
+        color: var(--terracotta);
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        flex-wrap: wrap;
+      }
 
-        .class-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--terracotta);
-            border-radius: 50%;
-            display: inline-block;
-        }
+      .class-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--terracotta);
+        border-radius: 50%;
+        display: inline-block;
+      }
 
-        .other-month {
-            opacity: 0.4;
-        }
+      .other-month {
+        opacity: 0.4;
+      }
 
-        /* Selected Day Classes */
-        .selected-day-classes {
-            background: var(--bg-warm);
-            border-radius: var(--radius-xl);
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-        }
+      /* Selected Day Classes */
+      .selected-day-classes {
+        background: var(--bg-warm);
+        border-radius: var(--radius-xl);
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+      }
 
-        .selected-day-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+      .selected-day-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
 
-        .selected-day-title h3 {
-            margin: 0;
-            font-size: 1.3rem;
-        }
+      .selected-day-title h3 {
+        margin: 0;
+        font-size: 1.3rem;
+      }
 
-        .classes-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+      .classes-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
 
-        .class-item {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 1rem 1.25rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            transition: all var(--transition-fast);
-            border-left: 4px solid var(--terracotta);
-        }
+      .class-item {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        padding: 1rem 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        transition: all var(--transition-fast);
+        border-left: 4px solid var(--terracotta);
+      }
 
-        .class-item:hover {
-            transform: translateX(4px);
-            box-shadow: var(--shadow-sm);
-        }
+      .class-item:hover {
+        transform: translateX(4px);
+        box-shadow: var(--shadow-sm);
+      }
 
-        .class-info {
-            flex: 2;
-        }
+      .class-info {
+        flex: 2;
+      }
 
-        .class-time {
-            font-weight: 800;
-            color: var(--terracotta);
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
+      .class-time {
+        font-weight: 800;
+        color: var(--terracotta);
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+      }
 
-        .class-name {
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
+      .class-name {
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+      }
 
-        .class-details {
-            font-size: 0.75rem;
-            color: var(--stone);
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+      .class-details {
+        font-size: 0.75rem;
+        color: var(--stone);
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
 
-        .book-btn {
-            background: var(--terracotta);
-            color: var(--white);
-            border: none;
-            padding: 0.6rem 1.5rem;
-            border-radius: var(--radius-full);
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: all var(--transition-fast);
-        }
+      .book-btn {
+        background: var(--terracotta);
+        color: var(--white);
+        border: none;
+        padding: 0.6rem 1.5rem;
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.8rem;
+        transition: all var(--transition-fast);
+      }
 
-        .book-btn:hover {
-            background: var(--terracotta-dark);
-            transform: scale(1.02);
-        }
+      .book-btn:hover {
+        background: var(--terracotta-dark);
+        transform: scale(1.02);
+      }
 
-        .no-classes {
-            text-align: center;
-            padding: 3rem;
-            color: var(--stone);
-        }
+      .no-classes {
+        text-align: center;
+        padding: 3rem;
+        color: var(--stone);
+      }
 
-        .legend {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
+      .legend {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+      }
 
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            color: var(--stone);
-        }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        color: var(--stone);
+      }
 
-        .legend-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
+      .legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
 
-        .legend-dot.terracotta {
-            background: var(--terracotta);
-        }
+      .legend-dot.terracotta {
+        background: var(--terracotta);
+      }
 
-        .legend-dot.today {
-            border: 2px solid var(--terracotta);
-            background: transparent;
-            width: 12px;
-            height: 12px;
-        }
+      .legend-dot.today {
+        border: 2px solid var(--terracotta);
+        background: transparent;
+        width: 12px;
+        height: 12px;
+      }
 
-        /* ============================================
+      /* ============================================
            SHORT BOOKING MODAL - PREMIUM DESIGN
            ============================================ */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+      .modal-overlay.active {
+        display: flex;
+      }
 
+      .modal-container {
+        background: var(--white);
+        border-radius: var(--radius-2xl);
+        max-width: 420px;
+        width: 100%;
+        padding: 2rem;
+        position: relative;
+        animation: modalSlideIn 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes modalSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--bg-warm);
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1rem;
+        color: var(--stone);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-close:hover {
+        background: var(--terracotta);
+        color: var(--white);
+      }
+
+      .modal-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(209, 118, 79, 0.12);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+      }
+
+      .modal-icon i {
+        font-size: 1.6rem;
+        color: var(--terracotta);
+      }
+
+      .modal-title {
+        text-align: center;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+        color: var(--deep-charcoal);
+      }
+
+      .modal-subtitle {
+        text-align: center;
+        color: var(--stone);
+        font-size: 0.85rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .modal-class-details {
+        background: var(--bg-warm);
+        border-radius: var(--radius-lg);
+        padding: 0.75rem 1rem;
+        margin-bottom: 1.25rem;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .modal-class-detail {
+        text-align: center;
+      }
+
+      .modal-class-detail .label {
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--stone);
+        display: block;
+      }
+
+      .modal-class-detail .value {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--deep-charcoal);
+      }
+
+      .modal-price {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--terracotta);
+        font-family: "Cormorant Garamond", serif;
+        margin-bottom: 1.25rem;
+      }
+
+      .modal-price small {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: var(--stone);
+      }
+
+      /* Short Form - Only 2 fields */
+      .form-group-modal {
+        margin-bottom: 1rem;
+      }
+
+      .form-group-modal label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: var(--deep-charcoal);
+        margin-bottom: 0.3rem;
+      }
+
+      .form-group-modal input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(209, 118, 79, 0.2);
+        border-radius: var(--radius-md);
+        font-family: "Manrope", sans-serif;
+        transition: all 0.3s ease;
+        background: #f2e8dc;
+        color: var(--deep-charcoal);
+        font-size: 0.9rem;
+      }
+
+      .form-group-modal input:focus {
+        outline: none;
+        border-color: var(--terracotta);
+        box-shadow: 0 0 0 2px rgba(209, 118, 79, 0.2);
+        background: #f5ede3;
+      }
+
+      .form-group-modal input::placeholder {
+        color: var(--stone);
+      }
+
+      .modal-btn-pay {
+        width: 100%;
+        padding: 0.85rem;
+        background: linear-gradient(
+          135deg,
+          var(--terracotta),
+          var(--terracotta-dark)
+        );
+        color: var(--white);
+        border: none;
+        border-radius: var(--radius-full);
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 0.25rem;
+      }
+
+      .modal-btn-pay:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(209, 118, 79, 0.3);
+      }
+
+      .modal-btn-pay:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .modal-error {
+        color: #d32f2f;
+        font-size: 0.75rem;
+        margin-top: 0.3rem;
+        display: none;
+      }
+
+      .modal-error.show {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .calendar-container {
+          padding: 1rem;
+        }
+        .calendar-day {
+          min-height: 90px;
+          padding: 0.5rem;
+        }
+        .day-number {
+          font-size: 0.8rem;
+        }
+        .class-item {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .book-btn {
+          width: 100%;
+          text-align: center;
+        }
+        .calendar-day-header {
+          font-size: 0.7rem;
+          padding: 0.5rem;
+        }
+        .date-selector {
+          order: 2;
+          width: 100%;
+          justify-content: center;
+        }
         .modal-container {
-            background: var(--white);
-            border-radius: var(--radius-2xl);
-            max-width: 420px;
-            width: 100%;
-            padding: 2rem;
-            position: relative;
-            animation: modalSlideIn 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+          padding: 1.5rem;
         }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--bg-warm);
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1rem;
-            color: var(--stone);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-close:hover {
-            background: var(--terracotta);
-            color: var(--white);
-        }
-
-        .modal-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(209, 118, 79, 0.12);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-        }
-
-        .modal-icon i {
-            font-size: 1.6rem;
-            color: var(--terracotta);
-        }
-
         .modal-title {
-            text-align: center;
-            font-family: "Cormorant Garamond", serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-            color: var(--deep-charcoal);
+          font-size: 1.3rem;
         }
-
-        .modal-subtitle {
-            text-align: center;
-            color: var(--stone);
-            font-size: 0.85rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .modal-class-details {
-            background: var(--bg-warm);
-            border-radius: var(--radius-lg);
-            padding: 0.75rem 1rem;
-            margin-bottom: 1.25rem;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .modal-class-detail {
-            text-align: center;
-        }
-
-        .modal-class-detail .label {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--stone);
-            display: block;
-        }
-
-        .modal-class-detail .value {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--deep-charcoal);
-        }
-
         .modal-price {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--terracotta);
-            font-family: "Cormorant Garamond", serif;
-            margin-bottom: 1.25rem;
+          font-size: 1.6rem;
         }
-
-        .modal-price small {
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: var(--stone);
-        }
-
-        /* Short Form - Only 2 fields */
-        .form-group-modal {
-            margin-bottom: 1rem;
-        }
-
-        .form-group-modal label {
-            display: block;
-            font-weight: 600;
-            font-size: 0.8rem;
-            color: var(--deep-charcoal);
-            margin-bottom: 0.3rem;
-        }
-
-        .form-group-modal input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid rgba(209, 118, 79, 0.2);
-            border-radius: var(--radius-md);
-            font-family: "Manrope", sans-serif;
-            transition: all 0.3s ease;
-            background: #F2E8DC;
-            color: var(--deep-charcoal);
-            font-size: 0.9rem;
-        }
-
-        .form-group-modal input:focus {
-            outline: none;
-            border-color: var(--terracotta);
-            box-shadow: 0 0 0 2px rgba(209, 118, 79, 0.2);
-            background: #F5EDE3;
-        }
-
-        .form-group-modal input::placeholder {
-            color: var(--stone);
-        }
-
-        .modal-btn-pay {
-            width: 100%;
-            padding: 0.85rem;
-            background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark));
-            color: var(--white);
-            border: none;
-            border-radius: var(--radius-full);
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-top: 0.25rem;
-        }
-
-        .modal-btn-pay:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(209, 118, 79, 0.3);
-        }
-
-        .modal-btn-pay:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .modal-error {
-            color: #D32F2F;
-            font-size: 0.75rem;
-            margin-top: 0.3rem;
-            display: none;
-        }
-
-        .modal-error.show {
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .calendar-container {
-                padding: 1rem;
-            }
-            .calendar-day {
-                min-height: 90px;
-                padding: 0.5rem;
-            }
-            .day-number {
-                font-size: 0.8rem;
-            }
-            .class-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .book-btn {
-                width: 100%;
-                text-align: center;
-            }
-            .calendar-day-header {
-                font-size: 0.7rem;
-                padding: 0.5rem;
-            }
-            .date-selector {
-                order: 2;
-                width: 100%;
-                justify-content: center;
-            }
-            .modal-container {
-                padding: 1.5rem;
-            }
-            .modal-title {
-                font-size: 1.3rem;
-            }
-            .modal-price {
-                font-size: 1.6rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Sticky Booking Button -->
     <a href="schedule.html" class="sticky-book">
-        <i class="fas fa-calendar-check"></i>
-        <span>Book Your Class</span>
+      <i class="fas fa-calendar-check"></i>
+      <span>Book Your Class</span>
     </a>
 
     <!-- Floating WhatsApp -->
     <a href="#" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+      <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- Header -->
     <header class="header">
-        <div class="container">
-            <a href="index.html" class="brand">
-                <div class="logo-icon">
-                    <img src="./assets/img/sculpt-logo.jpg" alt="Sculpt Lagree Logo" class="logo-img" />
-                </div>
-            </a>
-            <button class="menu-btn" onclick="toggleMenu()">☰</button>
-            <nav class="nav" id="nav">
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="classes.html">Classes</a>
-                <a href="schedule.html" class="active">Schedule</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="teams.html">Our Team</a>
-                <a href="contact.html">Contact</a>
-                <a href="schedule.html" class="btn-book">Book Now</a>
-            </nav>
-        </div>
+      <div class="container">
+        <a href="index.html" class="brand">
+          <div class="logo-icon">
+            <img
+              src="./assets/img/sculpt-logo.jpg"
+              alt="Sculpt Lagree Logo"
+              class="logo-img"
+            />
+          </div>
+        </a>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <nav class="nav" id="nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="classes.html">Classes</a>
+          <a href="schedule.html" class="active">Schedule</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="teams.html">Our Team</a>
+          <a href="contact.html">Contact</a>
+          <a href="schedule.html" class="btn-book">Book Now</a>
+        </nav>
+      </div>
     </header>
 
     <!-- Hero Banner -->
-    <section class="hero-banner" style="background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark)); padding: 4rem 0; text-align: center;">
-        <div class="container">
-            <span class="eyebrow" style="color: var(--cream)">BOOK YOUR MAT</span>
-            <h1 style="color: var(--white)">Class Schedule</h1>
-            <p style="color: var(--cream); max-width: 600px; margin: 0 auto">Book your mat. Reserve your spot. Transform your body.</p>
-        </div>
+    <section
+      class="hero-banner"
+      style="
+        background: linear-gradient(
+          135deg,
+          var(--terracotta),
+          var(--terracotta-dark)
+        );
+        padding: 4rem 0;
+        text-align: center;
+      "
+    >
+      <div class="container">
+        <span class="eyebrow" style="color: var(--cream)">BOOK YOUR MAT</span>
+        <h1 style="color: var(--white)">Class Schedule</h1>
+        <p style="color: var(--cream); max-width: 600px; margin: 0 auto">
+          Book your mat. Reserve your spot. Transform your body.
+        </p>
+      </div>
     </section>
 
     <!-- Calendar Section -->
     <section class="section">
-        <div class="container">
-            <div class="calendar-container">
-                <!-- View Toggle Buttons -->
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
-                    <div class="view-toggle">
-                        <button class="view-btn active" data-view="month">
-                            <i class="fas fa-calendar-alt"></i> Month View
-                        </button>
-                        <button class="view-btn" data-view="week">
-                            <i class="fas fa-calendar-week"></i> Week View
-                        </button>
-                    </div>
-                    <button class="today-btn" id="todayBtn">
-                        <i class="fas fa-calendar-day"></i> Today
-                    </button>
-                </div>
-
-                <!-- Calendar Header with Navigation and Date Selectors -->
-                <div class="calendar-header">
-                    <div class="calendar-nav">
-                        <button class="calendar-nav-btn" id="prevBtn">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <span class="current-display" id="currentDisplay">June 2026</span>
-                        <button class="calendar-nav-btn" id="nextBtn">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-
-                    <!-- Date Selector Dropdowns -->
-                    <div class="date-selector">
-                        <select id="monthSelect" class="date-select">
-                            <option value="0">January</option>
-                            <option value="1">February</option>
-                            <option value="2">March</option>
-                            <option value="3">April</option>
-                            <option value="4">May</option>
-                            <option value="5">June</option>
-                            <option value="6">July</option>
-                            <option value="7">August</option>
-                            <option value="8">September</option>
-                            <option value="9">October</option>
-                            <option value="10">November</option>
-                            <option value="11">December</option>
-                        </select>
-                        <select id="yearSelect" class="date-select">
-                            <option value="2024">2024</option>
-                            <option value="2025">2025</option>
-                            <option value="2026" selected>2026</option>
-                            <option value="2027">2027</option>
-                            <option value="2028">2028</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Filter Chips -->
-                <div class="filter-bar">
-                    <button class="filter-chip active" data-filter="all">All Classes</button>
-                    <button class="filter-chip" data-filter="signature">Signature Sculpt</button>
-                    <button class="filter-chip" data-filter="foundations">Foundations</button>
-                    <button class="filter-chip" data-filter="advanced">Advanced Lagree</button>
-                    <button class="filter-chip" data-filter="women">Women Only</button>
-                </div>
-
-                <!-- Month View Container -->
-                <div id="monthViewContainer" class="month-view-container">
-                    <div class="calendar-grid" id="calendarGrid"></div>
-                </div>
-
-                <!-- Week View Container -->
-                <div id="weekViewContainer" class="week-view-container">
-                    <div class="schedule-table" id="weekGrid"></div>
-                </div>
-
-                <!-- Legend -->
-                <div class="legend">
-                    <div class="legend-item">
-                        <div class="legend-dot terracotta"></div>
-                        <span>Classes available</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-dot today"></div>
-                        <span>Today</span>
-                    </div>
-                </div>
-
-                <!-- Selected Day Classes -->
-                <div class="selected-day-classes" id="selectedDayClasses"></div>
+      <div class="container">
+        <div class="calendar-container">
+          <!-- View Toggle Buttons -->
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 1rem;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <div class="view-toggle">
+              <button class="view-btn active" data-view="month">
+                <i class="fas fa-calendar-alt"></i> Month View
+              </button>
+              <button class="view-btn" data-view="week">
+                <i class="fas fa-calendar-week"></i> Week View
+              </button>
             </div>
+            <button class="today-btn" id="todayBtn">
+              <i class="fas fa-calendar-day"></i> Today
+            </button>
+          </div>
+
+          <!-- Calendar Header with Navigation and Date Selectors -->
+          <div class="calendar-header">
+            <div class="calendar-nav">
+              <button class="calendar-nav-btn" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <span class="current-display" id="currentDisplay">June 2026</span>
+              <button class="calendar-nav-btn" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <!-- Date Selector Dropdowns -->
+            <div class="date-selector">
+              <select id="monthSelect" class="date-select">
+                <option value="0">January</option>
+                <option value="1">February</option>
+                <option value="2">March</option>
+                <option value="3">April</option>
+                <option value="4">May</option>
+                <option value="5">June</option>
+                <option value="6">July</option>
+                <option value="7">August</option>
+                <option value="8">September</option>
+                <option value="9">October</option>
+                <option value="10">November</option>
+                <option value="11">December</option>
+              </select>
+              <select id="yearSelect" class="date-select">
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026" selected>2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Filter Chips -->
+          <div class="filter-bar">
+            <button class="filter-chip active" data-filter="all">
+              All Classes
+            </button>
+            <button class="filter-chip" data-filter="signature">
+              Signature Sculpt
+            </button>
+            <button class="filter-chip" data-filter="foundations">
+              Foundations
+            </button>
+            <button class="filter-chip" data-filter="advanced">
+              Advanced Lagree
+            </button>
+            <button class="filter-chip" data-filter="women">Women Only</button>
+          </div>
+
+          <!-- Month View Container -->
+          <div id="monthViewContainer" class="month-view-container">
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </div>
+
+          <!-- Week View Container -->
+          <div id="weekViewContainer" class="week-view-container">
+            <div class="schedule-table" id="weekGrid"></div>
+          </div>
+
+          <!-- Legend -->
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-dot terracotta"></div>
+              <span>Classes available</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot today"></div>
+              <span>Today</span>
+            </div>
+          </div>
+
+          <!-- Selected Day Classes -->
+          <div class="selected-day-classes" id="selectedDayClasses"></div>
         </div>
+      </div>
     </section>
 
     <!-- Class Guide Section -->
     <section class="section" style="background: var(--bg-warm)">
-        <div class="container">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem">
-                <span class="eyebrow">Class Guide</span>
-                <h2>Find your perfect class</h2>
-                <p>Discover our curated selection of Lagree and Pilates-inspired workouts</p>
-            </div>
-            <div class="grid-3">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="difficulty difficulty-beginner">Beginner</span>
-                        <h3>Lagree Foundations</h3>
-                        <p>Learn the basics of the Megaformer. Perfect for first-timers. Build confidence and proper form.</p>
-                        <p><strong>Duration:</strong> 45 min | <strong>Max:</strong> 8 students</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <span class="difficulty difficulty-intermediate">Intermediate</span>
-                        <h3>Signature Sculpt</h3>
-                        <p>Full-body Lagree training. High-intensity, low-impact. Our most popular class for visible results.</p>
-                        <p><strong>Duration:</strong> 45 min | <strong>Max:</strong> 8 students</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <span class="difficulty difficulty-advanced">Advanced</span>
-                        <h3>Lagree X</h3>
-                        <p>Fast-paced, high-intensity for experienced clients. Advanced variations and minimal rest.</p>
-                        <p><strong>Duration:</strong> 50 min | <strong>Max:</strong> 8 students</p>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem">
+          <span class="eyebrow">Class Guide</span>
+          <h2>Find your perfect class</h2>
+          <p>
+            Discover our curated selection of Lagree and Pilates-inspired
+            workouts
+          </p>
         </div>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-content">
+              <span class="difficulty difficulty-beginner">Beginner</span>
+              <h3>Lagree Foundations</h3>
+              <p>
+                Learn the basics of the Megaformer. Perfect for first-timers.
+                Build confidence and proper form.
+              </p>
+              <p>
+                <strong>Duration:</strong> 45 min | <strong>Max:</strong> 8
+                students
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <span class="difficulty difficulty-intermediate"
+                >Intermediate</span
+              >
+              <h3>Signature Sculpt</h3>
+              <p>
+                Full-body Lagree training. High-intensity, low-impact. Our most
+                popular class for visible results.
+              </p>
+              <p>
+                <strong>Duration:</strong> 45 min | <strong>Max:</strong> 8
+                students
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <span class="difficulty difficulty-advanced">Advanced</span>
+              <h3>Lagree X</h3>
+              <p>
+                Fast-paced, high-intensity for experienced clients. Advanced
+                variations and minimal rest.
+              </p>
+              <p>
+                <strong>Duration:</strong> 50 min | <strong>Max:</strong> 8
+                students
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="brand" style="margin-bottom: 1rem">
-                        <div class="logo-icon" style="width: 40px; height: 40px">
-                            <img src="./assets/img/sculpt-logo.jpg" alt="Sculpt Lagree Logo" class="logo-img" />
-                        </div>
-                    </div>
-                    <p>Lagos' first Lagree studio. Strong, graceful movement through expertly guided classes in the heart of Lagos.</p>
-                    <div style="display: flex; gap: 1rem; margin-top: 1rem">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4>Studio</h4>
-                    <a href="about.html">About Us</a>
-                    <a href="lagree-method.html">Lagree Method</a>
-                    <a href="classes.html">Classes</a>
-                    <a href="schedule.html">Schedule</a>
-                    <a href="trainers.html">Trainers</a>
-                </div>
-                <div>
-                    <h4>Programs</h4>
-                    <a href="classes.html">Signature Sculpt</a>
-                    <a href="classes.html">Beginner Foundations</a>
-                    <a href="classes.html">Private Sessions</a>
-                    <a href="classes.html">Stretch & Recovery</a>
-                    <a href="pricing.html">Pricing</a>
-                </div>
-                <div>
-                    <h4>Contact</h4>
-                    <p>23b Karimu Kotun, Victoria Island<br />Lagos, Nigeria</p>
-                    <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
-                </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="brand" style="margin-bottom: 1rem">
+              <div class="logo-icon" style="width: 40px; height: 40px">
+                <img
+                  src="./assets/img/sculpt-logo.jpg"
+                  alt="Sculpt Lagree Logo"
+                  class="logo-img"
+                />
+              </div>
             </div>
-            <div class="copyright">
-                <p>© 2026 Sculpt Lagree. All rights reserved.</p>
+            <p>
+              Lagos' first Lagree studio. Strong, graceful movement through
+              expertly guided classes in the heart of Lagos.
+            </p>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem">
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-tiktok"></i></a>
             </div>
+          </div>
+          <div>
+            <h4>Studio</h4>
+            <a href="about.html">About Us</a>
+            <a href="lagree-method.html">Lagree Method</a>
+            <a href="classes.html">Classes</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="trainers.html">Trainers</a>
+          </div>
+          <div>
+            <h4>Programs</h4>
+            <a href="classes.html">Signature Sculpt</a>
+            <a href="classes.html">Beginner Foundations</a>
+            <a href="classes.html">Private Sessions</a>
+            <a href="classes.html">Stretch & Recovery</a>
+            <a href="pricing.html">Pricing</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <p>23b Karimu Kotun, Victoria Island<br />Lagos, Nigeria</p>
+            <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
+          </div>
         </div>
+        <div class="copyright">
+          <p>© 2026 Sculpt Lagree. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <!-- ============================================
     SHORT BOOKING MODAL - ONLY 2 FIELDS
     ============================================ -->
     <div class="modal-overlay" id="bookingModal">
-        <div class="modal-container">
-            <button class="modal-close" id="modalCloseBtn">
-                <i class="fas fa-times"></i>
-            </button>
+      <div class="modal-container">
+        <button class="modal-close" id="modalCloseBtn">
+          <i class="fas fa-times"></i>
+        </button>
 
-            <div class="modal-icon">
-                <i class="fas fa-calendar-check"></i>
-            </div>
-
-            <h2 class="modal-title">Book Your Class</h2>
-            <p class="modal-subtitle">Complete your booking & payment securely</p>
-
-            <!-- Class Details Display -->
-            <div class="modal-class-details" id="modalClassDetails">
-                <div class="modal-class-detail">
-                    <span class="label">Class</span>
-                    <span class="value" id="modalClassName">Signature Sculpt</span>
-                </div>
-                <div class="modal-class-detail">
-                    <span class="label">Day</span>
-                    <span class="value" id="modalClassDay">Monday</span>
-                </div>
-                <div class="modal-class-detail">
-                    <span class="label">Time</span>
-                    <span class="value" id="modalClassTime">09:00</span>
-                </div>
-            </div>
-
-            <div class="modal-price" id="modalPriceDisplay">
-                ₦18,000 <small>per class</small>
-            </div>
-
-            <!-- Short Form - Only Name & Email -->
-            <form id="bookingForm">
-                <div class="form-group-modal">
-                    <label for="modalFullName">Full Name</label>
-                    <input type="text" id="modalFullName" placeholder="Enter your full name" required />
-                </div>
-
-                <div class="form-group-modal">
-                    <label for="modalEmail">Email Address</label>
-                    <input type="email" id="modalEmail" placeholder="Enter your email address" required />
-                </div>
-
-                <div class="modal-error" id="modalError">Please fill in all required fields.</div>
-
-                <button type="submit" class="modal-btn-pay" id="modalPayBtn">
-                    <i class="fas fa-lock"></i> Pay Now
-                </button>
-            </form>
+        <div class="modal-icon">
+          <i class="fas fa-calendar-check"></i>
         </div>
+
+        <h2 class="modal-title">Book Your Class</h2>
+        <p class="modal-subtitle">Complete your booking & payment securely</p>
+
+        <!-- Class Details Display -->
+        <div class="modal-class-details" id="modalClassDetails">
+          <div class="modal-class-detail">
+            <span class="label">Class</span>
+            <span class="value" id="modalClassName">Signature Sculpt</span>
+          </div>
+          <div class="modal-class-detail">
+            <span class="label">Day</span>
+            <span class="value" id="modalClassDay">Monday</span>
+          </div>
+          <div class="modal-class-detail">
+            <span class="label">Time</span>
+            <span class="value" id="modalClassTime">09:00</span>
+          </div>
+        </div>
+
+        <div class="modal-price" id="modalPriceDisplay">
+          ₦18,000 <small>per class</small>
+        </div>
+
+        <!-- Short Form - Only Name & Email -->
+        <form id="bookingForm">
+          <div class="form-group-modal">
+            <label for="modalFullName">Full Name</label>
+            <input
+              type="text"
+              id="modalFullName"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div class="form-group-modal">
+            <label for="modalEmail">Email Address</label>
+            <input
+              type="email"
+              id="modalEmail"
+              placeholder="Enter your email address"
+              required
+            />
+          </div>
+
+          <div class="modal-error" id="modalError">
+            Please fill in all required fields.
+          </div>
+
+          <button type="submit" class="modal-btn-pay" id="modalPayBtn">
+            <i class="fas fa-lock"></i> Pay Now
+          </button>
+        </form>
+      </div>
     </div>
 
     <script src="assets/js/main.js"></script>
 
     <script>
-        // Mobile menu toggle
-        function toggleMenu() {
-            document.getElementById("nav").classList.toggle("active");
+      // Mobile menu toggle
+      function toggleMenu() {
+        document.getElementById("nav").classList.toggle("active");
+      }
+
+      // ============================================
+      // BOOKING MODAL CONTROLS
+      // ============================================
+      const modalOverlay = document.getElementById("bookingModal");
+      const modalCloseBtn = document.getElementById("modalCloseBtn");
+      const bookingForm = document.getElementById("bookingForm");
+      const modalPayBtn = document.getElementById("modalPayBtn");
+      const modalError = document.getElementById("modalError");
+
+      // Store current booking data
+      let currentBooking = {
+        className: "",
+        day: "",
+        time: "",
+        price: 0,
+      };
+
+      function openBookingModal(className, day, time, price) {
+        currentBooking.className = className;
+        currentBooking.day = day;
+        currentBooking.time = time;
+        currentBooking.price = price;
+
+        // Update modal with class details
+        document.getElementById("modalClassName").textContent = className;
+        document.getElementById("modalClassDay").textContent = day;
+        document.getElementById("modalClassTime").textContent = time;
+        document.getElementById("modalPriceDisplay").innerHTML =
+          `₦${price.toLocaleString()} <small>per class</small>`;
+
+        // Reset form
+        bookingForm.reset();
+        modalError.classList.remove("show");
+        modalPayBtn.disabled = false;
+        modalPayBtn.innerHTML = '<i class="fas fa-lock"></i> Pay Now';
+
+        // Show modal
+        modalOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeBookingModal() {
+        modalOverlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      // Close modal events
+      modalCloseBtn.addEventListener("click", closeBookingModal);
+      modalOverlay.addEventListener("click", function (e) {
+        if (e.target === modalOverlay) {
+          closeBookingModal();
+        }
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeBookingModal();
+        }
+      });
+
+      // ============================================
+      // PAYSTACK INTEGRATION
+      // ============================================
+      // Your Paystack Public Key - Replace with your actual key
+      const PAYSTACK_PUBLIC_KEY =
+        "pk_test_faa8396a1e3ce90b576ce8e6eb25af226eacff34";
+
+      // Class Price Mapping
+      const classPrices = {
+        "Signature Sculpt": 18000,
+        "Lagree Foundations": 15000,
+        "Slow & Controlled": 15000,
+        "Intro to Lagree": 15000,
+        "Cardio Lagree": 18000,
+        "Women Only Sculpt": 17000,
+        "Lagree X": 20000,
+        "Advanced Sculpt": 20000,
+        "Private Training": 75000,
+        "Stretch & Recovery": 12000,
+        "Duet Session": 110000,
+        "Group Private": 250000,
+      };
+
+      // Form submission handler
+      bookingForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const fullName = document.getElementById("modalFullName").value.trim();
+        const email = document.getElementById("modalEmail").value.trim();
+
+        // Validate
+        if (!fullName || !email) {
+          modalError.textContent = "Please enter your name and email address.";
+          modalError.classList.add("show");
+          return;
         }
 
-        // ============================================
-        // BOOKING MODAL CONTROLS
-        // ============================================
-        const modalOverlay = document.getElementById('bookingModal');
-        const modalCloseBtn = document.getElementById('modalCloseBtn');
-        const bookingForm = document.getElementById('bookingForm');
-        const modalPayBtn = document.getElementById('modalPayBtn');
-        const modalError = document.getElementById('modalError');
+        if (!email.includes("@") || !email.includes(".")) {
+          modalError.textContent = "Please enter a valid email address.";
+          modalError.classList.add("show");
+          return;
+        }
 
-        // Store current booking data
-        let currentBooking = {
-            className: '',
-            day: '',
-            time: '',
-            price: 0
-        };
+        modalError.classList.remove("show");
+        modalPayBtn.disabled = true;
+        modalPayBtn.innerHTML =
+          '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
-        function openBookingModal(className, day, time, price) {
-            currentBooking.className = className;
-            currentBooking.day = day;
-            currentBooking.time = time;
-            currentBooking.price = price;
-
-            // Update modal with class details
-            document.getElementById('modalClassName').textContent = className;
-            document.getElementById('modalClassDay').textContent = day;
-            document.getElementById('modalClassTime').textContent = time;
-            document.getElementById('modalPriceDisplay').innerHTML = `₦${price.toLocaleString()} <small>per class</small>`;
-
-            // Reset form
-            bookingForm.reset();
-            modalError.classList.remove('show');
+        // Initialize Paystack payment
+        const price = currentBooking.price;
+        const handler = PaystackPop.setup({
+          key: PAYSTACK_PUBLIC_KEY,
+          email: email,
+          amount: price * 100,
+          currency: "NGN",
+          ref:
+            "SCULPT_" +
+            Math.floor(Math.random() * 1000000000 + 1) +
+            "_" +
+            Date.now(),
+          metadata: {
+            custom_fields: [
+              {
+                display_name: "Class Name",
+                variable_name: "class_name",
+                value: currentBooking.className,
+              },
+              {
+                display_name: "Day",
+                variable_name: "day",
+                value: currentBooking.day,
+              },
+              {
+                display_name: "Time",
+                variable_name: "time",
+                value: currentBooking.time,
+              },
+              {
+                display_name: "Customer Name",
+                variable_name: "customer_name",
+                value: fullName,
+              },
+            ],
+          },
+          label: "Book Class - Sculpt Lagree",
+          onClose: function () {
             modalPayBtn.disabled = false;
             modalPayBtn.innerHTML = '<i class="fas fa-lock"></i> Pay Now';
+          },
+          callback: function (response) {
+            // Payment successful
+            closeBookingModal();
+            alert(
+              "✅ Payment Successful!\n\n" +
+                "Class: " +
+                currentBooking.className +
+                "\n" +
+                "Day: " +
+                currentBooking.day +
+                "\n" +
+                "Time: " +
+                currentBooking.time +
+                "\n" +
+                "Amount: ₦" +
+                price.toLocaleString() +
+                "\n" +
+                "Reference: " +
+                response.reference +
+                "\n\n" +
+                "Your booking has been confirmed! A confirmation email has been sent.",
+            );
 
-            // Show modal
-            modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeBookingModal() {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal events
-        modalCloseBtn.addEventListener('click', closeBookingModal);
-        modalOverlay.addEventListener('click', function(e) {
-            if (e.target === modalOverlay) {
-                closeBookingModal();
-            }
+            console.log("Payment Success:", response);
+            console.log("Booking:", currentBooking);
+          },
         });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeBookingModal();
-            }
+        handler.openIframe();
+      });
+
+      // ============================================
+      // OPEN MODAL FROM BOOK BUTTONS
+      // ============================================
+      function bookWithPaystack(className, day, time) {
+        const price = classPrices[className] || 0;
+        if (price === 0) {
+          alert("Class price not found. Please contact the studio directly.");
+          return;
+        }
+        openBookingModal(className, day, time, price);
+      }
+
+      // ============================================
+      // COMPLETE CALENDAR SYSTEM
+      // ============================================
+
+      // Class Schedule Data
+      const classSchedule = {
+        Monday: [
+          {
+            time: "07:00",
+            name: "Signature Sculpt",
+            instructor: "Chen D.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 6,
+          },
+          {
+            time: "09:00",
+            name: "Lagree Foundations",
+            instructor: "Maria O.",
+            level: "beginner",
+            category: "foundations",
+            duration: "45min",
+            spots: 4,
+          },
+          {
+            time: "12:00",
+            name: "Signature Sculpt",
+            instructor: "James A.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 8,
+          },
+          {
+            time: "17:00",
+            name: "Women Only Sculpt",
+            instructor: "Chen D.",
+            level: "all",
+            category: "women",
+            duration: "45min",
+            spots: 3,
+          },
+          {
+            time: "18:30",
+            name: "Signature Sculpt",
+            instructor: "Maria O.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 5,
+          },
+        ],
+        Tuesday: [
+          {
+            time: "07:00",
+            name: "Lagree X",
+            instructor: "James A.",
+            level: "advanced",
+            category: "advanced",
+            duration: "50min",
+            spots: 7,
+          },
+          {
+            time: "09:00",
+            name: "Signature Sculpt",
+            instructor: "Chen D.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 2,
+          },
+          {
+            time: "12:00",
+            name: "Lagree Foundations",
+            instructor: "Maria O.",
+            level: "beginner",
+            category: "foundations",
+            duration: "45min",
+            spots: 8,
+          },
+          {
+            time: "17:00",
+            name: "Signature Sculpt",
+            instructor: "James A.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 4,
+          },
+          {
+            time: "18:30",
+            name: "Stretch & Recovery",
+            instructor: "Chen D.",
+            level: "all",
+            category: "signature",
+            duration: "45min",
+            spots: 6,
+          },
+        ],
+        Wednesday: [
+          {
+            time: "07:00",
+            name: "Lagree Foundations",
+            instructor: "Maria O.",
+            level: "beginner",
+            category: "foundations",
+            duration: "45min",
+            spots: 8,
+          },
+          {
+            time: "09:00",
+            name: "Signature Sculpt",
+            instructor: "James A.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 3,
+          },
+          {
+            time: "12:00",
+            name: "Women Only Sculpt",
+            instructor: "Chen D.",
+            level: "all",
+            category: "women",
+            duration: "45min",
+            spots: 5,
+          },
+          {
+            time: "17:00",
+            name: "Lagree X",
+            instructor: "James A.",
+            level: "advanced",
+            category: "advanced",
+            duration: "50min",
+            spots: 6,
+          },
+          {
+            time: "18:30",
+            name: "Signature Sculpt",
+            instructor: "Maria O.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 4,
+          },
+        ],
+        Thursday: [
+          {
+            time: "07:00",
+            name: "Signature Sculpt",
+            instructor: "Chen D.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 8,
+          },
+          {
+            time: "09:00",
+            name: "Lagree Foundations",
+            instructor: "Maria O.",
+            level: "beginner",
+            category: "foundations",
+            duration: "45min",
+            spots: 6,
+          },
+          {
+            time: "12:00",
+            name: "Signature Sculpt",
+            instructor: "James A.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 2,
+          },
+          {
+            time: "17:00",
+            name: "Lagree X",
+            instructor: "Chen D.",
+            level: "advanced",
+            category: "advanced",
+            duration: "50min",
+            spots: 7,
+          },
+          {
+            time: "18:30",
+            name: "Women Only Sculpt",
+            instructor: "Maria O.",
+            level: "all",
+            category: "women",
+            duration: "45min",
+            spots: 5,
+          },
+        ],
+        Friday: [
+          {
+            time: "07:00",
+            name: "Lagree Foundations",
+            instructor: "Maria O.",
+            level: "beginner",
+            category: "foundations",
+            duration: "45min",
+            spots: 8,
+          },
+          {
+            time: "09:00",
+            name: "Signature Sculpt",
+            instructor: "Chen D.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 4,
+          },
+          {
+            time: "12:00",
+            name: "Signature Sculpt",
+            instructor: "James A.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 6,
+          },
+          {
+            time: "16:00",
+            name: "Lagree X",
+            instructor: "James A.",
+            level: "advanced",
+            category: "advanced",
+            duration: "50min",
+            spots: 5,
+          },
+          {
+            time: "17:30",
+            name: "Signature Sculpt",
+            instructor: "Chen D.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 3,
+          },
+        ],
+        Saturday: [
+          {
+            time: "08:00",
+            name: "Signature Sculpt",
+            instructor: "Chen D.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 8,
+          },
+          {
+            time: "09:30",
+            name: "Lagree Foundations",
+            instructor: "Maria O.",
+            level: "beginner",
+            category: "foundations",
+            duration: "45min",
+            spots: 5,
+          },
+          {
+            time: "11:00",
+            name: "Lagree X",
+            instructor: "James A.",
+            level: "advanced",
+            category: "advanced",
+            duration: "50min",
+            spots: 6,
+          },
+          {
+            time: "13:00",
+            name: "Women Only Sculpt",
+            instructor: "Chen D.",
+            level: "all",
+            category: "women",
+            duration: "45min",
+            spots: 4,
+          },
+        ],
+        Sunday: [
+          {
+            time: "09:00",
+            name: "Lagree Foundations",
+            instructor: "Maria O.",
+            level: "beginner",
+            category: "foundations",
+            duration: "45min",
+            spots: 8,
+          },
+          {
+            time: "10:30",
+            name: "Signature Sculpt",
+            instructor: "Chen D.",
+            level: "intermediate",
+            category: "signature",
+            duration: "45min",
+            spots: 6,
+          },
+          {
+            time: "12:00",
+            name: "Stretch & Recovery",
+            instructor: "James A.",
+            level: "all",
+            category: "signature",
+            duration: "45min",
+            spots: 8,
+          },
+        ],
+      };
+
+      let currentDate = new Date();
+      let selectedDate = new Date();
+      let currentFilter = "all";
+      let currentView = "month";
+      const timeSlots = [
+        "07:00",
+        "09:00",
+        "12:00",
+        "16:00",
+        "17:00",
+        "17:30",
+        "18:30",
+      ];
+      const days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+
+      // Helper Functions
+      function formatDateKey(date) {
+        return date.toLocaleDateString("en-US", { weekday: "long" });
+      }
+
+      function getClassesForDate(date) {
+        const dayName = formatDateKey(date);
+        let classes = classSchedule[dayName] || [];
+        if (currentFilter !== "all") {
+          classes = classes.filter((c) => c.category === currentFilter);
+        }
+        return classes;
+      }
+
+      function hasClasses(date) {
+        const dayName = formatDateKey(date);
+        let classes = classSchedule[dayName] || [];
+        if (currentFilter !== "all") {
+          classes = classes.filter((c) => c.category === currentFilter);
+        }
+        return classes.length > 0;
+      }
+
+      function updateDropdowns() {
+        document.getElementById("monthSelect").value = currentDate.getMonth();
+        document.getElementById("yearSelect").value = currentDate.getFullYear();
+      }
+
+      document
+        .getElementById("monthSelect")
+        .addEventListener("change", function () {
+          currentDate.setMonth(parseInt(this.value));
+          updateCalendar();
         });
 
-        // ============================================
-        // PAYSTACK INTEGRATION
-        // ============================================
-        // Your Paystack Public Key - Replace with your actual key
-        const PAYSTACK_PUBLIC_KEY = 'pk_test_faa8396a1e3ce90b576ce8e6eb25af226eacff34';
-
-        // Class Price Mapping
-        const classPrices = {
-            'Signature Sculpt': 18000,
-            'Lagree Foundations': 15000,
-            'Slow & Controlled': 15000,
-            'Intro to Lagree': 15000,
-            'Cardio Lagree': 18000,
-            'Women Only Sculpt': 17000,
-            'Lagree X': 20000,
-            'Advanced Sculpt': 20000,
-            'Private Training': 75000,
-            'Stretch & Recovery': 12000,
-            'Duet Session': 110000,
-            'Group Private': 250000
-        };
-
-        // Form submission handler
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const fullName = document.getElementById('modalFullName').value.trim();
-            const email = document.getElementById('modalEmail').value.trim();
-
-            // Validate
-            if (!fullName || !email) {
-                modalError.textContent = 'Please enter your name and email address.';
-                modalError.classList.add('show');
-                return;
-            }
-
-            if (!email.includes('@') || !email.includes('.')) {
-                modalError.textContent = 'Please enter a valid email address.';
-                modalError.classList.add('show');
-                return;
-            }
-
-            modalError.classList.remove('show');
-            modalPayBtn.disabled = true;
-            modalPayBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-
-            // Initialize Paystack payment
-            const price = currentBooking.price;
-            const handler = PaystackPop.setup({
-                key: PAYSTACK_PUBLIC_KEY,
-                email: email,
-                amount: price * 100,
-                currency: 'NGN',
-                ref: 'SCULPT_' + Math.floor((Math.random() * 1000000000) + 1) + '_' + Date.now(),
-                metadata: {
-                    custom_fields: [
-                        { display_name: "Class Name", variable_name: "class_name", value: currentBooking.className },
-                        { display_name: "Day", variable_name: "day", value: currentBooking.day },
-                        { display_name: "Time", variable_name: "time", value: currentBooking.time },
-                        { display_name: "Customer Name", variable_name: "customer_name", value: fullName }
-                    ]
-                },
-                label: "Book Class - Sculpt Lagree",
-                onClose: function() {
-                    modalPayBtn.disabled = false;
-                    modalPayBtn.innerHTML = '<i class="fas fa-lock"></i> Pay Now';
-                },
-                callback: function(response) {
-                    // Payment successful
-                    closeBookingModal();
-                    alert(
-                        '✅ Payment Successful!\n\n' +
-                        'Class: ' + currentBooking.className + '\n' +
-                        'Day: ' + currentBooking.day + '\n' +
-                        'Time: ' + currentBooking.time + '\n' +
-                        'Amount: ₦' + price.toLocaleString() + '\n' +
-                        'Reference: ' + response.reference + '\n\n' +
-                        'Your booking has been confirmed! A confirmation email has been sent.'
-                    );
-                    
-                    console.log('Payment Success:', response);
-                    console.log('Booking:', currentBooking);
-                }
-            });
-            handler.openIframe();
+      document
+        .getElementById("yearSelect")
+        .addEventListener("change", function () {
+          currentDate.setFullYear(parseInt(this.value));
+          updateCalendar();
         });
 
-        // ============================================
-        // OPEN MODAL FROM BOOK BUTTONS
-        // ============================================
-        function bookWithPaystack(className, day, time) {
-            const price = classPrices[className] || 0;
-            if (price === 0) {
-                alert('Class price not found. Please contact the studio directly.');
-                return;
-            }
-            openBookingModal(className, day, time, price);
+      function renderMonthView() {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        const firstDayOfMonth = new Date(year, month, 1);
+        const lastDayOfMonth = new Date(year, month + 1, 0);
+        const startingDayOfWeek = firstDayOfMonth.getDay();
+        const daysInMonth = lastDayOfMonth.getDate();
+        const calendarDays = [];
+
+        for (let i = startingDayOfWeek - 1; i >= 0; i--) {
+          const date = new Date(year, month, -i);
+          calendarDays.push({ date, isCurrentMonth: false });
         }
 
-        // ============================================
-        // COMPLETE CALENDAR SYSTEM
-        // ============================================
-
-        // Class Schedule Data
-        const classSchedule = {
-            Monday: [
-                { time: "07:00", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 6 },
-                { time: "09:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 4 },
-                { time: "12:00", name: "Signature Sculpt", instructor: "James A.", level: "intermediate", category: "signature", duration: "45min", spots: 8 },
-                { time: "17:00", name: "Women Only Sculpt", instructor: "Chen D.", level: "all", category: "women", duration: "45min", spots: 3 },
-                { time: "18:30", name: "Signature Sculpt", instructor: "Maria O.", level: "intermediate", category: "signature", duration: "45min", spots: 5 }
-            ],
-            Tuesday: [
-                { time: "07:00", name: "Lagree X", instructor: "James A.", level: "advanced", category: "advanced", duration: "50min", spots: 7 },
-                { time: "09:00", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 2 },
-                { time: "12:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 8 },
-                { time: "17:00", name: "Signature Sculpt", instructor: "James A.", level: "intermediate", category: "signature", duration: "45min", spots: 4 },
-                { time: "18:30", name: "Stretch & Recovery", instructor: "Chen D.", level: "all", category: "signature", duration: "45min", spots: 6 }
-            ],
-            Wednesday: [
-                { time: "07:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 8 },
-                { time: "09:00", name: "Signature Sculpt", instructor: "James A.", level: "intermediate", category: "signature", duration: "45min", spots: 3 },
-                { time: "12:00", name: "Women Only Sculpt", instructor: "Chen D.", level: "all", category: "women", duration: "45min", spots: 5 },
-                { time: "17:00", name: "Lagree X", instructor: "James A.", level: "advanced", category: "advanced", duration: "50min", spots: 6 },
-                { time: "18:30", name: "Signature Sculpt", instructor: "Maria O.", level: "intermediate", category: "signature", duration: "45min", spots: 4 }
-            ],
-            Thursday: [
-                { time: "07:00", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 8 },
-                { time: "09:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 6 },
-                { time: "12:00", name: "Signature Sculpt", instructor: "James A.", level: "intermediate", category: "signature", duration: "45min", spots: 2 },
-                { time: "17:00", name: "Lagree X", instructor: "Chen D.", level: "advanced", category: "advanced", duration: "50min", spots: 7 },
-                { time: "18:30", name: "Women Only Sculpt", instructor: "Maria O.", level: "all", category: "women", duration: "45min", spots: 5 }
-            ],
-            Friday: [
-                { time: "07:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 8 },
-                { time: "09:00", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 4 },
-                { time: "12:00", name: "Signature Sculpt", instructor: "James A.", level: "intermediate", category: "signature", duration: "45min", spots: 6 },
-                { time: "16:00", name: "Lagree X", instructor: "James A.", level: "advanced", category: "advanced", duration: "50min", spots: 5 },
-                { time: "17:30", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 3 }
-            ],
-            Saturday: [
-                { time: "08:00", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 8 },
-                { time: "09:30", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 5 },
-                { time: "11:00", name: "Lagree X", instructor: "James A.", level: "advanced", category: "advanced", duration: "50min", spots: 6 },
-                { time: "13:00", name: "Women Only Sculpt", instructor: "Chen D.", level: "all", category: "women", duration: "45min", spots: 4 }
-            ],
-            Sunday: [
-                { time: "09:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 8 },
-                { time: "10:30", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 6 },
-                { time: "12:00", name: "Stretch & Recovery", instructor: "James A.", level: "all", category: "signature", duration: "45min", spots: 8 }
-            ]
-        };
-
-        let currentDate = new Date();
-        let selectedDate = new Date();
-        let currentFilter = "all";
-        let currentView = "month";
-        const timeSlots = ["07:00", "09:00", "12:00", "16:00", "17:00", "17:30", "18:30"];
-        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-        // Helper Functions
-        function formatDateKey(date) {
-            return date.toLocaleDateString("en-US", { weekday: "long" });
+        for (let i = 1; i <= daysInMonth; i++) {
+          const date = new Date(year, month, i);
+          calendarDays.push({ date, isCurrentMonth: true });
         }
 
-        function getClassesForDate(date) {
-            const dayName = formatDateKey(date);
-            let classes = classSchedule[dayName] || [];
-            if (currentFilter !== "all") {
-                classes = classes.filter((c) => c.category === currentFilter);
-            }
-            return classes;
+        const remainingCells = 42 - calendarDays.length;
+        for (let i = 1; i <= remainingCells; i++) {
+          const date = new Date(year, month + 1, i);
+          calendarDays.push({ date, isCurrentMonth: false });
         }
 
-        function hasClasses(date) {
-            const dayName = formatDateKey(date);
-            let classes = classSchedule[dayName] || [];
-            if (currentFilter !== "all") {
-                classes = classes.filter((c) => c.category === currentFilter);
-            }
-            return classes.length > 0;
-        }
+        const gridContainer = document.getElementById("calendarGrid");
+        const dayNames = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
-        function updateDropdowns() {
-            document.getElementById("monthSelect").value = currentDate.getMonth();
-            document.getElementById("yearSelect").value = currentDate.getFullYear();
-        }
+        let html = dayNames
+          .map((day) => `<div class="calendar-day-header">${day}</div>`)
+          .join("");
 
-        document.getElementById("monthSelect").addEventListener("change", function() {
-            currentDate.setMonth(parseInt(this.value));
-            updateCalendar();
-        });
+        calendarDays.forEach(({ date, isCurrentMonth }) => {
+          const today = new Date();
+          const isToday = date.toDateString() === today.toDateString();
+          const isSelected =
+            date.toDateString() === selectedDate.toDateString();
+          const hasClass = hasClasses(date);
 
-        document.getElementById("yearSelect").addEventListener("change", function() {
-            currentDate.setFullYear(parseInt(this.value));
-            updateCalendar();
-        });
-
-        function renderMonthView() {
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-            const firstDayOfMonth = new Date(year, month, 1);
-            const lastDayOfMonth = new Date(year, month + 1, 0);
-            const startingDayOfWeek = firstDayOfMonth.getDay();
-            const daysInMonth = lastDayOfMonth.getDate();
-            const calendarDays = [];
-
-            for (let i = startingDayOfWeek - 1; i >= 0; i--) {
-                const date = new Date(year, month, -i);
-                calendarDays.push({ date, isCurrentMonth: false });
-            }
-
-            for (let i = 1; i <= daysInMonth; i++) {
-                const date = new Date(year, month, i);
-                calendarDays.push({ date, isCurrentMonth: true });
-            }
-
-            const remainingCells = 42 - calendarDays.length;
-            for (let i = 1; i <= remainingCells; i++) {
-                const date = new Date(year, month + 1, i);
-                calendarDays.push({ date, isCurrentMonth: false });
-            }
-
-            const gridContainer = document.getElementById("calendarGrid");
-            const dayNames = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
-            let html = dayNames.map(day => `<div class="calendar-day-header">${day}</div>`).join("");
-
-            calendarDays.forEach(({ date, isCurrentMonth }) => {
-                const today = new Date();
-                const isToday = date.toDateString() === today.toDateString();
-                const isSelected = date.toDateString() === selectedDate.toDateString();
-                const hasClass = hasClasses(date);
-
-                html += `
+          html += `
                     <div class="calendar-day ${!isCurrentMonth ? "other-month" : ""} ${isToday ? "today" : ""} ${isSelected ? "selected" : ""}" 
                          onclick="selectDate('${date.toISOString()}')">
                         <span class="day-number">${date.getDate()}</span>
                         ${hasClass ? '<div class="day-class-indicator"><span class="class-dot"></span> <span>class</span></div>' : ""}
                     </div>
                 `;
-            });
+        });
 
-            gridContainer.innerHTML = html;
+        gridContainer.innerHTML = html;
 
-            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            document.getElementById("currentDisplay").innerHTML = `${monthNames[month]} ${year}`;
+        const monthNames = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        document.getElementById("currentDisplay").innerHTML =
+          `${monthNames[month]} ${year}`;
+      }
+
+      function renderWeekView() {
+        const container = document.getElementById("weekGrid");
+        const weekStart = new Date(selectedDate);
+        weekStart.setDate(selectedDate.getDate() - selectedDate.getDay());
+        const weekDays = [];
+        for (let i = 0; i < 7; i++) {
+          const date = new Date(weekStart);
+          date.setDate(weekStart.getDate() + i);
+          weekDays.push(date);
         }
 
-        function renderWeekView() {
-            const container = document.getElementById("weekGrid");
-            const weekStart = new Date(selectedDate);
-            weekStart.setDate(selectedDate.getDate() - selectedDate.getDay());
-            const weekDays = [];
-            for (let i = 0; i < 7; i++) {
-                const date = new Date(weekStart);
-                date.setDate(weekStart.getDate() + i);
-                weekDays.push(date);
-            }
+        let html = '<div class="week-grid">';
+        html += "<div></div>";
+        weekDays.forEach((day) => {
+          const dayName = day.toLocaleDateString("en-US", { weekday: "short" });
+          const dayDate = day.getDate();
+          html += `<div class="week-time-slot">${dayName}<br><span style="font-size:0.7rem;">${dayDate}</span></div>`;
+        });
 
-            let html = '<div class="week-grid">';
-            html += "<div></div>";
-            weekDays.forEach((day) => {
-                const dayName = day.toLocaleDateString("en-US", { weekday: "short" });
-                const dayDate = day.getDate();
-                html += `<div class="week-time-slot">${dayName}<br><span style="font-size:0.7rem;">${dayDate}</span></div>`;
-            });
+        timeSlots.forEach((time) => {
+          html += `<div class="week-time-slot">${time}</div>`;
+          weekDays.forEach((day) => {
+            const dayName = formatDateKey(day);
+            const classObj = classSchedule[dayName]?.find(
+              (c) => c.time === time,
+            );
 
-            timeSlots.forEach((time) => {
-                html += `<div class="week-time-slot">${time}</div>`;
-                weekDays.forEach((day) => {
-                    const dayName = formatDateKey(day);
-                    const classObj = classSchedule[dayName]?.find(c => c.time === time);
-
-                    if (classObj && (currentFilter === "all" || classObj.category === currentFilter)) {
-                        html += `
+            if (
+              classObj &&
+              (currentFilter === "all" || classObj.category === currentFilter)
+            ) {
+              html += `
                             <div class="week-class-slot" onclick="bookWithPaystack('${classObj.name}', '${dayName}', '${time}')">
                                 <div class="week-class-name">${classObj.name}</div>
                                 <div class="week-class-instructor">${classObj.instructor}</div>
                                 <button class="week-book-btn">Book →</button>
                             </div>
                         `;
-                    } else {
-                        html += `<div class="week-empty-slot">—</div>`;
-                    }
-                });
-            });
+            } else {
+              html += `<div class="week-empty-slot">—</div>`;
+            }
+          });
+        });
 
-            html += "</div>";
-            container.innerHTML = html;
-        }
+        html += "</div>";
+        container.innerHTML = html;
+      }
 
-        function selectDate(dateString) {
-            selectedDate = new Date(dateString);
-            updateCalendar();
-            renderSelectedDayClasses();
-        }
+      function selectDate(dateString) {
+        selectedDate = new Date(dateString);
+        updateCalendar();
+        renderSelectedDayClasses();
+      }
 
-        function renderSelectedDayClasses() {
-            const classes = getClassesForDate(selectedDate);
-            const container = document.getElementById("selectedDayClasses");
-            const dayName = selectedDate.toLocaleDateString("en-US", { weekday: "long" });
-            const formattedDate = selectedDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+      function renderSelectedDayClasses() {
+        const classes = getClassesForDate(selectedDate);
+        const container = document.getElementById("selectedDayClasses");
+        const dayName = selectedDate.toLocaleDateString("en-US", {
+          weekday: "long",
+        });
+        const formattedDate = selectedDate.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        });
 
-            if (classes.length === 0) {
-                container.innerHTML = `
+        if (classes.length === 0) {
+          container.innerHTML = `
                     <div class="selected-day-title">
                         <h3>${dayName}, ${formattedDate}</h3>
                     </div>
@@ -1360,10 +1790,10 @@
                         <p style="font-size: 0.875rem;">Check another date or try a different filter.</p>
                     </div>
                 `;
-                return;
-            }
+          return;
+        }
 
-            let html = `
+        let html = `
                 <div class="selected-day-title">
                     <h3>${dayName}, ${formattedDate}</h3>
                     <span style="font-size: 0.875rem; color: var(--stone);">${classes.length} classes available</span>
@@ -1371,12 +1801,18 @@
                 <div class="classes-list">
             `;
 
-            classes.forEach((cls) => {
-                const levelClass = cls.level === "beginner" ? "difficulty-beginner" : cls.level === "advanced" ? "difficulty-advanced" : "difficulty-intermediate";
-                const levelText = cls.level.charAt(0).toUpperCase() + cls.level.slice(1);
-                const price = classPrices[cls.name] || 0;
+        classes.forEach((cls) => {
+          const levelClass =
+            cls.level === "beginner"
+              ? "difficulty-beginner"
+              : cls.level === "advanced"
+                ? "difficulty-advanced"
+                : "difficulty-intermediate";
+          const levelText =
+            cls.level.charAt(0).toUpperCase() + cls.level.slice(1);
+          const price = classPrices[cls.name] || 0;
 
-                html += `
+          html += `
                     <div class="class-item">
                         <div class="class-info">
                             <div class="class-time">
@@ -1396,120 +1832,125 @@
                         </button>
                     </div>
                 `;
-            });
-
-            html += `</div>`;
-            container.innerHTML = html;
-        }
-
-        function prevPeriod() {
-            if (currentView === "month") {
-                currentDate.setMonth(currentDate.getMonth() - 1);
-            } else {
-                selectedDate.setDate(selectedDate.getDate() - 7);
-                currentDate = new Date(selectedDate);
-            }
-            updateDropdowns();
-            updateCalendar();
-            if (currentView === "week") {
-                renderSelectedDayClasses();
-            }
-        }
-
-        function nextPeriod() {
-            if (currentView === "month") {
-                currentDate.setMonth(currentDate.getMonth() + 1);
-            } else {
-                selectedDate.setDate(selectedDate.getDate() + 7);
-                currentDate = new Date(selectedDate);
-            }
-            updateDropdowns();
-            updateCalendar();
-            if (currentView === "week") {
-                renderSelectedDayClasses();
-            }
-        }
-
-        function goToToday() {
-            currentDate = new Date();
-            selectedDate = new Date();
-            updateDropdowns();
-            updateCalendar();
-            renderSelectedDayClasses();
-        }
-
-        function setView(view) {
-            currentView = view;
-            const monthContainer = document.getElementById("monthViewContainer");
-            const weekContainer = document.getElementById("weekViewContainer");
-            const viewBtns = document.querySelectorAll(".view-btn");
-
-            if (view === "month") {
-                monthContainer.style.display = "block";
-                weekContainer.style.display = "none";
-                renderMonthView();
-            } else {
-                monthContainer.style.display = "none";
-                weekContainer.style.display = "block";
-                renderWeekView();
-            }
-
-            viewBtns.forEach((btn) => {
-                if (btn.dataset.view === view) {
-                    btn.classList.add("active");
-                } else {
-                    btn.classList.remove("active");
-                }
-            });
-        }
-
-        function updateCalendar() {
-            if (currentView === "month") {
-                renderMonthView();
-            } else {
-                renderWeekView();
-            }
-            renderSelectedDayClasses();
-        }
-
-        function applyFilters() {
-            updateCalendar();
-        }
-
-        // Event Listeners
-        document.getElementById("prevBtn").addEventListener("click", prevPeriod);
-        document.getElementById("nextBtn").addEventListener("click", nextPeriod);
-        document.getElementById("todayBtn").addEventListener("click", goToToday);
-
-        document.querySelectorAll(".view-btn").forEach((btn) => {
-            btn.addEventListener("click", () => setView(btn.dataset.view));
         });
 
-        document.querySelectorAll(".filter-chip").forEach((btn) => {
-            btn.addEventListener("click", () => {
-                document.querySelectorAll(".filter-chip").forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-                currentFilter = btn.dataset.filter;
-                applyFilters();
-            });
-        });
+        html += `</div>`;
+        container.innerHTML = html;
+      }
 
-        // Initialize
-        setView("month");
+      function prevPeriod() {
+        if (currentView === "month") {
+          currentDate.setMonth(currentDate.getMonth() - 1);
+        } else {
+          selectedDate.setDate(selectedDate.getDate() - 7);
+          currentDate = new Date(selectedDate);
+        }
+        updateDropdowns();
+        updateCalendar();
+        if (currentView === "week") {
+          renderSelectedDayClasses();
+        }
+      }
+
+      function nextPeriod() {
+        if (currentView === "month") {
+          currentDate.setMonth(currentDate.getMonth() + 1);
+        } else {
+          selectedDate.setDate(selectedDate.getDate() + 7);
+          currentDate = new Date(selectedDate);
+        }
+        updateDropdowns();
+        updateCalendar();
+        if (currentView === "week") {
+          renderSelectedDayClasses();
+        }
+      }
+
+      function goToToday() {
+        currentDate = new Date();
+        selectedDate = new Date();
+        updateDropdowns();
+        updateCalendar();
         renderSelectedDayClasses();
+      }
+
+      function setView(view) {
+        currentView = view;
+        const monthContainer = document.getElementById("monthViewContainer");
+        const weekContainer = document.getElementById("weekViewContainer");
+        const viewBtns = document.querySelectorAll(".view-btn");
+
+        if (view === "month") {
+          monthContainer.style.display = "block";
+          weekContainer.style.display = "none";
+          renderMonthView();
+        } else {
+          monthContainer.style.display = "none";
+          weekContainer.style.display = "block";
+          renderWeekView();
+        }
+
+        viewBtns.forEach((btn) => {
+          if (btn.dataset.view === view) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+      }
+
+      function updateCalendar() {
+        if (currentView === "month") {
+          renderMonthView();
+        } else {
+          renderWeekView();
+        }
+        renderSelectedDayClasses();
+      }
+
+      function applyFilters() {
+        updateCalendar();
+      }
+
+      // Event Listeners
+      document.getElementById("prevBtn").addEventListener("click", prevPeriod);
+      document.getElementById("nextBtn").addEventListener("click", nextPeriod);
+      document.getElementById("todayBtn").addEventListener("click", goToToday);
+
+      document.querySelectorAll(".view-btn").forEach((btn) => {
+        btn.addEventListener("click", () => setView(btn.dataset.view));
+      });
+
+      document.querySelectorAll(".filter-chip").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-chip")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentFilter = btn.dataset.filter;
+          applyFilters();
+        });
+      });
+
+      // Initialize
+      setView("month");
+      renderSelectedDayClasses();
     </script>
 
-    <!-- Tawk.to Chat Widget -->
+    <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function() {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = "https://embed.tawk.to/6a2c39a78705f01c3509b4f3/1jquc2ea7";
-            s1.charset = "UTF-8";
-            s1.setAttribute("crossorigin", "*");
-            s0.parentNode.insertBefore(s1, s0);
-        })();
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
     </script>
-</body>
+    <!--End of Tawk.to Script-->
+  </body>
 </html>

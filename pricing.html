@@ -1,499 +1,802 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="View membership options and class packs at Sculpt Lagree Lagos. Find the perfect plan for your fitness journey."
-    />
+    <meta name="description" content="View membership options and class packs at Sculpt Lagree Lagos. Find the perfect plan for your fitness journey." />
     <title>Pricing | Sculpt Lagree Lagos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <link
-      rel="shortcut icon"
-      href="./assets/img/sculpt_logo_round.png"
-      type="image/x-icon"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="shortcut icon" href="./assets/img/sculpt_logo_round.png" type="image/x-icon" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Paystack Script -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
     <style>
-      /* Pricing Grid - Same card style as Classes page */
-      .pricing-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-        margin: 3rem 0;
-      }
-
-      /* Card Design - EXACT SAME AS CLASSES PAGE */
-      .pricing-card {
-        background: #f5ede3;
-        border-radius: var(--radius-xl);
-        padding: 2rem;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(209, 118, 79, 0.1);
-        position: relative;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .pricing-card:hover {
-        transform: translateY(-6px);
-        box-shadow: var(--shadow-lg);
-        border-color: rgba(209, 118, 79, 0.25);
-        background: #f2e8dc;
-      }
-
-      .pricing-card.featured {
-        border: 2px solid var(--terracotta);
-        background: #f2e8dc;
-      }
-
-      .popular-badge {
-        position: absolute;
-        top: -12px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--terracotta);
-        color: var(--white);
-        padding: 0.35rem 1.25rem;
-        border-radius: var(--radius-full);
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        white-space: nowrap;
-      }
-
-      /* Pricing Card Content */
-      .pricing-card h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        color: var(--deep-charcoal);
-        font-family: "Cormorant Garamond", serif;
-        text-align: center;
-      }
-
-      .price {
-        font-size: 3rem;
-        font-weight: 800;
-        color: var(--terracotta);
-        font-family: "Cormorant Garamond", serif;
-        margin: 1rem 0 0.5rem;
-        text-align: center;
-      }
-
-      .price small {
-        font-size: 0.9rem;
-        font-weight: 400;
-        color: var(--stone);
-      }
-
-      .price-sub {
-        text-align: center;
-        font-size: 0.8rem;
-        color: var(--stone);
-        margin-bottom: 1.5rem;
-      }
-
-      .feature-list {
-        text-align: left;
-        margin: 1.5rem 0;
-        padding: 0;
-        list-style: none;
-        flex: 1;
-      }
-
-      .feature-list li {
-        padding: 0.6rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 0.85rem;
-        color: var(--stone);
-        border-bottom: 1px solid rgba(209, 118, 79, 0.08);
-      }
-
-      .feature-list li:last-child {
-        border-bottom: none;
-      }
-
-      .feature-list li i {
-        color: var(--terracotta);
-        width: 20px;
-        font-size: 0.9rem;
-      }
-
-      /* Button Styling - Same as Classes page */
-      .btn-pricing {
-        background: transparent;
-        border: 1.5px solid var(--terracotta);
-        color: var(--terracotta);
-        padding: 0.8rem 1.5rem;
-        border-radius: var(--radius-full);
-        font-weight: 600;
-        font-size: 0.85rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        width: 100%;
-        margin-top: 1rem;
-      }
-
-      .btn-pricing:hover {
-        background: var(--terracotta);
-        color: var(--white);
-        transform: translateX(4px);
-      }
-
-      .btn-pricing-primary {
-        background: var(--terracotta);
-        color: var(--white);
-        border: 1.5px solid var(--terracotta);
-      }
-
-      .btn-pricing-primary:hover {
-        background: var(--terracotta-dark);
-        transform: translateX(4px);
-      }
-
-      /* Membership Notes - Same card style (No hover on offer-highlight) */
-      .membership-note {
-        background: #f5ede3;
-        padding: 2.5rem;
-        border-radius: var(--radius-xl);
-        text-align: center;
-        margin-top: 3rem;
-        border: 1px solid rgba(209, 118, 79, 0.1);
-        transition: all 0.3s ease;
-      }
-
-      .membership-note:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-lg);
-        border-color: rgba(209, 118, 79, 0.25);
-        background: #f2e8dc;
-      }
-
-      /* Offer Highlight - NO HOVER EFFECT */
-      .offer-highlight {
-        background: linear-gradient(
-          135deg,
-          var(--terracotta) 0%,
-          var(--terracotta-dark) 100%
-        );
-        color: var(--white);
-        transition: none;
-      }
-
-      .offer-highlight:hover {
-        transform: none;
-        box-shadow: none;
-        background: linear-gradient(
-          135deg,
-          var(--terracotta) 0%,
-          var(--terracotta-dark) 100%
-        );
-      }
-
-      .offer-highlight h3,
-      .offer-highlight p {
-        color: var(--white);
-      }
-
-      .offer-highlight i {
-        color: var(--white);
-      }
-
-      .membership-note h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .membership-note i {
-        font-size: 2rem;
-        color: var(--terracotta);
-        margin-bottom: 1rem;
-      }
-
-      .offer-highlight i {
-        color: var(--white);
-      }
-
-      .membership-note p {
-        color: var(--stone);
-        max-width: 500px;
-        margin: 0 auto 1rem;
-      }
-
-      .offer-highlight p {
-        color: var(--cream);
-      }
-
-      .btn-offer-white {
-        background: var(--white);
-        color: var(--terracotta);
-        border: none;
-      }
-
-      .btn-offer-white:hover {
-        background: var(--cream);
-        transform: translateX(4px);
-      }
-
-      @media (max-width: 900px) {
         .pricing-grid {
-          grid-template-columns: 1fr;
-          gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
         }
+
+        .pricing-card {
+            background: #f5ede3;
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(209, 118, 79, 0.1);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(209, 118, 79, 0.25);
+            background: #f2e8dc;
+        }
+
         .pricing-card.featured {
-          transform: scale(1);
+            border: 2px solid var(--terracotta);
+            background: #f2e8dc;
         }
-      }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--terracotta);
+            color: var(--white);
+            padding: 0.35rem 1.25rem;
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--deep-charcoal);
+            font-family: "Cormorant Garamond", serif;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--terracotta);
+            font-family: "Cormorant Garamond", serif;
+            margin: 1rem 0 0.5rem;
+            text-align: center;
+        }
+
+        .price small {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--stone);
+        }
+
+        .price-sub {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--stone);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 0;
+            list-style: none;
+            flex: 1;
+        }
+
+        .feature-list li {
+            padding: 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--stone);
+            border-bottom: 1px solid rgba(209, 118, 79, 0.08);
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li i {
+            color: var(--terracotta);
+            width: 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-pricing {
+            background: transparent;
+            border: 1.5px solid var(--terracotta);
+            color: var(--terracotta);
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn-pricing:hover {
+            background: var(--terracotta);
+            color: var(--white);
+            transform: translateX(4px);
+        }
+
+        .btn-pricing-primary {
+            background: var(--terracotta);
+            color: var(--white);
+            border: 1.5px solid var(--terracotta);
+        }
+
+        .btn-pricing-primary:hover {
+            background: var(--terracotta-dark);
+            transform: translateX(4px);
+        }
+
+        .membership-note {
+            background: #f5ede3;
+            padding: 2.5rem;
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-top: 3rem;
+            border: 1px solid rgba(209, 118, 79, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .membership-note:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(209, 118, 79, 0.25);
+            background: #f2e8dc;
+        }
+
+        .offer-highlight {
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+            color: var(--white);
+            transition: none;
+        }
+
+        .offer-highlight:hover {
+            transform: none;
+            box-shadow: none;
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+        }
+
+        .offer-highlight h3,
+        .offer-highlight p {
+            color: var(--white);
+        }
+
+        .offer-highlight i {
+            color: var(--white);
+        }
+
+        .membership-note h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .membership-note i {
+            font-size: 2rem;
+            color: var(--terracotta);
+            margin-bottom: 1rem;
+        }
+
+        .offer-highlight i {
+            color: var(--white);
+        }
+
+        .membership-note p {
+            color: var(--stone);
+            max-width: 500px;
+            margin: 0 auto 1rem;
+        }
+
+        .offer-highlight p {
+            color: var(--cream);
+        }
+
+        .btn-offer-white {
+            background: var(--white);
+            color: var(--terracotta);
+            border: none;
+        }
+
+        .btn-offer-white:hover {
+            background: var(--cream);
+            transform: translateX(4px);
+        }
+
+        /* ============================================
+           COMPACT PAYMENT MODAL
+           ============================================ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            max-width: 380px;
+            width: 100%;
+            padding: 1.5rem;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: var(--bg-warm);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--stone);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--terracotta);
+            color: var(--white);
+        }
+
+        .modal-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(209, 118, 79, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+        }
+
+        .modal-icon i {
+            font-size: 1.2rem;
+            color: var(--terracotta);
+        }
+
+        .modal-title {
+            text-align: center;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.15rem;
+            color: var(--deep-charcoal);
+        }
+
+        .modal-subtitle {
+            text-align: center;
+            color: var(--stone);
+            font-size: 0.7rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-plan {
+            background: var(--bg-warm);
+            border-radius: var(--radius-lg);
+            padding: 0.6rem 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .modal-plan-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--deep-charcoal);
+        }
+
+        .modal-plan-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--terracotta);
+            font-family: "Cormorant Garamond", serif;
+        }
+
+        .modal-plan-price small {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--stone);
+        }
+
+        .form-group-modal {
+            margin-bottom: 0.6rem;
+        }
+
+        .form-group-modal label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.7rem;
+            color: var(--deep-charcoal);
+            margin-bottom: 0.2rem;
+        }
+
+        .form-group-modal input {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid rgba(209, 118, 79, 0.2);
+            border-radius: var(--radius-md);
+            font-family: "Manrope", sans-serif;
+            transition: all 0.3s ease;
+            background: #f2e8dc;
+            color: var(--deep-charcoal);
+            font-size: 0.8rem;
+        }
+
+        .form-group-modal input:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 2px rgba(209, 118, 79, 0.15);
+            background: #f5ede3;
+        }
+
+        .form-group-modal input::placeholder {
+            color: var(--stone);
+        }
+
+        .modal-btn-pay {
+            width: 100%;
+            padding: 0.7rem;
+            background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark));
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .modal-btn-pay:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(209, 118, 79, 0.3);
+        }
+
+        .modal-btn-pay:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .modal-error {
+            color: #d32f2f;
+            font-size: 0.65rem;
+            margin-top: 0.2rem;
+            display: none;
+        }
+
+        .modal-error.show {
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-container {
+                padding: 1.25rem;
+                max-width: 340px;
+            }
+            .modal-plan-price {
+                font-size: 1.2rem;
+            }
+            .modal-title {
+                font-size: 1.1rem;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <!-- Sticky Booking Button -->
     <a href="schedule.html" class="sticky-book">
-      <i class="fas fa-calendar-check"></i>
-      <span>Book Your Class</span>
+        <i class="fas fa-calendar-check"></i>
+        <span>Book Your Class</span>
     </a>
 
     <!-- Floating WhatsApp -->
     <a href="#" class="whatsapp-float" target="_blank">
-      <i class="fab fa-whatsapp"></i>
+        <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- Header -->
     <header class="header">
-      <div class="container">
-        <a href="index.html" class="brand">
-          <div class="logo-icon">
-            <img
-              src="./assets/img/sculpt-logo.jpg"
-              alt="Sculpt Lagree Logo"
-              class="logo-img"
-            />
-          </div>
-        </a>
-        <button class="menu-btn" onclick="toggleMenu()">☰</button>
-        <nav class="nav" id="nav">
-          <a href="index.html">Home</a>
-          <a href="about.html">About Us</a>
-          <a href="classes.html">Classes</a>
-          <a href="schedule.html">Schedule</a>
-          <a href="pricing.html" class="active">Pricing</a>
-          <a href="teams.html">Our Team</a>
-          <a href="contact.html">Contact</a>
-          <a href="schedule.html" class="btn-book">Book Now</a>
-        </nav>
-      </div>
+        <div class="container">
+            <a href="index.html" class="brand">
+                <div class="logo-icon">
+                    <img src="./assets/img/sculpt-logo.jpg" alt="Sculpt Lagree Logo" class="logo-img" />
+                </div>
+            </a>
+            <button class="menu-btn" onclick="toggleMenu()">☰</button>
+            <nav class="nav" id="nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="classes.html">Classes</a>
+                <a href="schedule.html">Schedule</a>
+                <a href="pricing.html" class="active">Pricing</a>
+                <a href="team.html">Our Team</a>
+                <a href="contact.html">Contact</a>
+                <a href="schedule.html" class="btn-book">Book Now</a>
+            </nav>
+        </div>
     </header>
 
     <!-- Hero Banner -->
-    <section
-      class="hero-banner"
-      style="
-        background: linear-gradient(
-          135deg,
-          var(--terracotta),
-          var(--terracotta-dark)
-        );
-        padding: 5rem 0;
-        text-align: center;
-      "
-    >
-      <div class="container">
-        <span class="eyebrow" style="color: var(--cream)"
-          >INVEST IN YOURSELF</span
-        >
-        <h1 style="color: var(--white)">Pricing & Memberships</h1>
-        <p style="color: var(--cream)">
-          Choose the plan that fits your lifestyle and commitment level
-        </p>
-      </div>
+    <section class="hero-banner" style="background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark)); padding: 5rem 0; text-align: center;">
+        <div class="container">
+            <span class="eyebrow" style="color: var(--cream);">INVEST IN YOURSELF</span>
+            <h1 style="color: var(--white);">Pricing & Memberships</h1>
+            <p style="color: var(--cream);">Choose the plan that fits your lifestyle and commitment level</p>
+        </div>
     </section>
 
     <!-- Pricing Section -->
     <section class="section">
-      <div class="container">
-        <div class="pricing-grid">
-          <!-- 5 Class Pack -->
-          <div class="pricing-card">
-            <h3>5 Class Pack</h3>
-            <div class="price">₦70,000</div>
-            <div class="price-sub">₦14,000 per class</div>
-            <ul class="feature-list">
-              <li><i class="fas fa-check-circle"></i> 5 classes</li>
-              <li><i class="fas fa-calendar-alt"></i> Valid for 3 months</li>
-              <li>
-                <i class="fas fa-exchange-alt"></i> Shareable with friends
-              </li>
-              <li><i class="fas fa-clock"></i> Any class type</li>
-            </ul>
-            <a href="schedule.html" class="btn-pricing">Purchase Pack →</a>
-          </div>
+        <div class="container">
+            <div class="pricing-grid">
+                <!-- 5 Class Pack -->
+                <div class="pricing-card">
+                    <h3>5 Class Pack</h3>
+                    <div class="price">₦70,000</div>
+                    <div class="price-sub">₦14,000 per class</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> 5 classes</li>
+                        <li><i class="fas fa-calendar-alt"></i> Valid for 3 months</li>
+                        <li><i class="fas fa-exchange-alt"></i> Shareable with friends</li>
+                        <li><i class="fas fa-clock"></i> Any class type</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="openPricingModal('5 Class Pack', 70000)">Purchase Pack →</button>
+                </div>
 
-          <!-- 10 Class Pack - Featured -->
-          <div class="pricing-card featured">
-            <div class="popular-badge">MOST POPULAR</div>
-            <h3>10 Class Pack</h3>
-            <div class="price">₦135,000</div>
-            <div class="price-sub">₦13,500 per class</div>
-            <ul class="feature-list">
-              <li><i class="fas fa-check-circle"></i> 10 classes</li>
-              <li><i class="fas fa-calendar-alt"></i> Valid for 4 months</li>
-              <li>
-                <i class="fas fa-exchange-alt"></i> Shareable with friends
-              </li>
-              <li><i class="fas fa-gift"></i> Free grip socks included</li>
-              <li><i class="fas fa-star"></i> Priority booking</li>
-            </ul>
-            <a href="schedule.html" class="btn-pricing btn-pricing-primary"
-              >Purchase Pack →</a
-            >
-          </div>
+                <!-- 10 Class Pack -->
+                <div class="pricing-card featured">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3>10 Class Pack</h3>
+                    <div class="price">₦135,000</div>
+                    <div class="price-sub">₦13,500 per class</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> 10 classes</li>
+                        <li><i class="fas fa-calendar-alt"></i> Valid for 4 months</li>
+                        <li><i class="fas fa-exchange-alt"></i> Shareable with friends</li>
+                        <li><i class="fas fa-gift"></i> Free grip socks included</li>
+                        <li><i class="fas fa-star"></i> Priority booking</li>
+                    </ul>
+                    <button class="btn-pricing btn-pricing-primary" onclick="openPricingModal('10 Class Pack', 135000)">Purchase Pack →</button>
+                </div>
 
-          <!-- Unlimited Monthly -->
-          <div class="pricing-card">
-            <h3>Unlimited Monthly</h3>
-            <div class="price">₦210,000</div>
-            <div class="price-sub">per month</div>
-            <ul class="feature-list">
-              <li><i class="fas fa-check-circle"></i> Unlimited classes</li>
-              <li><i class="fas fa-calendar-alt"></i> Auto-renew monthly</li>
-              <li>
-                <i class="fas fa-user-friends"></i> Bring a friend once/month
-              </li>
-              <li><i class="fas fa-percent"></i> 10% off retail</li>
-              <li>
-                <i class="fas fa-calendar-week"></i> Priority booking window
-              </li>
-              <li><i class="fas fa-gift"></i> Free birthday class</li>
-            </ul>
-            <a href="contact.html" class="btn-pricing">Join Now →</a>
-          </div>
+                <!-- Unlimited Monthly -->
+                <div class="pricing-card">
+                    <h3>Unlimited Monthly</h3>
+                    <div class="price">₦210,000</div>
+                    <div class="price-sub">per month</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Unlimited classes</li>
+                        <li><i class="fas fa-calendar-alt"></i> Auto-renew monthly</li>
+                        <li><i class="fas fa-user-friends"></i> Bring a friend once/month</li>
+                        <li><i class="fas fa-percent"></i> 10% off retail</li>
+                        <li><i class="fas fa-calendar-week"></i> Priority booking window</li>
+                        <li><i class="fas fa-gift"></i> Free birthday class</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="openPricingModal('Unlimited Monthly', 210000)">Join Now →</button>
+                </div>
+            </div>
+
+            <!-- Not Sure Which Plan? -->
+            <div class="membership-note">
+                <i class="fas fa-question-circle"></i>
+                <h3>Not sure which plan is right for you?</h3>
+                <p>We offer a free consultation to help you find the perfect membership for your goals. Book a call with our team.</p>
+                <a href="contact.html" class="btn-pricing" style="width: auto; padding: 0.8rem 2rem;">Book Consultation →</a>
+            </div>
+
+            <!-- New Client Special -->
+            <div class="membership-note offer-highlight">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>New Client Special</h3>
+                <p>First-time clients: Get 3 classes for ₦40,000. Perfect for trying different class styles.</p>
+                <button class="btn-pricing btn-offer-white" style="width: auto; padding: 0.8rem 2rem;" onclick="openPricingModal('New Client Special (3 Classes)', 40000)">Claim Offer →</button>
+            </div>
         </div>
-
-        <!-- Not Sure Which Plan? - WITH HOVER -->
-        <div class="membership-note">
-          <i class="fas fa-question-circle"></i>
-          <h3>Not sure which plan is right for you?</h3>
-          <p>
-            We offer a free consultation to help you find the perfect membership
-            for your goals. Book a call with our team.
-          </p>
-          <a
-            href="contact.html"
-            class="btn-pricing"
-            style="width: auto; padding: 0.8rem 2rem"
-            >Book Consultation →</a
-          >
-        </div>
-
-        <!-- New Client Special - NO HOVER (offer-highlight class removes hover) -->
-        <div class="membership-note offer-highlight">
-          <i class="fas fa-hand-holding-heart"></i>
-          <h3>New Client Special</h3>
-          <p>
-            First-time clients: Get 3 classes for ₦40,000. Perfect for trying
-            different class styles.
-          </p>
-          <a
-            href="schedule.html"
-            class="btn-pricing btn-offer-white"
-            style="width: auto; padding: 0.8rem 2rem"
-            >Claim Offer →</a
-          >
-        </div>
-      </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div>
-            <div class="brand" style="margin-bottom: 1rem">
-              <div class="logo-icon" style="width: 40px; height: 40px">
-                <img
-                  src="./assets/img/sculpt-logo.jpg"
-                  alt="Sculpt Lagree Logo"
-                  class="logo-img"
-                />
-              </div>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="brand" style="margin-bottom: 1rem">
+                        <div class="logo-icon" style="width: 40px; height: 40px">
+                            <img src="./assets/img/sculpt-logo.jpg" alt="Sculpt Lagree Logo" class="logo-img" />
+                        </div>
+                    </div>
+                    <p>Lagos' first Lagree studio. Strong, graceful movement through expertly guided classes in the heart of Lagos.</p>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Studio</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="classes.html">Classes</a>
+                    <a href="schedule.html">Schedule</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="team.html">Our Team</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div>
+                    <h4>Programs</h4>
+                    <a href="classes.html">Signature Sculpt</a>
+                    <a href="classes.html">Beginner Foundations</a>
+                    <a href="classes.html">Private Sessions</a>
+                    <a href="pricing.html">Memberships</a>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>23b Karimu Kotun, Victoria Island<br />Lagos, Nigeria</p>
+                    <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
+                </div>
             </div>
-            <p>
-              Lagos’ first Lagree studio. Strong, graceful movement through
-              expertly guided classes in the heart of Lagos.
-            </p>
-            <div style="display: flex; gap: 1rem; margin-top: 1rem">
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-tiktok"></i></a>
+            <div class="copyright">
+                <p>© 2026 Sculpt Lagree. All rights reserved.</p>
             </div>
-          </div>
-          <div>
-            <h4>Studio</h4>
-            <a href="about.html">About Us</a>
-            <a href="classes.html">Classes</a>
-            <a href="schedule.html">Schedule</a>
-            <a href="pricing.html">Pricing</a>
-            <a href="contact.html">Contact</a>
-          </div>
-          <div>
-            <h4>Programs</h4>
-            <a href="classes.html">Signature Sculpt</a>
-            <a href="classes.html">Beginner Foundations</a>
-            <a href="classes.html">Private Sessions</a>
-            <a href="pricing.html">Memberships</a>
-          </div>
-          <div>
-            <h4>Contact</h4>
-            <p>23b Karimu Kotun, Victoria Island<br />Lagos, Nigeria</p>
-            <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
-          </div>
         </div>
-        <div class="copyright">
-          <p>© 2026 Sculpt Lagree. All rights reserved.</p>
-        </div>
-      </div>
     </footer>
+
+    <!-- ============================================
+    COMPACT PAYMENT MODAL
+    ============================================ -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-container">
+            <button class="modal-close" id="modalCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="modal-icon">
+                <i class="fas fa-credit-card"></i>
+            </div>
+
+            <h2 class="modal-title">Complete Payment</h2>
+            <p class="modal-subtitle">Secure your plan instantly</p>
+
+            <div class="modal-plan">
+                <div class="modal-plan-name" id="modalPlanName">10 Class Pack</div>
+                <div class="modal-plan-price" id="modalPlanPrice">₦135,000 <small>one-time</small></div>
+            </div>
+
+            <form id="paymentForm">
+                <div class="form-group-modal">
+                    <label for="modalFullName">Full Name</label>
+                    <input type="text" id="modalFullName" placeholder="Enter your name" required />
+                </div>
+
+                <div class="form-group-modal">
+                    <label for="modalEmail">Email</label>
+                    <input type="email" id="modalEmail" placeholder="Enter your email" required />
+                </div>
+
+                <div class="form-group-modal">
+                    <label for="modalPhone">Phone</label>
+                    <input type="tel" id="modalPhone" placeholder="Phone number" />
+                </div>
+
+                <div class="modal-error" id="modalError">Please fill in all required fields.</div>
+
+                <button type="submit" class="modal-btn-pay" id="modalPayBtn">
+                    <i class="fas fa-lock"></i> Pay Now
+                </button>
+            </form>
+        </div>
+    </div>
 
     <script src="assets/js/main.js"></script>
     <script>
-      function toggleMenu() {
-        document.getElementById("nav").classList.toggle("active");
-      }
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById("nav").classList.toggle("active");
+        }
+
+        // ============================================
+        // PAYMENT MODAL CONTROLS
+        // ============================================
+        const modalOverlay = document.getElementById('paymentModal');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        const paymentForm = document.getElementById('paymentForm');
+        const modalPayBtn = document.getElementById('modalPayBtn');
+        const modalError = document.getElementById('modalError');
+
+        let currentPlan = {
+            name: '',
+            amount: 0
+        };
+
+        function openPricingModal(planName, amount) {
+            currentPlan.name = planName;
+            currentPlan.amount = amount;
+
+            document.getElementById('modalPlanName').textContent = planName;
+            document.getElementById('modalPlanPrice').innerHTML = `₦${amount.toLocaleString()} <small>one-time</small>`;
+
+            paymentForm.reset();
+            modalError.classList.remove('show');
+            modalPayBtn.disabled = false;
+            modalPayBtn.innerHTML = '<i class="fas fa-lock"></i> Pay Now';
+
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePaymentModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        modalCloseBtn.addEventListener('click', closePaymentModal);
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                closePaymentModal();
+            }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePaymentModal();
+            }
+        });
+
+        // ============================================
+        // PAYSTACK INTEGRATION
+        // ============================================
+        const PAYSTACK_PUBLIC_KEY = 'pk_test_faa8396a1e3ce90b576ce8e6eb25af226eacff34';
+
+        paymentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('modalFullName').value.trim();
+            const email = document.getElementById('modalEmail').value.trim();
+            const phone = document.getElementById('modalPhone').value.trim();
+
+            if (!fullName || !email) {
+                modalError.textContent = 'Please enter your name and email.';
+                modalError.classList.add('show');
+                return;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                modalError.textContent = 'Please enter a valid email address.';
+                modalError.classList.add('show');
+                return;
+            }
+
+            modalError.classList.remove('show');
+            modalPayBtn.disabled = true;
+            modalPayBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+            const amount = currentPlan.amount;
+            const handler = PaystackPop.setup({
+                key: PAYSTACK_PUBLIC_KEY,
+                email: email,
+                amount: amount * 100,
+                currency: 'NGN',
+                ref: 'SCULPT_PACK_' + Math.floor(Math.random() * 1000000000 + 1) + '_' + Date.now(),
+                metadata: {
+                    custom_fields: [
+                        { display_name: "Plan Name", variable_name: "plan_name", value: currentPlan.name },
+                        { display_name: "Customer Name", variable_name: "customer_name", value: fullName },
+                        { display_name: "Phone", variable_name: "phone", value: phone || 'N/A' }
+                    ]
+                },
+                label: "Purchase Pack - Sculpt Lagree",
+                onClose: function() {
+                    modalPayBtn.disabled = false;
+                    modalPayBtn.innerHTML = '<i class="fas fa-lock"></i> Pay Now';
+                },
+                callback: function(response) {
+                    closePaymentModal();
+                    alert(
+                        '✅ Payment Successful!\n\n' +
+                        'Plan: ' + currentPlan.name + '\n' +
+                        'Amount: ₦' + amount.toLocaleString() + '\n' +
+                        'Reference: ' + response.reference + '\n\n' +
+                        'Your membership has been activated! A confirmation email has been sent.'
+                    );
+                    console.log('Payment Success:', response);
+                    console.log('Plan:', currentPlan);
+                }
+            });
+            handler.openIframe();
+        });
+
+        // WhatsApp Auto Message
+        (function() {
+            const phoneNumber = '2348123456789';
+            const message = "Good day Sir/Ma, this is Sculpt Pilates. Please drop your message and you will be attended to.";
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappLinks = document.querySelectorAll('.whatsapp-float');
+            whatsappLinks.forEach(function(link) {
+                link.href = 'https://wa.me/' + phoneNumber + '?text=' + encodedMessage;
+            });
+        })();
     </script>
 
-    <!--Start of Tawk.to Script-->
+    <!-- Tawk.to Chat Widget -->
     <script type="text/javascript">
-      var Tawk_API = Tawk_API || {},
-        Tawk_LoadStart = new Date();
-      (function () {
-        var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = "https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle";
-        s1.charset = "UTF-8";
-        s1.setAttribute("crossorigin", "*");
-        s0.parentNode.insertBefore(s1, s0);
-      })();
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = "https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle";
+            s1.charset = "UTF-8";
+            s1.setAttribute("crossorigin", "*");
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
-    <!--End of Tawk.to Script-->
-  </body>
+</body>
 </html>

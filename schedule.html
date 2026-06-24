@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="shortcut icon" href="./assets/img/sculpt_logo_round.png" type="image/x-icon" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <!-- Paystack Script -->
-    <script src="https://js.paystack.co/v1/inline.js"></script>
     <style>
         /* Calendar Specific Styles */
         .calendar-container {
@@ -398,6 +396,11 @@
             font-weight: 600;
             font-size: 0.8rem;
             transition: all var(--transition-fast);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .book-btn:hover {
@@ -733,74 +736,10 @@
             document.getElementById("nav").classList.toggle("active");
         }
 
-        // ========== PAYSTACK INTEGRATION ==========
-        const PAYSTACK_PUBLIC_KEY = 'pk_test_faa8396a1e3ce90b576ce8e6eb25af226eacff34';
-
-        // Class Price Mapping
-        const classPrices = {
-            'Signature Sculpt': 18000,
-            'Lagree Foundations': 15000,
-            'Slow & Controlled': 15000,
-            'Intro to Lagree': 15000,
-            'Cardio Lagree': 18000,
-            'Women Only Sculpt': 17000,
-            'Lagree X': 20000,
-            'Advanced Sculpt': 20000,
-            'Private Training': 75000,
-            'Stretch & Recovery': 12000,
-            'Duet Session': 110000,
-            'Group Private': 250000
-        };
-
-        function bookWithPaystack(className, day, time) {
-            const price = classPrices[className] || 0;
-            
-            if (price === 0) {
-                alert('Class price not found. Please contact the studio directly.');
-                return;
-            }
-
-            const customerEmail = prompt('Please enter your email address for the booking confirmation:', '');
-            
-            if (!customerEmail) {
-                alert('Email is required to complete your booking.');
-                return;
-            }
-
-            const customerName = prompt('Please enter your full name:', '');
-
-            const handler = PaystackPop.setup({
-                key: PAYSTACK_PUBLIC_KEY,
-                email: customerEmail,
-                amount: price * 100,
-                currency: 'NGN',
-                ref: 'SCULPT_' + Math.floor((Math.random() * 1000000000) + 1) + '_' + Date.now(),
-                metadata: {
-                    custom_fields: [
-                        { display_name: "Class Name", variable_name: "class_name", value: className },
-                        { display_name: "Day", variable_name: "day", value: day },
-                        { display_name: "Time", variable_name: "time", value: time },
-                        { display_name: "Customer Name", variable_name: "customer_name", value: customerName || 'Guest' }
-                    ]
-                },
-                label: "Book Class - Sculpt Lagree",
-                onClose: function() {
-                    alert('Payment window closed. You can complete your booking anytime.');
-                },
-                callback: function(response) {
-                    alert('✅ Payment Successful!\n\n' +
-                          'Class: ' + className + '\n' +
-                          'Day: ' + day + '\n' +
-                          'Time: ' + time + '\n' +
-                          'Amount: ₦' + price.toLocaleString() + '\n' +
-                          'Reference: ' + response.reference + '\n\n' +
-                          'Your booking has been confirmed! A confirmation email has been sent.');
-                    
-                    console.log('Payment Success:', response);
-                    console.log('Class:', className, 'Day:', day, 'Time:', time);
-                }
-            });
-            handler.openIframe();
+        // ========== BOOK CLASS - GO TO PRICING PAGE ==========
+        function goToPricing(className, day, time) {
+            // Redirect to pricing page
+            window.location.href = 'pricing.html';
         }
 
         // ========== COMPLETE CALENDAR SYSTEM ==========
@@ -977,7 +916,7 @@
 
                     if (classObj && (currentFilter === "all" || classObj.category === currentFilter)) {
                         html += `
-                            <div class="week-class-slot" onclick="bookWithPaystack('${classObj.name}', '${dayName}', '${time}')">
+                            <div class="week-class-slot" onclick="goToPricing('${classObj.name}', '${dayName}', '${time}')">
                                 <div class="week-class-name">${classObj.name}</div>
                                 <div class="week-class-instructor">${classObj.instructor}</div>
                                 <button class="week-book-btn">Book →</button>
@@ -1028,14 +967,12 @@
             `;
 
             classes.forEach((cls) => {
-                // Determine badge class based on level
                 let badgeClass = 'all-levels';
                 if (cls.level === 'beginner') badgeClass = 'beginner';
                 else if (cls.level === 'intermediate') badgeClass = 'intermediate';
                 else if (cls.level === 'advanced') badgeClass = 'advanced';
                 
                 const levelText = cls.level.charAt(0).toUpperCase() + cls.level.slice(1);
-                const price = classPrices[cls.name] || 0;
 
                 html += `
                     <div class="class-item">
@@ -1049,12 +986,11 @@
                                 <span><i class="far fa-hourglass"></i> ${cls.duration}</span>
                                 <span class="difficulty-badge ${badgeClass}">${levelText}</span>
                                 <span><i class="fas fa-users"></i> ${cls.spots} spots left</span>
-                                <span style="color: var(--terracotta); font-weight: 700;">₦${price.toLocaleString()}</span>
                             </div>
                         </div>
-                        <button class="book-btn" onclick="bookWithPaystack('${cls.name}', '${dayName}', '${cls.time}')">
-                            Book Class ₦${price.toLocaleString()} <i class="fas fa-arrow-right"></i>
-                        </button>
+                        <a href="pricing.html" class="book-btn">
+                            Book Class <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 `;
             });

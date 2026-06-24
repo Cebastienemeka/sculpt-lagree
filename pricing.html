@@ -172,66 +172,171 @@
             background: #f2e8dc;
         }
 
-        .offer-highlight {
+        /* ============================================
+           NEW CLIENT OFFER - MATCHING INDEX.HTML
+           ============================================ */
+        .offer-section {
+            position: relative;
+            overflow: hidden;
+            margin-top: 3rem;
+            margin-bottom: 6rem;
+        }
+
+        .offer-card {
             background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
-            color: var(--white);
-            transition: none;
+            border-radius: var(--radius-2xl);
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .offer-highlight:hover {
-            transform: none;
-            box-shadow: none;
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+        .offer-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
-        .offer-highlight h3,
-        .offer-highlight p {
-            color: var(--white);
+        .offer-card::after {
+            content: "";
+            position: absolute;
+            bottom: -30%;
+            left: -20%;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
-        .offer-highlight i {
-            color: var(--white);
-        }
-
-        .membership-note h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .membership-note i {
-            font-size: 2rem;
-            color: var(--terracotta);
-            margin-bottom: 1rem;
-        }
-
-        .offer-highlight i {
-            color: var(--white);
-        }
-
-        .membership-note p {
-            color: var(--stone);
-            max-width: 500px;
-            margin: 0 auto 1rem;
-        }
-
-        .offer-highlight p {
-            color: var(--cream);
-        }
-
-        .btn-offer-white {
+        .offer-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             background: var(--white);
             color: var(--terracotta);
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            z-index: 2;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .offer-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .offer-text h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .offer-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--white);
+            font-family: "Cormorant Garamond", serif;
+            margin: 1rem 0;
+        }
+
+        .offer-price small {
+            font-size: 1rem;
+            color: var(--cream);
+            font-weight: 400;
+        }
+
+        .offer-features {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .offer-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--cream);
+            font-size: 0.85rem;
+        }
+
+        .offer-feature i {
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .offer-visual {
+            text-align: center;
+            position: relative;
+        }
+
+        .offer-circle {
+            width: 180px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .offer-circle:before {
+            content: "";
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border: 2px dashed var(--white);
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .offer-circle i {
+            font-size: 4rem;
+            color: var(--white);
+        }
+
+        .btn-offer {
+            background: var(--white);
+            color: var(--terracotta);
+            padding: 1rem 2rem;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
             border: none;
+            cursor: pointer;
         }
 
-        .btn-offer-white:hover {
+        .btn-offer:hover {
             background: var(--cream);
-            transform: translateX(4px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
-        /* ============================================
-           COMPACT PAYMENT MODAL
-           ============================================ */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -438,6 +543,26 @@
             .pricing-card.featured {
                 transform: scale(1);
             }
+            .offer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .offer-features {
+                justify-content: center;
+            }
+            .offer-badge {
+                top: 10px;
+                right: 10px;
+                font-size: 0.6rem;
+                padding: 0.3rem 1rem;
+            }
+            .offer-price {
+                font-size: 2.5rem;
+            }
+            .offer-card {
+                padding: 2rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -555,16 +680,43 @@
                 <p>We offer a free consultation to help you find the perfect membership for your goals. Book a call with our team.</p>
                 <a href="contact.html" class="btn-pricing" style="width: auto; padding: 0.8rem 2rem;">Book Consultation →</a>
             </div>
+        </div>
+    </section>
 
-            <!-- New Client Special -->
-            <div class="membership-note offer-highlight">
-                <i class="fas fa-hand-holding-heart"></i>
-                <h3>New Client Special</h3>
-                <p>First-time clients: Get 3 classes for ₦40,000. Perfect for trying different class styles.</p>
-                <button class="btn-pricing btn-offer-white" style="width: auto; padding: 0.8rem 2rem;" onclick="openPricingModal('New Client Special (3 Classes)', 40000)">Claim Offer →</button>
+    <!-- NEW CLIENT OFFER - MATCHING INDEX.HTML -->
+    <section class="offer-section">
+        <div class="container">
+            <div class="offer-card">
+                <div class="offer-badge">
+                    <i class="fas fa-gift"></i> LIMITED TIME
+                </div>
+                <div class="offer-content">
+                    <div class="offer-text">
+                        <h3>New Client Welcome</h3>
+                        <div class="offer-price">
+                            ₦40,000 <small>for 3 classes</small>
+                        </div>
+                        <p style="color: var(--cream); margin-bottom: 1rem;">
+                            Experience Sculpt Lagree with our exclusive introductory package. Try any three classes and find your favorite style.
+                        </p>
+                        <div class="offer-features">
+                            <span class="offer-feature"><i class="fas fa-check-circle"></i> Any class type</span>
+                            <span class="offer-feature"><i class="fas fa-calendar-alt"></i> 30-day validity</span>
+                            <span class="offer-feature"><i class="fas fa-grip-socks"></i> Free grip socks</span>
+                        </div>
+                        <button class="btn-offer" onclick="openPricingModal('New Client Special (3 Classes)', 40000)">
+                            Claim Offer <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="offer-visual">
+                        <div class="offer-circle"><i class="fas fa-tags"></i></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- <br> <br> <br> -->
 
     <!-- Footer -->
     <footer class="footer">

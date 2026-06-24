@@ -1,839 +1,976 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sculpt Lagree - Lagos premier Lagree & Pilates studio. Low-impact, high-intensity training on the Megaformer. Book your first class today." />
+    <meta
+      name="description"
+      content="Sculpt Lagree - Lagos premier Lagree & Pilates studio. Low-impact, high-intensity training on the Megaformer. Book your first class today."
+    />
     <title>Sculpt Lagree | Premium Pilates & Lagree Studio Lagos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="shortcut icon" href="./assets/img/sculpt_logo_round.png" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="./assets/img/sculpt_logo_round.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <style>
-        /* Hero Section with Full Background Image */
+      /* Hero Section with Full Background Image */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 90vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        padding: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          var(--bg-light) 0%,
+          var(--bg-warm) 100%
+        );
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-image {
+        position: relative;
+        height: 100%;
+        min-height: 500px;
+        overflow: hidden;
+      }
+
+      .hero-bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .hero-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.2) 0%,
+          rgba(0, 0, 0, 0.1) 100%
+        );
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero-card {
+        position: absolute;
+        bottom: 2rem;
+        left: 2rem;
+        background: var(--white-soft);
+        backdrop-filter: blur(10px);
+        padding: 1.25rem 2rem;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        z-index: 2;
+      }
+
+      .hero-card i {
+        color: var(--terracotta);
+      }
+
+      .hero-image-bg {
+        display: none;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .floating-element {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Featured Classes Section - EXACT SAME AS CLASSES PAGE */
+      .class-category {
+        margin-bottom: 4rem;
+      }
+
+      .category-title {
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .category-title:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: var(--terracotta);
+      }
+
+      /* Card Design - EXACT SAME AS CLASSES PAGE */
+      .card {
+        background: #f5ede3;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(209, 118, 79, 0.1);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(209, 118, 79, 0.25);
+        background: #f2e8dc;
+      }
+
+      .card-content {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Difficulty Indicators - EXACT SAME */
+      .difficulty {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: var(--radius-full);
+        margin-bottom: 1rem;
+        width: fit-content;
+      }
+
+      .difficulty-beginner {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+
+      .difficulty-intermediate {
+        background: #fff3e0;
+        color: #e65100;
+      }
+
+      .difficulty-advanced {
+        background: #ffebee;
+        color: #c62828;
+      }
+
+      .class-feature {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        color: var(--stone);
+        margin-top: 0.5rem;
+      }
+
+      .class-feature i {
+        color: var(--terracotta);
+        width: 20px;
+      }
+
+      /* Book Button - Same as Classes page */
+      .btn-book-class {
+        background: transparent;
+        border: 1.5px solid var(--terracotta);
+        color: var(--terracotta);
+        padding: 0.7rem 1rem;
+        border-radius: var(--radius-full);
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .btn-book-class:hover {
+        background: var(--terracotta);
+        color: var(--white);
+        transform: translateX(4px);
+      }
+
+      /* Welcome Section Card */
+      .welcome-card {
+        background: #f5ede3;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(209, 118, 79, 0.1);
+      }
+
+      .welcome-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(209, 118, 79, 0.25);
+        background: #f2e8dc;
+      }
+
+      .welcome-card-image {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+      }
+
+      /* Offer Section */
+      .offer-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .offer-card {
+        background: linear-gradient(
+          135deg,
+          var(--terracotta) 0%,
+          var(--terracotta-dark) 100%
+        );
+        border-radius: var(--radius-2xl);
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .offer-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -30%;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .offer-card::after {
+        content: "";
+        position: absolute;
+        bottom: -30%;
+        left: -20%;
+        width: 250px;
+        height: 250px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .offer-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--white);
+        color: var(--terracotta);
+        padding: 0.5rem 1.25rem;
+        border-radius: var(--radius-full);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        z-index: 2;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .offer-content {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .offer-text h3 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: var(--white);
+      }
+
+      .offer-price {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: var(--white);
+        font-family: "Cormorant Garamond", serif;
+        margin: 1rem 0;
+      }
+
+      .offer-price small {
+        font-size: 1rem;
+        color: var(--cream);
+        font-weight: 400;
+      }
+
+      .offer-features {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin: 1.5rem 0;
+      }
+
+      .offer-feature {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--cream);
+        font-size: 0.85rem;
+      }
+
+      .offer-feature i {
+        color: var(--white);
+        font-size: 1rem;
+      }
+
+      .offer-visual {
+        text-align: center;
+        position: relative;
+      }
+
+      .offer-circle {
+        width: 180px;
+        height: 180px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .offer-circle:before {
+        content: "";
+        position: absolute;
+        width: 140px;
+        height: 140px;
+        border: 2px dashed var(--white);
+        border-radius: 50%;
+        animation: spin 20s linear infinite;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .offer-circle i {
+        font-size: 4rem;
+        color: var(--white);
+      }
+
+      .btn-offer {
+        background: var(--white);
+        color: var(--terracotta);
+        padding: 1rem 2rem;
+        border-radius: var(--radius-full);
+        text-decoration: none;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-offer:hover {
+        background: var(--cream);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Newsletter Section */
+      .newsletter-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .newsletter-card {
+        background: linear-gradient(
+          135deg,
+          var(--deep-charcoal) 0%,
+          var(--charcoal) 100%
+        );
+        border-radius: var(--radius-2xl);
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .newsletter-card::before {
+        content: "";
+        position: absolute;
+        top: -30%;
+        left: -20%;
+        width: 400px;
+        height: 400px;
+        background: rgba(209, 118, 79, 0.08);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .newsletter-card::after {
+        content: "";
+        position: absolute;
+        bottom: -30%;
+        right: -10%;
+        width: 300px;
+        height: 300px;
+        background: rgba(209, 118, 79, 0.05);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .newsletter-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(209, 118, 79, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+      }
+
+      .newsletter-icon i {
+        font-size: 2.5rem;
+        color: var(--terracotta);
+      }
+
+      .newsletter-card h3 {
+        color: var(--white);
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .newsletter-card p {
+        color: var(--sand);
+        max-width: 500px;
+        margin: 0 auto 1.5rem;
+      }
+
+      .newsletter-form-inline {
+        display: flex;
+        gap: 0.75rem;
+        max-width: 450px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .newsletter-form-inline input {
+        flex: 2;
+        min-width: 200px;
+        padding: 1rem 1.25rem;
+        border: none;
+        border-radius: var(--radius-full);
+        font-family: "Manrope", sans-serif;
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--deep-charcoal);
+      }
+
+      .newsletter-form-inline input:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--terracotta);
+      }
+
+      .newsletter-form-inline button {
+        flex: 1;
+        min-width: 120px;
+        background: var(--terracotta);
+        color: var(--white);
+        border: none;
+        padding: 1rem 1.5rem;
+        border-radius: var(--radius-full);
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "Manrope", sans-serif;
+      }
+
+      .newsletter-form-inline button:hover {
+        background: var(--terracotta-dark);
+        transform: translateY(-2px);
+      }
+
+      .newsletter-guarantee {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        font-size: 0.7rem;
+        color: var(--sand);
+      }
+
+      @media (max-width: 768px) {
         .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 90vh;
-            position: relative;
-            overflow: hidden;
+          grid-template-columns: 1fr;
         }
-
-        .hero-content {
-            padding: 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-warm) 100%);
-            position: relative;
-            z-index: 2;
-        }
-
         .hero-image {
-            position: relative;
-            height: 100%;
-            min-height: 500px;
-            overflow: hidden;
+          min-height: 400px;
+          order: -1;
         }
-
-        .hero-bg-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
+        .hero-content {
+          padding: 2rem;
+          text-align: center;
         }
-
-        .hero-image::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%);
-            z-index: 1;
-            pointer-events: none;
+        .hero-actions {
+          justify-content: center;
         }
-
         .hero-card {
-            position: absolute;
-            bottom: 2rem;
-            left: 2rem;
-            background: var(--white-soft);
-            backdrop-filter: blur(10px);
-            padding: 1.25rem 2rem;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            z-index: 2;
+          bottom: 1rem;
+          left: 1rem;
+          right: 1rem;
+          padding: 0.75rem 1rem;
+          font-size: 0.8rem;
         }
-
-        .hero-card i {
-            color: var(--terracotta);
-        }
-
-        .hero-image-bg {
-            display: none;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .floating-element {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        /* Featured Classes Section - EXACT SAME AS CLASSES PAGE */
-        .class-category {
-            margin-bottom: 4rem;
-        }
-
-        .category-title {
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .category-title:after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--terracotta);
-        }
-
-        /* Card Design - EXACT SAME AS CLASSES PAGE */
-        .card {
-            background: #f5ede3;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(209, 118, 79, 0.1);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(209, 118, 79, 0.25);
-            background: #f2e8dc;
-        }
-
-        .card-content {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Difficulty Indicators - EXACT SAME */
-        .difficulty {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            font-size: 0.75rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: var(--radius-full);
-            margin-bottom: 1rem;
-            width: fit-content;
-        }
-
-        .difficulty-beginner {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .difficulty-intermediate {
-            background: #fff3e0;
-            color: #e65100;
-        }
-
-        .difficulty-advanced {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-        .class-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-            color: var(--stone);
-            margin-top: 0.5rem;
-        }
-
-        .class-feature i {
-            color: var(--terracotta);
-            width: 20px;
-        }
-
-        /* Book Button - Same as Classes page */
-        .btn-book-class {
-            background: transparent;
-            border: 1.5px solid var(--terracotta);
-            color: var(--terracotta);
-            padding: 0.7rem 1rem;
-            border-radius: var(--radius-full);
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .btn-book-class:hover {
-            background: var(--terracotta);
-            color: var(--white);
-            transform: translateX(4px);
-        }
-
-        /* Welcome Section Card */
-        .welcome-card {
-            background: #f5ede3;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(209, 118, 79, 0.1);
-        }
-
-        .welcome-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(209, 118, 79, 0.25);
-            background: #f2e8dc;
-        }
-
-        .welcome-card-image {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-        }
-
-        /* Offer Section */
-        .offer-section {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .offer-card {
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
-            border-radius: var(--radius-2xl);
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .offer-card::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            right: -30%;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .offer-card::after {
-            content: "";
-            position: absolute;
-            bottom: -30%;
-            left: -20%;
-            width: 250px;
-            height: 250px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .offer-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--white);
-            color: var(--terracotta);
-            padding: 0.5rem 1.25rem;
-            border-radius: var(--radius-full);
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            z-index: 2;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
         .offer-content {
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 3rem;
-            align-items: center;
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 1.5rem;
         }
-
-        .offer-text h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--white);
-        }
-
-        .offer-price {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--white);
-            font-family: "Cormorant Garamond", serif;
-            margin: 1rem 0;
-        }
-
-        .offer-price small {
-            font-size: 1rem;
-            color: var(--cream);
-            font-weight: 400;
-        }
-
         .offer-features {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin: 1.5rem 0;
+          justify-content: center;
         }
-
-        .offer-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--cream);
-            font-size: 0.85rem;
+        .offer-badge {
+          top: 10px;
+          right: 10px;
+          font-size: 0.6rem;
+          padding: 0.3rem 1rem;
         }
-
-        .offer-feature i {
-            color: var(--white);
-            font-size: 1rem;
+        .offer-price {
+          font-size: 2.5rem;
         }
-
-        .offer-visual {
-            text-align: center;
-            position: relative;
+        .offer-card {
+          padding: 2rem;
         }
-
-        .offer-circle {
-            width: 180px;
-            height: 180px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .offer-circle:before {
-            content: "";
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            border: 2px dashed var(--white);
-            border-radius: 50%;
-            animation: spin 20s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .offer-circle i {
-            font-size: 4rem;
-            color: var(--white);
-        }
-
-        .btn-offer {
-            background: var(--white);
-            color: var(--terracotta);
-            padding: 1rem 2rem;
-            border-radius: var(--radius-full);
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-offer:hover {
-            background: var(--cream);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Newsletter Section */
-        .newsletter-section {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .newsletter-card {
-            background: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--charcoal) 100%);
-            border-radius: var(--radius-2xl);
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .newsletter-card::before {
-            content: "";
-            position: absolute;
-            top: -30%;
-            left: -20%;
-            width: 400px;
-            height: 400px;
-            background: rgba(209, 118, 79, 0.08);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .newsletter-card::after {
-            content: "";
-            position: absolute;
-            bottom: -30%;
-            right: -10%;
-            width: 300px;
-            height: 300px;
-            background: rgba(209, 118, 79, 0.05);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .newsletter-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(209, 118, 79, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-        }
-
-        .newsletter-icon i {
-            font-size: 2.5rem;
-            color: var(--terracotta);
-        }
-
-        .newsletter-card h3 {
-            color: var(--white);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .newsletter-card p {
-            color: var(--sand);
-            max-width: 500px;
-            margin: 0 auto 1.5rem;
-        }
-
         .newsletter-form-inline {
-            display: flex;
-            gap: 0.75rem;
-            max-width: 450px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-            justify-content: center;
+          flex-direction: column;
         }
-
-        .newsletter-form-inline input {
-            flex: 2;
-            min-width: 200px;
-            padding: 1rem 1.25rem;
-            border: none;
-            border-radius: var(--radius-full);
-            font-family: "Manrope", sans-serif;
-            background: rgba(255, 255, 255, 0.95);
-            color: var(--deep-charcoal);
-        }
-
-        .newsletter-form-inline input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px var(--terracotta);
-        }
-
+        .newsletter-form-inline input,
         .newsletter-form-inline button {
-            flex: 1;
-            min-width: 120px;
-            background: var(--terracotta);
-            color: var(--white);
-            border: none;
-            padding: 1rem 1.5rem;
-            border-radius: var(--radius-full);
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: "Manrope", sans-serif;
+          width: 100%;
         }
+        .newsletter-card {
+          padding: 2rem;
+        }
+        .grid-3 {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        .grid-2 {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+      }
 
-        .newsletter-form-inline button:hover {
-            background: var(--terracotta-dark);
-            transform: translateY(-2px);
+      @media (max-width: 480px) {
+        .hero-card {
+          font-size: 0.7rem;
         }
-
-        .newsletter-guarantee {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            font-size: 0.7rem;
-            color: var(--sand);
+        .hero-card strong {
+          font-size: 0.8rem;
         }
-
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-            }
-            .hero-image {
-                min-height: 400px;
-                order: -1;
-            }
-            .hero-content {
-                padding: 2rem;
-                text-align: center;
-            }
-            .hero-actions {
-                justify-content: center;
-            }
-            .hero-card {
-                bottom: 1rem;
-                left: 1rem;
-                right: 1rem;
-                padding: 0.75rem 1rem;
-                font-size: 0.8rem;
-            }
-            .offer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 1.5rem;
-            }
-            .offer-features {
-                justify-content: center;
-            }
-            .offer-badge {
-                top: 10px;
-                right: 10px;
-                font-size: 0.6rem;
-                padding: 0.3rem 1rem;
-            }
-            .offer-price {
-                font-size: 2.5rem;
-            }
-            .offer-card {
-                padding: 2rem;
-            }
-            .newsletter-form-inline {
-                flex-direction: column;
-            }
-            .newsletter-form-inline input,
-            .newsletter-form-inline button {
-                width: 100%;
-            }
-            .newsletter-card {
-                padding: 2rem;
-            }
-            .grid-3 {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .grid-2 {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-card {
-                font-size: 0.7rem;
-            }
-            .hero-card strong {
-                font-size: 0.8rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Sticky Booking Button -->
     <a href="schedule.html" class="sticky-book">
-        <i class="fas fa-calendar-check"></i>
-        <span>Book Your Class</span>
+      <i class="fas fa-calendar-check"></i>
+      <span>Book Your Class</span>
     </a>
 
     <!-- Floating WhatsApp -->
     <a href="#" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+      <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- Header -->
     <header class="header">
-        <div class="container">
-            <a href="index.html" class="brand">
-                <div class="logo-icon">
-                    <img src="./assets/img/sculpt-logo.jpg" alt="Sculpt Lagree Logo" class="logo-img" />
-                </div>
-            </a>
-            <button class="menu-btn" onclick="toggleMenu()">☰</button>
-            <nav class="nav" id="nav">
-                <a href="index.html" class="active">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="classes.html">Classes</a>
-                <a href="schedule.html">Schedule</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="teams.html">Our Team</a>
-                <a href="contact.html">Contact</a>
-                <a href="schedule.html" class="btn-book">Book Now</a>
-            </nav>
-        </div>
+      <div class="container">
+        <a href="index.html" class="brand">
+          <div class="logo-icon">
+            <img
+              src="./assets/img/sculpt-logo.jpg"
+              alt="Sculpt Lagree Logo"
+              class="logo-img"
+            />
+          </div>
+        </a>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <nav class="nav" id="nav">
+          <a href="index.html" class="active">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="classes.html">Classes</a>
+          <a href="schedule.html">Schedule</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="teams.html">Our Team</a>
+          <a href="contact.html">Contact</a>
+          <a href="schedule.html" class="btn-book">Book Now</a>
+        </nav>
+      </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <span class="eyebrow">LAGOS • LAGREE • PILATES</span>
-            <h1 class="hero-title">Move with <span>intention.</span><br />Live with <span>strength.</span></h1>
-            <p class="hero-description">Experience Lagos' premier Lagree studio. Low-impact, high-intensity training on the Megaformer. Sculpt, strengthen, and transform.</p>
-            <div class="hero-actions">
-                <a href="schedule.html" class="btn btn-primary">View Schedule →</a>
-                <a href="pricing.html" class="btn btn-outline">Pricing →</a>
-            </div>
+      <div class="hero-content">
+        <span class="eyebrow">LAGOS • LAGREE • PILATES</span>
+        <h1 class="hero-title">
+          Move with <span>intention.</span><br />Live with
+          <span>strength.</span>
+        </h1>
+        <p class="hero-description">
+          Experience Lagos' premier Lagree studio. Low-impact, high-intensity
+          training on the Megaformer. Sculpt, strengthen, and transform.
+        </p>
+        <div class="hero-actions">
+          <a href="schedule.html" class="btn btn-primary">View Schedule →</a>
+          <a href="pricing.html" class="btn btn-outline">Pricing →</a>
         </div>
-        <div class="hero-image">
-            <img src="./assets/img/sculpt_studio.png" alt="Sculpt Lagree Studio" class="hero-bg-image" />
-        </div>
+      </div>
+      <div class="hero-image">
+        <img
+          src="./assets/img/sculpt_studio.png"
+          alt="Sculpt Lagree Studio"
+          class="hero-bg-image"
+        />
+      </div>
     </section>
 
     <!-- Welcome Section -->
     <section class="section">
-        <div class="container">
-            <div class="grid-2">
-                <div class="welcome-card">
-                    <img src="./assets/img/sculpt_action.jpeg" alt="Lagree studio interior" class="welcome-card-image" />
-                </div>
-                <div>
-                    <span class="eyebrow">Welcome to Sculpt</span>
-                    <h2>A sanctuary for strength and mindfulness.</h2>
-                    <p>Sculpt Lagree is more than a workout—it's a movement practice that transforms how you feel in your body. Our studio combines the precision of Pilates with the intensity of Lagree, creating a unique experience that builds lean muscle, improves posture, and elevates your energy.</p>
-                    <p>Whether you're a complete beginner or an experienced athlete, our certified instructors guide you through every movement with personalized attention in a warm, design-led space.</p>
-                    <a href="about.html" class="btn btn-outline" style="margin-top: 1rem">Discover Our Story →</a>
-                </div>
-            </div>
+      <div class="container">
+        <div class="grid-2">
+          <div class="welcome-card">
+            <img
+              src="./assets/img/sculpt_action.jpeg"
+              alt="Lagree studio interior"
+              class="welcome-card-image"
+            />
+          </div>
+          <div>
+            <span class="eyebrow">Welcome to Sculpt</span>
+            <h2>A sanctuary for strength and mindfulness.</h2>
+            <p>
+              Sculpt Lagree is more than a workout—it's a movement practice that
+              transforms how you feel in your body. Our studio combines the
+              precision of Pilates with the intensity of Lagree, creating a
+              unique experience that builds lean muscle, improves posture, and
+              elevates your energy.
+            </p>
+            <p>
+              Whether you're a complete beginner or an experienced athlete, our
+              certified instructors guide you through every movement with
+              personalized attention in a warm, design-led space.
+            </p>
+            <a
+              href="about.html"
+              class="btn btn-outline"
+              style="margin-top: 1rem"
+              >Discover Our Story →</a
+            >
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Featured Classes Section - Same as Classes page -->
     <section class="section">
-        <div class="container">
-            <div class="class-category">
-                <div class="category-title">
-                    <span class="eyebrow">Signature Offerings</span>
-                    <h2>Classes that transform</h2>
+      <div class="container">
+        <div class="class-category">
+          <div class="category-title">
+            <span class="eyebrow">Signature Offerings</span>
+            <h2>Classes that transform</h2>
+          </div>
+          <div class="grid-3">
+            <!-- Signature Sculpt -->
+            <div class="card">
+              <div class="card-content">
+                <span class="difficulty difficulty-intermediate"
+                  >Intermediate</span
+                >
+                <h3>Signature Sculpt</h3>
+                <p>
+                  Full-body Lagree training using slow resistance, controlled
+                  transitions, and deep core activation. Our most popular class.
+                </p>
+                <div class="class-feature">
+                  <i class="fas fa-clock"></i> 45 minutes
                 </div>
-                <div class="grid-3">
-                    <!-- Signature Sculpt -->
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="difficulty difficulty-intermediate">Intermediate</span>
-                            <h3>Signature Sculpt</h3>
-                            <p>Full-body Lagree training using slow resistance, controlled transitions, and deep core activation. Our most popular class.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 45 minutes</div>
-                            <div class="class-feature"><i class="fas fa-fire"></i> 400-600 calories burned</div>
-                            <div class="class-feature"><i class="fas fa-muscle"></i> Full body workout</div>
-                            <a href="schedule.html" class="btn-book-class">Book Sculpt →</a>
-                        </div>
-                    </div>
-
-                    <!-- Lagree Foundations -->
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="difficulty difficulty-beginner">Beginner</span>
-                            <h3>Lagree Foundations</h3>
-                            <p>Perfect for newcomers. Learn machine fundamentals, proper alignment, and build confidence before advancing.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 45 minutes</div>
-                            <div class="class-feature"><i class="fas fa-users"></i> Max 8 students</div>
-                            <div class="class-feature"><i class="fas fa-dumbbell"></i> Low-impact, high-intensity</div>
-                            <a href="schedule.html" class="btn-book-class">Book Foundation →</a>
-                        </div>
-                    </div>
-
-                    <!-- Private Training -->
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="difficulty difficulty-advanced">All Levels</span>
-                            <h3>Private Training</h3>
-                            <p>One-on-one coaching for personalized results, rehabilitation support, or technique refinement.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 60 minutes</div>
-                            <div class="class-feature"><i class="fas fa-user-check"></i> Fully personalized</div>
-                            <div class="class-feature"><i class="fas fa-calendar-alt"></i> Flexible scheduling</div>
-                            <a href="contact.html" class="btn-book-class">Inquire →</a>
-                        </div>
-                    </div>
+                <div class="class-feature">
+                  <i class="fas fa-fire"></i> 400-600 calories burned
                 </div>
+                <div class="class-feature">
+                  <i class="fas fa-muscle"></i> Full body workout
+                </div>
+                <a href="schedule.html" class="btn-book-class">Book Sculpt →</a>
+              </div>
             </div>
+
+            <!-- Lagree Foundations -->
+            <div class="card">
+              <div class="card-content">
+                <span class="difficulty difficulty-beginner">Beginner</span>
+                <h3>Lagree Foundations</h3>
+                <p>
+                  Perfect for newcomers. Learn machine fundamentals, proper
+                  alignment, and build confidence before advancing.
+                </p>
+                <div class="class-feature">
+                  <i class="fas fa-clock"></i> 45 minutes
+                </div>
+                <div class="class-feature">
+                  <i class="fas fa-users"></i> Max 8 students
+                </div>
+                <div class="class-feature">
+                  <i class="fas fa-dumbbell"></i> Low-impact, high-intensity
+                </div>
+                <a href="schedule.html" class="btn-book-class"
+                  >Book Foundation →</a
+                >
+              </div>
+            </div>
+
+            <!-- Private Training -->
+            <div class="card">
+              <div class="card-content">
+                <span class="difficulty difficulty-advanced">All Levels</span>
+                <h3>Private Training</h3>
+                <p>
+                  One-on-one coaching for personalized results, rehabilitation
+                  support, or technique refinement.
+                </p>
+                <div class="class-feature">
+                  <i class="fas fa-clock"></i> 60 minutes
+                </div>
+                <div class="class-feature">
+                  <i class="fas fa-user-check"></i> Fully personalized
+                </div>
+                <div class="class-feature">
+                  <i class="fas fa-calendar-alt"></i> Flexible scheduling
+                </div>
+                <a href="contact.html" class="btn-book-class">Inquire →</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- NEW CLIENT OFFER -->
     <section class="section offer-section">
-        <div class="container">
-            <div class="offer-card">
-                <div class="offer-badge"><i class="fas fa-gift"></i> LIMITED TIME</div>
-                <div class="offer-content">
-                    <div class="offer-text">
-                        <h3>New Client Welcome</h3>
-                        <div class="offer-price">₦40,000 <small>for 3 classes</small></div>
-                        <p style="color: var(--cream); margin-bottom: 1rem;">Experience Sculpt Lagree with our exclusive introductory package. Try any three classes and find your favorite style.</p>
-                        <div class="offer-features">
-                            <span class="offer-feature"><i class="fas fa-check-circle"></i> Any class type</span>
-                            <span class="offer-feature"><i class="fas fa-calendar-alt"></i> 30-day validity</span>
-                            <span class="offer-feature"><i class="fas fa-grip-socks"></i> Free grip socks</span>
-                        </div>
-                        <a href="memberships.html" class="btn-offer">Claim Offer <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    <div class="offer-visual">
-                        <div class="offer-circle"><i class="fas fa-tags"></i></div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="offer-card">
+          <div class="offer-badge">
+            <i class="fas fa-gift"></i> LIMITED TIME
+          </div>
+          <div class="offer-content">
+            <div class="offer-text">
+              <h3>New Client Welcome</h3>
+              <div class="offer-price">
+                ₦40,000 <small>for 3 classes</small>
+              </div>
+              <p style="color: var(--cream); margin-bottom: 1rem">
+                Experience Sculpt Lagree with our exclusive introductory
+                package. Try any three classes and find your favorite style.
+              </p>
+              <div class="offer-features">
+                <span class="offer-feature"
+                  ><i class="fas fa-check-circle"></i> Any class type</span
+                >
+                <span class="offer-feature"
+                  ><i class="fas fa-calendar-alt"></i> 30-day validity</span
+                >
+                <span class="offer-feature"
+                  ><i class="fas fa-grip-socks"></i> Free grip socks</span
+                >
+              </div>
+              <a href="pricing.html" class="btn-offer"
+                >Claim Offer <i class="fas fa-arrow-right"></i
+              ></a>
             </div>
+            <div class="offer-visual">
+              <div class="offer-circle"><i class="fas fa-tags"></i></div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Instagram Feed -->
     <section class="section" style="background: var(--bg-warm)">
-        <div class="container">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem">
-                <span class="eyebrow">Follow Our Journey</span>
-                <h2>@sculptlagree_lagos</h2>
-                <p>Join our growing community on Instagram</p>
-            </div>
-            <div class="instagram-feed" id="instagramFeed">
-                <img src="./assets/img/sculpt_studio.png" alt="Studio" />
-                <img src="./assets/img/sculpt_inside.jpeg" alt="Workout" />
-                <img src="./assets/img/sculpt_inside.jpeg" alt="Trainer" />
-                <img src="./assets/img/sculpt_cafe.jpeg" alt="Cafe" />
-                <img src="./assets/img/sculpt_reception.jpeg" alt="Reception" />
-                <img src="./assets/img/sculpt_outdoor.jpeg" alt="outdoor" />
-            </div>
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem">
+          <span class="eyebrow">Follow Our Journey</span>
+          <h2>@sculptlagree_lagos</h2>
+          <p>Join our growing community on Instagram</p>
         </div>
+        <div class="instagram-feed" id="instagramFeed">
+          <img src="./assets/img/sculpt_studio.png" alt="Studio" />
+          <img src="./assets/img/sculpt_inside.jpeg" alt="Workout" />
+          <img src="./assets/img/sculpt_inside.jpeg" alt="Trainer" />
+          <img src="./assets/img/sculpt_cafe.jpeg" alt="Cafe" />
+          <img src="./assets/img/sculpt_reception.jpeg" alt="Reception" />
+          <img src="./assets/img/sculpt_outdoor.jpeg" alt="outdoor" />
+        </div>
+      </div>
     </section>
 
     <!-- NEWSLETTER SECTION -->
     <section class="section newsletter-section">
-        <div class="container">
-            <div class="newsletter-card">
-                <div class="newsletter-icon"><i class="fas fa-envelope-open-text"></i></div>
-                <h3>Join Our Wellness Circle</h3>
-                <p>Get exclusive updates, wellness tips, and early access to special events.</p>
-                <form class="newsletter-form-inline" id="newsletterForm">
-                    <input type="email" placeholder="Your email address" required />
-                    <button type="submit">Subscribe →</button>
-                </form>
-                <div class="newsletter-guarantee">
-                    <i class="fas fa-lock"></i>
-                    <span>No spam, unsubscribe anytime</span>
-                </div>
-            </div>
+      <div class="container">
+        <div class="newsletter-card">
+          <div class="newsletter-icon">
+            <i class="fas fa-envelope-open-text"></i>
+          </div>
+          <h3>Join Our Wellness Circle</h3>
+          <p>
+            Get exclusive updates, wellness tips, and early access to special
+            events.
+          </p>
+          <form class="newsletter-form-inline" id="newsletterForm">
+            <input type="email" placeholder="Your email address" required />
+            <button type="submit">Subscribe →</button>
+          </form>
+          <div class="newsletter-guarantee">
+            <i class="fas fa-lock"></i>
+            <span>No spam, unsubscribe anytime</span>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="brand" style="margin-bottom: 1rem">
-                        <div class="logo-icon" style="width: 40px; height: 40px">
-                            <img src="./assets/img/sculpt-logo.jpg" alt="Sculpt Lagree Logo" class="logo-img" />
-                        </div>
-                    </div>
-                    <p>Lagos' first Lagree studio. Strong, graceful movement through expertly guided classes in the heart of Lagos.</p>
-                    <div style="display: flex; gap: 1rem; margin-top: 1rem">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4>Studio</h4>
-                    <a href="about.html">About Us</a>
-                    <a href="classes.html">Classes</a>
-                    <a href="schedule.html">Schedule</a>
-                    <a href="pricing.html">Pricing</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div>
-                    <h4>Programs</h4>
-                    <a href="classes.html">Signature Sculpt</a>
-                    <a href="classes.html">Beginner Foundations</a>
-                    <a href="classes.html">Private Sessions</a>
-                    <a href="pricing.html">Pricing</a>
-                </div>
-                <div>
-                    <h4>Contact</h4>
-                    <p>10 Agoro Odiyan St, Victoria Island,<br />Lagos 106104, Nigeria</p>
-                    <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
-                </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="brand" style="margin-bottom: 1rem">
+              <div class="logo-icon" style="width: 40px; height: 40px">
+                <img
+                  src="./assets/img/sculpt-logo.jpg"
+                  alt="Sculpt Lagree Logo"
+                  class="logo-img"
+                />
+              </div>
             </div>
-            <div class="copyright">
-                <p>© 2026 Sculpt Lagree. All rights reserved.</p>
+            <p>
+              Lagos' first Lagree studio. Strong, graceful movement through
+              expertly guided classes in the heart of Lagos.
+            </p>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem">
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-tiktok"></i></a>
             </div>
+          </div>
+          <div>
+            <h4>Studio</h4>
+            <a href="about.html">About Us</a>
+            <a href="classes.html">Classes</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div>
+            <h4>Programs</h4>
+            <a href="classes.html">Signature Sculpt</a>
+            <a href="classes.html">Beginner Foundations</a>
+            <a href="classes.html">Private Sessions</a>
+            <a href="pricing.html">Pricing</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <p>
+              10 Agoro Odiyan St, Victoria Island,<br />Lagos 106104, Nigeria
+            </p>
+            <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
+          </div>
         </div>
+        <div class="copyright">
+          <p>© 2026 Sculpt Lagree. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <script src="assets/js/main.js"></script>
     <script>
-        // Mobile menu toggle
-        function toggleMenu() {
-            document.getElementById("nav").classList.toggle("active");
-        }
+      // Mobile menu toggle
+      function toggleMenu() {
+        document.getElementById("nav").classList.toggle("active");
+      }
 
-        // Newsletter submission
-        document.getElementById("newsletterForm")?.addEventListener("submit", function(e) {
-            e.preventDefault();
-            alert("Thank you for subscribing! Check your email for wellness tips.");
-            this.reset();
+      // Newsletter submission
+      document
+        .getElementById("newsletterForm")
+        ?.addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert(
+            "Thank you for subscribing! Check your email for wellness tips.",
+          );
+          this.reset();
         });
     </script>
 
     <!-- Tawk.to Chat Widget -->
     <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function() {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = "https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle";
-            s1.charset = "UTF-8";
-            s1.setAttribute("crossorigin", "*");
-            s0.parentNode.insertBefore(s1, s0);
-        })();
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
     </script>
-</body>
+  </body>
 </html>

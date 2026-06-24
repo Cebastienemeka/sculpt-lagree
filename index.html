@@ -115,7 +115,7 @@
         animation: float 3s ease-in-out infinite;
       }
 
-      /* Featured Classes Section - EXACT SAME AS CLASSES PAGE */
+      /* Featured Classes Section - EXACT SAME AS CLASSES PAGE (No Prices) */
       .class-category {
         margin-bottom: 4rem;
       }
@@ -163,7 +163,6 @@
         flex-direction: column;
       }
 
-      /* Difficulty Indicators - EXACT SAME */
       .difficulty {
         display: inline-flex;
         align-items: center;
@@ -204,15 +203,30 @@
         width: 20px;
       }
 
-      .pricing-badge {
-        display: inline-block;
-        background: rgba(209, 118, 79, 0.15);
-        padding: 0.3rem 1rem;
+      /* Book Button - Full Width (No Price) */
+      .btn-book-class {
+        background: transparent;
+        border: 1.5px solid var(--terracotta);
+        color: var(--terracotta);
+        padding: 0.7rem 1rem;
         border-radius: var(--radius-full);
         font-weight: 700;
-        color: var(--terracotta-dark);
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
         margin-top: 1rem;
-        width: fit-content;
+      }
+
+      .btn-book-class:hover {
+        background: var(--terracotta);
+        color: var(--white);
+        transform: translateX(4px);
       }
 
       /* Welcome Section Card */
@@ -665,12 +679,6 @@
           alt="Sculpt Lagree Studio"
           class="hero-bg-image"
         />
-        <!-- <div class="hero-card">
-          <i class="fas fa-star"></i>
-          <strong>#1 Pilates Studio in Lagos</strong>
-          <span style="display: block; font-size: 0.875rem"
-            >5.0 ★ Google Reviews</span>
-        </div> -->
       </div>
     </section>
 
@@ -711,7 +719,7 @@
       </div>
     </section>
 
-    <!-- Featured Classes Section - EXACT SAME AS CLASSES PAGE -->
+    <!-- Featured Classes Section - NO PRICES -->
     <section class="section">
       <div class="container">
         <div class="class-category">
@@ -740,13 +748,7 @@
                 <div class="class-feature">
                   <i class="fas fa-muscle"></i> Full body workout
                 </div>
-                <div class="pricing-badge">₦18,000 per class</div>
-                <a
-                  href="schedule.html"
-                  class="btn btn-outline"
-                  style="margin-top: 1rem; width: 100%"
-                  >Book Sculpt →</a
-                >
+                <a href="schedule.html" class="btn-book-class">Book Sculpt →</a>
               </div>
             </div>
 
@@ -768,11 +770,7 @@
                 <div class="class-feature">
                   <i class="fas fa-dumbbell"></i> Low-impact, high-intensity
                 </div>
-                <div class="pricing-badge">₦15,000 per class</div>
-                <a
-                  href="schedule.html"
-                  class="btn btn-outline"
-                  style="margin-top: 1rem; width: 100%"
+                <a href="schedule.html" class="btn-book-class"
                   >Book Foundation →</a
                 >
               </div>
@@ -796,13 +794,7 @@
                 <div class="class-feature">
                   <i class="fas fa-calendar-alt"></i> Flexible scheduling
                 </div>
-                <div class="pricing-badge">₦75,000 per session</div>
-                <a
-                  href="contact.html"
-                  class="btn btn-outline"
-                  style="margin-top: 1rem; width: 100%"
-                  >Inquire →</a
-                >
+                <a href="contact.html" class="btn-book-class">Inquire →</a>
               </div>
             </div>
           </div>
@@ -861,9 +853,9 @@
         <div class="instagram-feed" id="instagramFeed">
           <img src="./assets/img/sculpt_studio.png" alt="Studio" />
           <img src="./assets/img/sculpt_inside.jpeg" alt="Workout" />
-          <img src="./assets/img/sculpt_inside.jpeg" alt="Trainer" />
           <img src="./assets/img/sculpt_cafe.jpeg" alt="Cafe" />
           <img src="./assets/img/sculpt_reception.jpeg" alt="Reception" />
+          <img src="./assets/img/sculpt_inside.jpeg" alt="Workout" />
           <img src="./assets/img/sculpt_outdoor.jpeg" alt="outdoor" />
         </div>
       </div>
@@ -908,7 +900,7 @@
               </div>
             </div>
             <p>
-              Lagos’ first Lagree studio. Strong, graceful movement through
+              Lagos' first Lagree studio. Strong, graceful movement through
               expertly guided classes in the heart of Lagos.
             </p>
             <div style="display: flex; gap: 1rem; margin-top: 1rem">
@@ -948,12 +940,10 @@
 
     <script src="assets/js/main.js"></script>
     <script>
-      // Mobile menu toggle
       function toggleMenu() {
         document.getElementById("nav").classList.toggle("active");
       }
 
-      // Newsletter submission
       document
         .getElementById("newsletterForm")
         ?.addEventListener("submit", function (e) {
@@ -965,7 +955,7 @@
         });
     </script>
 
-    <!--Start of Tawk.to Script-->
+    <!-- Tawk.to Chat Widget -->
     <script type="text/javascript">
       var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();
@@ -979,6 +969,5 @@
         s0.parentNode.insertBefore(s1, s0);
       })();
     </script>
-    <!--End of Tawk.to Script-->
   </body>
 </html>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="View membership options and class packs at Sculpt Lagree Lagos. Find the perfect plan for your fitness journey." />
-    <title>Pricing | Sculpt Lagree Lagos</title>
+    <meta name="description" content="View class packages and private sessions at Sculpt Lagree Lagos. Find the perfect plan for your fitness journey." />
+    <title>Packages | Sculpt Lagree Lagos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -14,17 +14,26 @@
     <!-- Paystack Script -->
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <style>
-        .pricing-grid {
+        /* 4-Column Grid for Class Packages */
+        .pricing-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        /* 3-Column Grid for Private Sessions */
+        .pricing-grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin: 3rem 0;
+            margin: 2rem 0;
         }
 
         .pricing-card {
             background: #f5ede3;
             border-radius: var(--radius-xl);
-            padding: 2rem;
+            padding: 1.75rem;
             transition: all 0.3s ease;
             border: 1px solid rgba(209, 118, 79, 0.1);
             position: relative;
@@ -61,25 +70,25 @@
         }
 
         .pricing-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             color: var(--deep-charcoal);
             font-family: "Cormorant Garamond", serif;
             text-align: center;
         }
 
         .price {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
             color: var(--terracotta);
             font-family: "Cormorant Garamond", serif;
-            margin: 1rem 0 0.5rem;
+            margin: 0.75rem 0 0.25rem;
             text-align: center;
         }
 
         .price small {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 400;
             color: var(--stone);
         }
@@ -88,25 +97,25 @@
             text-align: center;
             font-size: 0.8rem;
             color: var(--stone);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .feature-list {
             text-align: left;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
             padding: 0;
             list-style: none;
             flex: 1;
         }
 
         .feature-list li {
-            padding: 0.6rem 0;
+            padding: 0.4rem 0;
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--stone);
-            border-bottom: 1px solid rgba(209, 118, 79, 0.08);
+            border-bottom: 1px solid rgba(209, 118, 79, 0.06);
         }
 
         .feature-list li:last-child {
@@ -115,18 +124,18 @@
 
         .feature-list li i {
             color: var(--terracotta);
-            width: 20px;
-            font-size: 0.9rem;
+            width: 18px;
+            font-size: 0.8rem;
         }
 
         .btn-pricing {
             background: transparent;
             border: 1.5px solid var(--terracotta);
             color: var(--terracotta);
-            padding: 0.8rem 1.5rem;
+            padding: 0.7rem 1rem;
             border-radius: var(--radius-full);
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -135,7 +144,7 @@
             justify-content: center;
             gap: 0.5rem;
             width: 100%;
-            margin-top: 1rem;
+            margin-top: 0.75rem;
         }
 
         .btn-pricing:hover {
@@ -155,6 +164,35 @@
             transform: translateX(4px);
         }
 
+        .section-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--stone);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Highlight animation for class packages section */
+        .class-packages-section {
+            scroll-margin-top: 80px;
+            transition: all 0.3s ease;
+        }
+
+        .class-packages-section.highlight {
+            animation: highlightPulse 1.5s ease;
+        }
+
+        @keyframes highlightPulse {
+            0% { background: transparent; }
+            30% { background: rgba(209, 118, 79, 0.08); border-radius: var(--radius-xl); }
+            70% { background: rgba(209, 118, 79, 0.05); }
+            100% { background: transparent; }
+        }
+
         .membership-note {
             background: #f5ede3;
             padding: 2.5rem;
@@ -170,171 +208,6 @@
             box-shadow: var(--shadow-lg);
             border-color: rgba(209, 118, 79, 0.25);
             background: #f2e8dc;
-        }
-
-        /* ============================================
-           NEW CLIENT OFFER - MATCHING INDEX.HTML
-           ============================================ */
-        .offer-section {
-            position: relative;
-            overflow: hidden;
-            margin-top: 3rem;
-            margin-bottom: 6rem;
-        }
-
-        .offer-card {
-            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
-            border-radius: var(--radius-2xl);
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .offer-card::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            right: -30%;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .offer-card::after {
-            content: "";
-            position: absolute;
-            bottom: -30%;
-            left: -20%;
-            width: 250px;
-            height: 250px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .offer-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--white);
-            color: var(--terracotta);
-            padding: 0.5rem 1.25rem;
-            border-radius: var(--radius-full);
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            z-index: 2;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .offer-content {
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .offer-text h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--white);
-        }
-
-        .offer-price {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--white);
-            font-family: "Cormorant Garamond", serif;
-            margin: 1rem 0;
-        }
-
-        .offer-price small {
-            font-size: 1rem;
-            color: var(--cream);
-            font-weight: 400;
-        }
-
-        .offer-features {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin: 1.5rem 0;
-        }
-
-        .offer-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--cream);
-            font-size: 0.85rem;
-        }
-
-        .offer-feature i {
-            color: var(--white);
-            font-size: 1rem;
-        }
-
-        .offer-visual {
-            text-align: center;
-            position: relative;
-        }
-
-        .offer-circle {
-            width: 180px;
-            height: 180px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .offer-circle:before {
-            content: "";
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            border: 2px dashed var(--white);
-            border-radius: 50%;
-            animation: spin 20s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .offer-circle i {
-            font-size: 4rem;
-            color: var(--white);
-        }
-
-        .btn-offer {
-            background: var(--white);
-            color: var(--terracotta);
-            padding: 1rem 2rem;
-            border-radius: var(--radius-full);
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-offer:hover {
-            background: var(--cream);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
         .modal-overlay {
@@ -535,41 +408,40 @@
             display: block;
         }
 
-        @media (max-width: 900px) {
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+        @media (max-width: 1200px) {
+            .pricing-grid-4 {
+                grid-template-columns: repeat(2, 1fr);
             }
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-            .offer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 1.5rem;
-            }
-            .offer-features {
-                justify-content: center;
-            }
-            .offer-badge {
-                top: 10px;
-                right: 10px;
-                font-size: 0.6rem;
-                padding: 0.3rem 1rem;
-            }
-            .offer-price {
-                font-size: 2.5rem;
-            }
-            .offer-card {
-                padding: 2rem;
+            .pricing-grid-3 {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
+            .pricing-grid-4 {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .pricing-grid-3 {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .pricing-card {
+                padding: 1.5rem;
+            }
+            .price {
+                font-size: 2rem;
+            }
             .modal-container {
                 padding: 1.25rem;
                 max-width: 340px;
             }
+        }
+
+        @media (max-width: 480px) {
             .modal-plan-price {
                 font-size: 1.2rem;
             }
@@ -605,7 +477,7 @@
                 <a href="about.html">About Us</a>
                 <a href="classes.html">Classes</a>
                 <a href="schedule.html">Schedule</a>
-                <a href="pricing.html" class="active">Pricing</a>
+                <a href="package.html" class="active">Packages</a>
                 <a href="team.html">Our Team</a>
                 <a href="contact.html">Contact</a>
                 <a href="schedule.html" class="btn-book">Book Now</a>
@@ -614,109 +486,131 @@
     </header>
 
     <!-- Hero Banner -->
-    <section class="hero-banner" style="background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark)); padding: 5rem 0; text-align: center;">
+    <section class="hero-banner" style="background: linear-gradient(135deg, var(--deep-charcoal), var(--terracotta-dark)); padding: 5rem 0; text-align: center;">
         <div class="container">
             <span class="eyebrow" style="color: var(--cream);">INVEST IN YOURSELF</span>
-            <h1 style="color: var(--white);">Pricing & Memberships</h1>
+            <h1 style="color: var(--white);">Packages</h1>
             <p style="color: var(--cream);">Choose the plan that fits your lifestyle and commitment level</p>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="section">
+    <!-- Class Packages Section - 4 Cards in 1 Line -->
+    <section class="section class-packages-section" id="class-packages">
         <div class="container">
-            <div class="pricing-grid">
-                <!-- 5 Class Pack -->
+            <h2 class="section-title">Class Package</h2>
+            <p class="section-subtitle">Flexible class packs for your fitness journey</p>
+            
+            <div class="pricing-grid-4">
+                <!-- The Drop-in - 1 Class -->
                 <div class="pricing-card">
-                    <h3>5 Class Pack</h3>
-                    <div class="price">₦70,000</div>
-                    <div class="price-sub">₦14,000 per class</div>
+                    <h3>The Drop-in</h3>
+                    <div class="price">₦49,000</div>
+                    <div class="price-sub">1 class</div>
                     <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> 5 classes</li>
-                        <li><i class="fas fa-calendar-alt"></i> Valid for 3 months</li>
-                        <li><i class="fas fa-exchange-alt"></i> Shareable with friends</li>
-                        <li><i class="fas fa-clock"></i> Any class type</li>
+                        <li><i class="fas fa-check-circle"></i> Passes: 1</li>
+                        <li><i class="fas fa-calendar-alt"></i> Validity: 1 Week</li>
                     </ul>
-                    <button class="btn-pricing" onclick="openPricingModal('5 Class Pack', 70000)">Purchase Pack →</button>
+                    <button class="btn-pricing" onclick="openPricingModal('The Drop-in', 49000)">Purchase →</button>
                 </div>
 
-                <!-- 10 Class Pack -->
+                <!-- The Momentum - 5 Classes -->
+                <div class="pricing-card">
+                    <h3>The Momentum</h3>
+                    <div class="price">₦230,000</div>
+                    <div class="price-sub">5 classes</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Passes: 5</li>
+                        <li><i class="fas fa-calendar-alt"></i> Validity: 1 Month</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="openPricingModal('The Momentum', 230000)">Purchase →</button>
+                </div>
+
+                <!-- The Regular - 10 Classes -->
                 <div class="pricing-card featured">
                     <div class="popular-badge">MOST POPULAR</div>
-                    <h3>10 Class Pack</h3>
-                    <div class="price">₦135,000</div>
-                    <div class="price-sub">₦13,500 per class</div>
+                    <h3>The Regular</h3>
+                    <div class="price">₦425,000</div>
+                    <div class="price-sub">10 classes</div>
                     <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> 10 classes</li>
-                        <li><i class="fas fa-calendar-alt"></i> Valid for 4 months</li>
-                        <li><i class="fas fa-exchange-alt"></i> Shareable with friends</li>
-                        <li><i class="fas fa-gift"></i> Free grip socks included</li>
-                        <li><i class="fas fa-star"></i> Priority booking</li>
+                        <li><i class="fas fa-check-circle"></i> Passes: 10</li>
+                        <li><i class="fas fa-calendar-alt"></i> Validity: 2 Months</li>
                     </ul>
-                    <button class="btn-pricing btn-pricing-primary" onclick="openPricingModal('10 Class Pack', 135000)">Purchase Pack →</button>
+                    <button class="btn-pricing btn-pricing-primary" onclick="openPricingModal('The Regular', 425000)">Purchase →</button>
                 </div>
 
-                <!-- Unlimited Monthly -->
+                <!-- The Addict - 15 Classes -->
                 <div class="pricing-card">
-                    <h3>Unlimited Monthly</h3>
-                    <div class="price">₦210,000</div>
-                    <div class="price-sub">per month</div>
+                    <h3>The Addict</h3>
+                    <div class="price">₦540,000</div>
+                    <div class="price-sub">15 classes</div>
                     <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Unlimited classes</li>
-                        <li><i class="fas fa-calendar-alt"></i> Auto-renew monthly</li>
-                        <li><i class="fas fa-user-friends"></i> Bring a friend once/month</li>
-                        <li><i class="fas fa-percent"></i> 10% off retail</li>
-                        <li><i class="fas fa-calendar-week"></i> Priority booking window</li>
-                        <li><i class="fas fa-gift"></i> Free birthday class</li>
+                        <li><i class="fas fa-check-circle"></i> Passes: 15</li>
+                        <li><i class="fas fa-calendar-alt"></i> Validity: 10 Weeks</li>
                     </ul>
-                    <button class="btn-pricing" onclick="openPricingModal('Unlimited Monthly', 210000)">Join Now →</button>
+                    <button class="btn-pricing" onclick="openPricingModal('The Addict', 540000)">Purchase →</button>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Not Sure Which Plan? -->
+    <!-- Private Sessions Section - 3 Cards in 1 Line -->
+    <section class="section" style="background: var(--bg-warm); padding-top: 2rem;">
+        <div class="container">
+            <h2 class="section-title">Private Sessions</h2>
+            <p class="section-subtitle">Personalized coaching for focused results</p>
+            
+            <div class="pricing-grid-3">
+                <!-- The Trial (PT) - 1 Class -->
+                <div class="pricing-card">
+                    <h3>The Trial (PT)</h3>
+                    <div class="price">₦89,000</div>
+                    <div class="price-sub">1 class</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Passes: 1</li>
+                        <li><i class="fas fa-calendar-alt"></i> Validity: 1 Week</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="openPricingModal('The Trial (PT)', 89000)">Book →</button>
+                </div>
+
+                <!-- The Serious (PT) - 5 Classes -->
+                <div class="pricing-card featured">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3>The Serious (PT)</h3>
+                    <div class="price">₦415,000</div>
+                    <div class="price-sub">5 classes</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Passes: 5</li>
+                        <li><i class="fas fa-calendar-alt"></i> Validity: 1 Month</li>
+                    </ul>
+                    <button class="btn-pricing btn-pricing-primary" onclick="openPricingModal('The Serious (PT)', 415000)">Book →</button>
+                </div>
+
+                <!-- The Sculpted (PT) - 10 Classes -->
+                <div class="pricing-card">
+                    <h3>The Sculpted (PT)</h3>
+                    <div class="price">₦770,000</div>
+                    <div class="price-sub">10 classes</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Passes: 10</li>
+                        <li><i class="fas fa-calendar-alt"></i> Validity: 2 Months</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="openPricingModal('The Sculpted (PT)', 770000)">Book →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Not Sure Which Plan? -->
+    <section class="section">
+        <div class="container">
             <div class="membership-note">
                 <i class="fas fa-question-circle"></i>
                 <h3>Not sure which plan is right for you?</h3>
-                <p>We offer a free consultation to help you find the perfect membership for your goals. Book a call with our team.</p>
+                <p>We offer a free consultation to help you find the perfect package for your goals. Book a call with our team.</p>
                 <a href="contact.html" class="btn-pricing" style="width: auto; padding: 0.8rem 2rem;">Book Consultation →</a>
             </div>
         </div>
     </section>
-
-    <!-- NEW CLIENT OFFER - MATCHING INDEX.HTML -->
-    <section class="offer-section">
-        <div class="container">
-            <div class="offer-card">
-                <div class="offer-badge">
-                    <i class="fas fa-gift"></i> LIMITED TIME
-                </div>
-                <div class="offer-content">
-                    <div class="offer-text">
-                        <h3>New Client Welcome</h3>
-                        <div class="offer-price">
-                            ₦40,000 <small>for 3 classes</small>
-                        </div>
-                        <p style="color: var(--cream); margin-bottom: 1rem;">
-                            Experience Sculpt Lagree with our exclusive introductory package. Try any three classes and find your favorite style.
-                        </p>
-                        <div class="offer-features">
-                            <span class="offer-feature"><i class="fas fa-check-circle"></i> Any class type</span>
-                            <span class="offer-feature"><i class="fas fa-calendar-alt"></i> 30-day validity</span>
-                            <span class="offer-feature"><i class="fas fa-grip-socks"></i> Free grip socks</span>
-                        </div>
-                        <button class="btn-offer" onclick="openPricingModal('New Client Special (3 Classes)', 40000)">
-                            Claim Offer <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                    <div class="offer-visual">
-                        <div class="offer-circle"><i class="fas fa-tags"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- <br> <br> <br> -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -740,7 +634,7 @@
                     <a href="about.html">About Us</a>
                     <a href="classes.html">Classes</a>
                     <a href="schedule.html">Schedule</a>
-                    <a href="pricing.html">Pricing</a>
+                    <a href="package.html">Packages</a>
                     <a href="team.html">Our Team</a>
                     <a href="contact.html">Contact</a>
                 </div>
@@ -749,7 +643,7 @@
                     <a href="classes.html">Signature Sculpt</a>
                     <a href="classes.html">Beginner Foundations</a>
                     <a href="classes.html">Private Sessions</a>
-                    <a href="pricing.html">Memberships</a>
+                    <a href="package.html">Packages</a>
                 </div>
                 <div>
                     <h4>Contact</h4>
@@ -763,9 +657,7 @@
         </div>
     </footer>
 
-    <!-- ============================================
-    COMPACT PAYMENT MODAL
-    ============================================ -->
+    <!-- Payment Modal -->
     <div class="modal-overlay" id="paymentModal">
         <div class="modal-container">
             <button class="modal-close" id="modalCloseBtn">
@@ -780,8 +672,8 @@
             <p class="modal-subtitle">Secure your plan instantly</p>
 
             <div class="modal-plan">
-                <div class="modal-plan-name" id="modalPlanName">10 Class Pack</div>
-                <div class="modal-plan-price" id="modalPlanPrice">₦135,000 <small>one-time</small></div>
+                <div class="modal-plan-name" id="modalPlanName">The Regular</div>
+                <div class="modal-plan-price" id="modalPlanPrice">₦425,000 <small>one-time</small></div>
             </div>
 
             <form id="paymentForm">
@@ -815,6 +707,31 @@
         function toggleMenu() {
             document.getElementById("nav").classList.toggle("active");
         }
+
+        // ============================================
+        // CHECK FOR URL PARAMETER TO SCROLL TO CLASS PACKAGES
+        // ============================================
+        (function() {
+            // Check if URL has ?section=class-packages
+            const urlParams = new URLSearchParams(window.location.search);
+            const section = urlParams.get('section');
+            
+            if (section === 'class-packages') {
+                // Scroll to class packages section after a slight delay
+                setTimeout(function() {
+                    const classPackagesSection = document.getElementById('class-packages');
+                    if (classPackagesSection) {
+                        classPackagesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Add highlight class for visual feedback
+                        classPackagesSection.classList.add('highlight');
+                        // Remove highlight after animation completes
+                        setTimeout(function() {
+                            classPackagesSection.classList.remove('highlight');
+                        }, 2000);
+                    }
+                }, 300);
+            }
+        })();
 
         // ============================================
         // PAYMENT MODAL CONTROLS
@@ -917,7 +834,7 @@
                         'Plan: ' + currentPlan.name + '\n' +
                         'Amount: ₦' + amount.toLocaleString() + '\n' +
                         'Reference: ' + response.reference + '\n\n' +
-                        'Your membership has been activated! A confirmation email has been sent.'
+                        'Your package has been activated! A confirmation email has been sent.'
                     );
                     console.log('Payment Success:', response);
                     console.log('Plan:', currentPlan);

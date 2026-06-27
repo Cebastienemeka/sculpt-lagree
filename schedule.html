@@ -3,136 +3,206 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="View weekly class schedule at Sculpt Lagree Lagos. Book Lagree, Pilates, and signature sculpt classes online." />
+    <meta name="description" content="View Sculpt Lagree Lagos classes and book your next Lagree session." />
     <title>Schedule | Sculpt Lagree Lagos</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="shortcut icon" href="./assets/img/sculpt_logo_round.png" type="image/x-icon" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
     <style>
-        /* Calendar Specific Styles */
-        .calendar-container {
+        /* ============================================
+           SCHEDULE PAGE - MATCHING HOMEPAGE STYLE
+           ============================================ */
+        .schedule-wrapper {
+            background: var(--bg-light);
+            padding: 0 0 4rem;
+        }
+
+        /* Hero Banner - Matching Homepage */
+        .schedule-hero {
+            background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark));
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .schedule-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .schedule-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .schedule-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .schedule-hero .eyebrow {
+            color: var(--cream);
+            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule-hero h1 {
+            color: var(--white);
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .schedule-hero p {
+            color: var(--cream);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* Booking Panel - Card Style Matching Homepage */
+        .booking-panel {
+            position: relative;
+            z-index: 5;
+            width: calc(100% - 28px);
+            max-width: 1100px;
+            margin: -46px auto 0;
             background: var(--white);
             border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
             padding: 2rem;
-            box-shadow: var(--shadow-md);
         }
 
-        /* View Toggle Buttons */
-        .view-toggle {
+        /* Filters - Matching Homepage Style */
+        .filter-area {
+            width: 100%;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--warm-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-row {
             display: flex;
-            gap: 0.5rem;
-            background: var(--bg-warm);
-            padding: 0.25rem;
-            border-radius: var(--radius-full);
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .view-btn {
-            padding: 0.5rem 1.25rem;
-            border: none;
-            background: transparent;
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f5ede3;
+            padding: 0.3rem 0.3rem 0.3rem 1rem;
             border-radius: var(--radius-full);
-            cursor: pointer;
+            border: 1px solid rgba(209, 118, 79, 0.1);
+        }
+
+        .filter-group label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--stone);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-group select {
+            border: none;
+            outline: none;
+            background: transparent;
             font-weight: 600;
             font-size: 0.8rem;
-            transition: all var(--transition-fast);
-            color: var(--stone);
+            color: var(--charcoal);
+            cursor: pointer;
+            padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.25rem center;
         }
 
-        .view-btn.active {
-            background: var(--terracotta);
-            color: var(--white);
-        }
-
-        .view-btn:hover:not(.active) {
-            background: var(--terracotta-soft);
+        .filter-group select:hover {
             color: var(--terracotta);
         }
 
-        /* Calendar Header with Navigation */
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
+        /* Month Navigation */
+        .month-block {
+            margin-bottom: 1.5rem;
         }
 
-        .calendar-nav {
+        .month-nav {
             display: flex;
-            gap: 0.5rem;
             align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .calendar-nav-btn {
-            background: var(--bg-warm);
-            border: none;
+        .month-btn {
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            border: 1px solid rgba(209, 118, 79, 0.1);
+            background: #f5ede3;
+            color: var(--terracotta-dark);
+            font-size: 1.2rem;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all var(--transition-fast);
-            display: inline-flex;
+            transition: all 0.3s ease;
+            display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .calendar-nav-btn:hover {
+        .month-btn:hover {
             background: var(--terracotta);
             color: var(--white);
+            border-color: var(--terracotta);
+            transform: scale(1.05);
         }
 
-        .current-display {
-            font-size: 1.5rem;
-            font-weight: 600;
-            font-family: "Cormorant Garamond", serif;
+        .month-title {
+            font-size: 1.2rem;
+            font-weight: 700;
             color: var(--deep-charcoal);
-            min-width: 200px;
+            min-width: 160px;
             text-align: center;
-        }
-
-        /* Date Selector Dropdowns */
-        .date-selector {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .date-select {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--warm-gray);
-            border-radius: var(--radius-full);
-            background: var(--white);
-            font-family: "Manrope", sans-serif;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-        }
-
-        .date-select:hover {
-            border-color: var(--terracotta);
-        }
-
-        .date-select:focus {
-            outline: none;
-            border-color: var(--terracotta);
-            box-shadow: 0 0 0 2px var(--terracotta-soft);
+            font-family: "Cormorant Garamond", serif;
         }
 
         .today-btn {
             background: transparent;
-            border: 1px solid var(--terracotta);
-            padding: 0.5rem 1.25rem;
+            border: 1.5px solid var(--terracotta);
             border-radius: var(--radius-full);
-            cursor: pointer;
-            font-weight: 600;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
             color: var(--terracotta);
-            transition: all var(--transition-fast);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: "Manrope", sans-serif;
         }
 
         .today-btn:hover {
@@ -140,280 +210,288 @@
             color: var(--white);
         }
 
-        /* Filter Bar */
-        .filter-bar {
+        /* Date Scroll */
+        .date-scroll {
             display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--warm-gray);
+            gap: 0.5rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 0 0 0.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--terracotta-soft) transparent;
         }
 
-        .filter-chip {
-            background: var(--bg-warm);
+        .date-scroll::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .date-scroll::-webkit-scrollbar-thumb {
+            background: var(--terracotta-soft);
+            border-radius: 10px;
+        }
+
+        .date-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .date-item {
+            min-width: 68px;
             border: none;
-            padding: 0.6rem 1.25rem;
-            border-radius: var(--radius-full);
+            background: transparent;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: all var(--transition-fast);
-            color: var(--charcoal);
+            padding: 0.25rem 0 0;
+            color: var(--stone);
+            transition: all 0.2s ease;
+            position: relative;
         }
 
-        .filter-chip.active,
-        .filter-chip:hover {
+        .date-item.past {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .date-item.past .date-number {
+            color: #b0b0b0;
+        }
+
+        .date-day {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            color: var(--stone);
+        }
+
+        .date-number {
+            width: 44px;
+            height: 44px;
+            margin: 0 auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #666666;
+            transition: all 0.25s ease;
+        }
+
+        .date-item:not(.past):hover .date-number {
+            background: var(--terracotta-soft);
+            color: var(--terracotta-dark);
+            transform: scale(1.05);
+        }
+
+        .date-item.active .date-number {
             background: var(--terracotta);
             color: var(--white);
+            box-shadow: 0 8px 20px rgba(209, 118, 79, 0.34);
+            transform: scale(1.05);
         }
 
-        /* Month View Grid */
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 0.75rem;
-            margin-bottom: 2rem;
+        .date-item.active .date-day {
+            color: var(--terracotta-dark);
+            font-weight: 700;
         }
 
-        /* Week View Grid */
-        .week-view-container {
+        .date-item .dot-indicator {
             display: none;
+            width: 5px;
+            height: 5px;
+            background: var(--terracotta);
+            border-radius: 50%;
+            margin: 4px auto 0;
         }
 
-        .week-view-container.active {
+        .date-item.has-classes .dot-indicator {
             display: block;
         }
 
-        .week-grid {
-            display: grid;
-            grid-template-columns: 100px repeat(7, 1fr);
-            gap: 0.5rem;
-            overflow-x: auto;
-            min-width: 800px;
-        }
-
-        .week-time-slot {
-            background: var(--bg-warm);
-            padding: 0.75rem;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-
-        .week-class-slot {
-            background: var(--terracotta-soft);
-            padding: 0.75rem;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-        }
-
-        .week-class-slot:hover {
-            background: var(--terracotta);
-            color: var(--white);
-            transform: scale(0.98);
-        }
-
-        .week-class-name {
-            font-weight: 700;
-            font-size: 0.75rem;
-        }
-
-        .week-class-instructor {
-            font-size: 0.65rem;
-            opacity: 0.8;
-        }
-
-        .week-book-btn {
-            background: var(--white);
-            border: none;
-            padding: 0.2rem 0.4rem;
-            border-radius: var(--radius-full);
-            margin-top: 0.5rem;
-            font-size: 0.65rem;
-            cursor: pointer;
+        /* Schedule List */
+        .schedule-list {
             width: 100%;
         }
 
-        .week-empty-slot {
-            background: var(--bg-warm);
-            padding: 0.75rem;
-            border-radius: var(--radius-md);
-            text-align: center;
-            font-size: 0.7rem;
-            color: var(--stone);
-        }
-
-        .calendar-day-header {
-            text-align: center;
-            padding: 1rem 0.5rem;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--stone);
-        }
-
-        .calendar-day {
-            background: var(--bg-light);
-            border-radius: var(--radius-lg);
-            padding: 0.75rem;
-            min-height: 120px;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            border: 1px solid transparent;
-        }
-
-        .calendar-day:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--terracotta-soft);
-        }
-
-        .calendar-day.today {
-            border: 2px solid var(--terracotta);
-            background: var(--terracotta-soft);
-        }
-
-        .calendar-day.selected {
-            background: var(--terracotta);
-            color: var(--white);
-        }
-
-        .calendar-day.selected .day-number {
-            color: var(--white);
-        }
-
-        .day-number {
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            display: block;
+        .time-heading {
+            height: 48px;
+            background: #f5ede3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--deep-charcoal);
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-bottom: 1px solid var(--warm-gray);
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            margin-top: 0.75rem;
         }
 
-        .day-class-indicator {
-            font-size: 0.7rem;
+        .time-heading i {
             color: var(--terracotta);
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            flex-wrap: wrap;
+            margin-right: 0.5rem;
+            font-size: 0.85rem;
         }
 
-        .class-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--terracotta);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .other-month {
-            opacity: 0.4;
-        }
-
-        /* Selected Day Classes */
-        .selected-day-classes {
-            background: var(--bg-warm);
-            border-radius: var(--radius-xl);
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .selected-day-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
+        .class-card {
+            min-height: 90px;
+            display: grid;
+            grid-template-columns: 110px 1fr 120px;
             gap: 1rem;
-        }
-
-        .selected-day-title h3 {
-            margin: 0;
-            font-size: 1.3rem;
-        }
-
-        .classes-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .class-item {
+            align-items: center;
+            padding: 1rem 1.5rem 1rem 2rem;
+            border-bottom: 1px solid var(--warm-gray);
             background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 1rem 1.25rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            transition: all var(--transition-fast);
-            border-left: 4px solid var(--terracotta);
+            transition: all 0.25s ease;
+            position: relative;
         }
 
-        .class-item:hover {
+        .class-card:hover {
+            background: #fcf9f6;
             transform: translateX(4px);
-            box-shadow: var(--shadow-sm);
         }
 
-        .class-info {
-            flex: 2;
+        .class-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: transparent;
+            transition: all 0.25s ease;
         }
 
-        .class-time {
+        .class-card:hover::before {
+            background: var(--terracotta);
+        }
+
+        .class-time-main {
+            font-size: 1rem;
             font-weight: 800;
             color: var(--terracotta);
-            font-size: 1rem;
             margin-bottom: 0.25rem;
+        }
+
+        .class-duration {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--stone);
+        }
+
+        .class-duration i {
+            color: var(--terracotta);
+            margin-right: 0.25rem;
         }
 
         .class-name {
-            font-weight: 700;
             font-size: 1rem;
+            font-weight: 700;
+            color: var(--deep-charcoal);
             margin-bottom: 0.25rem;
+            line-height: 1.25;
         }
 
-        .class-details {
-            font-size: 0.75rem;
+        .class-name .level-badge {
+            display: inline-block;
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.1rem 0.5rem;
+            border-radius: var(--radius-full);
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .level-badge.intro { background: #E8F5E9; color: #2E7D32; }
+        .level-badge.beginner { background: #E3F2FD; color: #1565C0; }
+        .level-badge.intermediate { background: #FFF3E0; color: #E65100; }
+        .level-badge.advanced { background: #FFEBEE; color: #C62828; }
+
+        .teacher-room {
+            font-size: 0.85rem;
+            font-weight: 500;
             color: var(--stone);
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            line-height: 1.25;
         }
 
-        .book-btn {
+        .teacher-room i {
+            color: var(--terracotta);
+            margin-right: 0.25rem;
+            width: 16px;
+        }
+
+        /* ============================================
+           BOOK NOW BUTTON - REDIRECT TO PACKAGES
+           ============================================ */
+        .btn-book-package {
+            justify-self: end;
             background: var(--terracotta);
             color: var(--white);
             border: none;
-            padding: 0.6rem 1.5rem;
+            padding: 0.6rem 1.2rem;
             border-radius: var(--radius-full);
-            cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.8rem;
-            transition: all var(--transition-fast);
-            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            min-width: 110px;
+            height: 40px;
+            box-shadow: 0 4px 12px rgba(209, 118, 79, 0.25);
+            text-decoration: none;
         }
 
-        .book-btn:hover {
+        .btn-book-package:hover {
             background: var(--terracotta-dark);
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(209, 118, 79, 0.35);
+            color: var(--white);
         }
 
-        .no-classes {
+        .btn-book-package:active {
+            transform: scale(0.96);
+        }
+
+        .btn-book-package i {
+            font-size: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-book-package:hover i {
+            transform: translateX(3px);
+        }
+
+        .empty-state {
+            padding: 4rem 1.5rem;
             text-align: center;
-            padding: 3rem;
             color: var(--stone);
         }
 
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--terracotta-soft);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .empty-state h3 {
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--stone);
+        }
+
+        /* Legend */
         .legend {
             display: flex;
             gap: 1.5rem;
@@ -447,71 +525,111 @@
             height: 12px;
         }
 
-        /* ============================================
-           DIFFICULTY BADGE COLORS - MATCHING CLASSES PAGE
-           ============================================ */
-        .difficulty-badge {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-
-        .difficulty-badge.beginner {
-            background: #E8F5E9;
-            color: #2E7D32;
-        }
-
-        .difficulty-badge.intermediate {
-            background: #FFF3E0;
-            color: #E65100;
-        }
-
-        .difficulty-badge.advanced {
-            background: #FFEBEE;
-            color: #C62828;
-        }
-
-        .difficulty-badge.all-levels {
-            background: #E3F2FD;
-            color: #1565C0;
+        @media (max-width: 1024px) {
+            .class-card {
+                grid-template-columns: 90px 1fr 100px;
+                gap: 0.75rem;
+                padding: 0.75rem 1rem 0.75rem 1.5rem;
+            }
+            .booking-panel {
+                padding: 1.5rem;
+            }
         }
 
         @media (max-width: 768px) {
-            .calendar-container {
+            .booking-panel {
+                width: 100%;
+                margin-top: -42px;
+                border-radius: var(--radius-lg);
                 padding: 1rem;
             }
-            .calendar-day {
-                min-height: 90px;
-                padding: 0.5rem;
+            .filter-area {
+                padding-bottom: 1rem;
             }
-            .day-number {
-                font-size: 0.8rem;
+            .filter-group {
+                padding: 0.2rem 0.2rem 0.2rem 0.75rem;
             }
-            .class-item {
-                flex-direction: column;
-                align-items: flex-start;
+            .filter-group select {
+                font-size: 0.7rem;
+                padding: 0.3rem 1.2rem 0.3rem 0.3rem;
             }
-            .book-btn {
-                width: 100%;
+            .month-title {
+                font-size: 1rem;
+                min-width: 100px;
+            }
+            .date-item {
+                min-width: 56px;
+            }
+            .date-number {
+                width: 38px;
+                height: 38px;
+                font-size: 0.75rem;
+            }
+            .class-card {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                padding: 0.75rem 1rem;
                 text-align: center;
             }
-            .calendar-day-header {
-                font-size: 0.7rem;
-                padding: 0.5rem;
+            .class-card::before {
+                width: 3px;
             }
-            .date-selector {
-                order: 2;
+            .class-time-main {
+                font-size: 0.9rem;
+            }
+            .class-name {
+                font-size: 0.9rem;
+            }
+            .teacher-room {
+                font-size: 0.8rem;
+            }
+            .btn-book-package {
                 width: 100%;
-                justify-content: center;
+                justify-self: center;
+                height: 36px;
+                min-width: unset;
+                padding: 0.5rem;
+                font-size: 0.75rem;
+            }
+            .schedule-hero {
+                padding: 3rem 1.5rem;
+            }
+            .schedule-hero h1 {
+                font-size: 2.2rem;
+            }
+            .schedule-hero p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-banner h1 {
+                font-size: 1.8rem;
+            }
+            .date-item {
+                min-width: 48px;
+            }
+            .date-number {
+                width: 34px;
+                height: 34px;
+                font-size: 0.7rem;
+            }
+            .class-card {
+                padding: 0.5rem 0.75rem;
+            }
+            .booking-panel {
+                padding: 0.75rem;
+            }
+            .filter-row {
+                gap: 0.5rem;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Sticky Booking Button -->
-    <a href="schedule.html" class="sticky-book">
+    <a href="package.html" class="sticky-book">
         <i class="fas fa-calendar-check"></i>
         <span>Book Your Class</span>
     </a>
@@ -535,98 +653,67 @@
                 <a href="about.html">About Us</a>
                 <a href="classes.html">Classes</a>
                 <a href="schedule.html" class="active">Schedule</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="teams.html">Our Team</a>
+                <a href="package.html">Packages</a>
+                <a href="team.html">Our Team</a>
                 <a href="contact.html">Contact</a>
-                <a href="schedule.html" class="btn-book">Book Now</a>
+                <a href="package.html" class="btn-book">Book Now</a>
             </nav>
         </div>
     </header>
 
     <!-- Hero Banner -->
-    <section class="hero-banner" style="background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark)); padding: 4rem 0; text-align: center;">
+    <section class="schedule-hero" style="background: linear-gradient(135deg, var(--terracotta), var(--deep-charcoal));">
         <div class="container">
-            <span class="eyebrow" style="color: var(--cream)">BOOK YOUR MAT</span>
-            <h1 style="color: var(--white)">Class Schedule</h1>
-            <p style="color: var(--cream); max-width: 600px; margin: 0 auto">Book your mat. Reserve your spot. Transform your body.</p>
+            <span class="eyebrow">BOOK YOUR MAT</span>
+            <h1>Class Schedule</h1>
+            <p>Book your mat. Reserve your spot. Transform your body.</p>
         </div>
     </section>
 
-    <!-- Calendar Section -->
-    <section class="section">
+    <!-- Schedule Section -->
+    <div class="schedule-wrapper">
         <div class="container">
-            <div class="calendar-container">
-                <!-- View Toggle Buttons -->
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
-                    <div class="view-toggle">
-                        <button class="view-btn active" data-view="month">
-                            <i class="fas fa-calendar-alt"></i> Month View
-                        </button>
-                        <button class="view-btn" data-view="week">
-                            <i class="fas fa-calendar-week"></i> Week View
-                        </button>
+            <div class="booking-panel">
+                <!-- Filters -->
+                <section class="filter-area">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label>Level</label>
+                            <select id="levelFilter">
+                                <option value="all">All</option>
+                                <option value="intro">Intro</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Time</label>
+                            <select id="timeFilter">
+                                <option value="all">All</option>
+                                <option value="morning">Morning</option>
+                                <option value="afternoon">Afternoon</option>
+                                <option value="evening">Evening</option>
+                            </select>
+                        </div>
                     </div>
-                    <button class="today-btn" id="todayBtn">
-                        <i class="fas fa-calendar-day"></i> Today
-                    </button>
-                </div>
+                </section>
 
-                <!-- Calendar Header with Navigation and Date Selectors -->
-                <div class="calendar-header">
-                    <div class="calendar-nav">
-                        <button class="calendar-nav-btn" id="prevBtn">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <span class="current-display" id="currentDisplay">June 2026</span>
-                        <button class="calendar-nav-btn" id="nextBtn">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
+                <!-- Month & Date -->
+                <section class="month-block">
+                    <div class="month-nav">
+                        <button class="month-btn" type="button" id="prevMonth">‹</button>
+                        <h2 class="month-title" id="monthTitle">July 2026</h2>
+                        <button class="month-btn" type="button" id="nextMonth">›</button>
+                        <button class="today-btn" type="button" id="todayBtn">Today</button>
                     </div>
 
-                    <!-- Date Selector Dropdowns -->
-                    <div class="date-selector">
-                        <select id="monthSelect" class="date-select">
-                            <option value="0">January</option>
-                            <option value="1">February</option>
-                            <option value="2">March</option>
-                            <option value="3">April</option>
-                            <option value="4">May</option>
-                            <option value="5">June</option>
-                            <option value="6">July</option>
-                            <option value="7">August</option>
-                            <option value="8">September</option>
-                            <option value="9">October</option>
-                            <option value="10">November</option>
-                            <option value="11">December</option>
-                        </select>
-                        <select id="yearSelect" class="date-select">
-                            <option value="2024">2024</option>
-                            <option value="2025">2025</option>
-                            <option value="2026" selected>2026</option>
-                            <option value="2027">2027</option>
-                            <option value="2028">2028</option>
-                        </select>
-                    </div>
-                </div>
+                    <div class="date-scroll" id="dateScroll"></div>
+                </section>
 
-                <!-- Filter Chips -->
-                <div class="filter-bar">
-                    <button class="filter-chip active" data-filter="all">All Classes</button>
-                    <button class="filter-chip" data-filter="signature">Signature Sculpt</button>
-                    <button class="filter-chip" data-filter="foundations">Foundations</button>
-                    <button class="filter-chip" data-filter="advanced">Advanced Lagree</button>
-                    <button class="filter-chip" data-filter="women">Women Only</button>
-                </div>
-
-                <!-- Month View Container -->
-                <div id="monthViewContainer" class="month-view-container">
-                    <div class="calendar-grid" id="calendarGrid"></div>
-                </div>
-
-                <!-- Week View Container -->
-                <div id="weekViewContainer" class="week-view-container">
-                    <div class="schedule-table" id="weekGrid"></div>
-                </div>
+                <!-- Schedule List -->
+                <section class="schedule-list" id="scheduleList"></section>
 
                 <!-- Legend -->
                 <div class="legend">
@@ -639,49 +726,9 @@
                         <span>Today</span>
                     </div>
                 </div>
-
-                <!-- Selected Day Classes -->
-                <div class="selected-day-classes" id="selectedDayClasses"></div>
             </div>
         </div>
-    </section>
-
-    <!-- Class Guide Section -->
-    <section class="section" style="background: var(--bg-warm)">
-        <div class="container">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem">
-                <span class="eyebrow">Class Guide</span>
-                <h2>Find your perfect class</h2>
-                <p>Discover our curated selection of Lagree and Pilates-inspired workouts</p>
-            </div>
-            <div class="grid-3">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="difficulty-badge beginner">Beginner</span>
-                        <h3>Lagree Foundations</h3>
-                        <p>Learn the basics of the Megaformer. Perfect for first-timers. Build confidence and proper form.</p>
-                        <p><strong>Duration:</strong> 45 min | <strong>Max:</strong> 8 students</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <span class="difficulty-badge intermediate">Intermediate</span>
-                        <h3>Signature Sculpt</h3>
-                        <p>Full-body Lagree training. High-intensity, low-impact. Our most popular class for visible results.</p>
-                        <p><strong>Duration:</strong> 45 min | <strong>Max:</strong> 8 students</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <span class="difficulty-badge advanced">Advanced</span>
-                        <h3>Lagree X</h3>
-                        <p>Fast-paced, high-intensity for experienced clients. Advanced variations and minimal rest.</p>
-                        <p><strong>Duration:</strong> 50 min | <strong>Max:</strong> 8 students</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -703,22 +750,22 @@
                 <div>
                     <h4>Studio</h4>
                     <a href="about.html">About Us</a>
-                    <a href="lagree-method.html">Lagree Method</a>
                     <a href="classes.html">Classes</a>
                     <a href="schedule.html">Schedule</a>
-                    <a href="trainers.html">Trainers</a>
+                    <a href="package.html">Packages</a>
+                    <a href="team.html">Our Team</a>
+                    <a href="contact.html">Contact</a>
                 </div>
                 <div>
                     <h4>Programs</h4>
                     <a href="classes.html">Signature Sculpt</a>
                     <a href="classes.html">Beginner Foundations</a>
                     <a href="classes.html">Private Sessions</a>
-                    <a href="classes.html">Stretch & Recovery</a>
-                    <a href="pricing.html">Pricing</a>
+                    <a href="package.html">Packages</a>
                 </div>
                 <div>
                     <h4>Contact</h4>
-                    <p>23b Karimu Kotun, Victoria Island<br />Lagos, Nigeria</p>
+                    <p>10 Agoro Odiyan St, Victoria Island,<br />Lagos 106104, Nigeria</p>
                     <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
                 </div>
             </div>
@@ -731,367 +778,258 @@
     <script src="assets/js/main.js"></script>
 
     <script>
-        // Mobile menu toggle
+        // ============================================
+        // NAVBAR
+        // ============================================
         function toggleMenu() {
-            document.getElementById("nav").classList.toggle("active");
+            document.getElementById('nav').classList.toggle('active');
         }
 
-        // ========== BOOK CLASS - GO TO PRICING PAGE ==========
-        function goToPricing(className, day, time) {
-            // Redirect to pricing page
-            window.location.href = 'pricing.html';
-        }
-
-        // ========== COMPLETE CALENDAR SYSTEM ==========
-
-        // Class Schedule Data
-        const classSchedule = {
-            Monday: [
-                { time: "07:00", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 6 },
-                { time: "09:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 4 },
-                { time: "12:00", name: "Signature Sculpt", instructor: "James A.", level: "intermediate", category: "signature", duration: "45min", spots: 8 },
-                { time: "17:00", name: "Women Only Sculpt", instructor: "Chen D.", level: "all", category: "women", duration: "45min", spots: 3 },
-                { time: "18:30", name: "Signature Sculpt", instructor: "Maria O.", level: "intermediate", category: "signature", duration: "45min", spots: 5 }
-            ],
-            Tuesday: [
-                { time: "07:00", name: "Lagree X", instructor: "James A.", level: "advanced", category: "advanced", duration: "50min", spots: 7 },
-                { time: "09:00", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 2 },
-                { time: "12:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 8 },
-                { time: "17:00", name: "Signature Sculpt", instructor: "James A.", level: "intermediate", category: "signature", duration: "45min", spots: 4 },
-                { time: "18:30", name: "Stretch & Recovery", instructor: "Chen D.", level: "all", category: "signature", duration: "45min", spots: 6 }
-            ],
-            Wednesday: [
-                { time: "07:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 8 },
-                { time: "09:00", name: "Signature Sculpt", instructor: "James A.", level: "intermediate", category: "signature", duration: "45min", spots: 3 },
-                { time: "12:00", name: "Women Only Sculpt", instructor: "Chen D.", level: "all", category: "women", duration: "45min", spots: 5 },
-                { time: "17:00", name: "Lagree X", instructor: "James A.", level: "advanced", category: "advanced", duration: "50min", spots: 6 },
-                { time: "18:30", name: "Signature Sculpt", instructor: "Maria O.", level: "intermediate", category: "signature", duration: "45min", spots: 4 }
-            ],
-            Thursday: [
-                { time: "07:00", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 8 },
-                { time: "09:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 6 },
-                { time: "12:00", name: "Signature Sculpt", instructor: "James A.", level: "intermediate", category: "signature", duration: "45min", spots: 2 },
-                { time: "17:00", name: "Lagree X", instructor: "Chen D.", level: "advanced", category: "advanced", duration: "50min", spots: 7 },
-                { time: "18:30", name: "Women Only Sculpt", instructor: "Maria O.", level: "all", category: "women", duration: "45min", spots: 5 }
-            ],
-            Friday: [
-                { time: "07:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 8 },
-                { time: "09:00", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 4 },
-                { time: "12:00", name: "Signature Sculpt", instructor: "James A.", level: "intermediate", category: "signature", duration: "45min", spots: 6 },
-                { time: "16:00", name: "Lagree X", instructor: "James A.", level: "advanced", category: "advanced", duration: "50min", spots: 5 },
-                { time: "17:30", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 3 }
-            ],
-            Saturday: [
-                { time: "08:00", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 8 },
-                { time: "09:30", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 5 },
-                { time: "11:00", name: "Lagree X", instructor: "James A.", level: "advanced", category: "advanced", duration: "50min", spots: 6 },
-                { time: "13:00", name: "Women Only Sculpt", instructor: "Chen D.", level: "all", category: "women", duration: "45min", spots: 4 }
-            ],
-            Sunday: [
-                { time: "09:00", name: "Lagree Foundations", instructor: "Maria O.", level: "beginner", category: "foundations", duration: "45min", spots: 8 },
-                { time: "10:30", name: "Signature Sculpt", instructor: "Chen D.", level: "intermediate", category: "signature", duration: "45min", spots: 6 },
-                { time: "12:00", name: "Stretch & Recovery", instructor: "James A.", level: "all", category: "signature", duration: "45min", spots: 8 }
-            ]
-        };
-
-        let currentDate = new Date();
-        let selectedDate = new Date();
-        let currentFilter = "all";
-        let currentView = "month";
-        const timeSlots = ["07:00", "09:00", "12:00", "16:00", "17:00", "17:30", "18:30"];
-        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-        function formatDateKey(date) {
-            return date.toLocaleDateString("en-US", { weekday: "long" });
-        }
-
-        function getClassesForDate(date) {
-            const dayName = formatDateKey(date);
-            let classes = classSchedule[dayName] || [];
-            if (currentFilter !== "all") {
-                classes = classes.filter((c) => c.category === currentFilter);
-            }
-            return classes;
-        }
-
-        function hasClasses(date) {
-            const dayName = formatDateKey(date);
-            let classes = classSchedule[dayName] || [];
-            if (currentFilter !== "all") {
-                classes = classes.filter((c) => c.category === currentFilter);
-            }
-            return classes.length > 0;
-        }
-
-        function updateDropdowns() {
-            document.getElementById("monthSelect").value = currentDate.getMonth();
-            document.getElementById("yearSelect").value = currentDate.getFullYear();
-        }
-
-        document.getElementById("monthSelect").addEventListener("change", function() {
-            currentDate.setMonth(parseInt(this.value));
-            updateCalendar();
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav').classList.remove('active');
+            });
         });
 
-        document.getElementById("yearSelect").addEventListener("change", function() {
-            currentDate.setFullYear(parseInt(this.value));
-            updateCalendar();
-        });
+        // ============================================
+        // SCHEDULE SYSTEM
+        // ============================================
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-        function renderMonthView() {
+        const classTemplates = [
+            { name: "Lagree Intro", level: "intro", duration: "50 min" },
+            { name: "Lagree Burn", level: "intermediate", duration: "50 min" },
+            { name: "Lagree Core", level: "beginner", duration: "50 min" },
+            { name: "Lagree Sculpt", level: "intermediate", duration: "50 min" },
+            { name: "Lagree Strength", level: "advanced", duration: "50 min" },
+            { name: "Lagree Flow", level: "beginner", duration: "50 min" },
+            { name: "Lagree Power", level: "advanced", duration: "50 min" },
+            { name: "Lagree Stretch", level: "beginner", duration: "50 min" }
+        ];
+
+        const instructors = ["Rachel", "Farah", "Amaka", "Nadia", "Toni", "Zara", "Chen", "Maria"];
+        const rooms = ["Main Room", "Studio Room", "Loft Studio"];
+
+        const weekdayTimes = ["07:00 AM", "09:00 AM", "10:00 AM", "12:00 PM", "05:00 PM", "06:00 PM", "07:00 PM"];
+        const saturdayTimes = ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"];
+        const sundayTimes = ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"];
+
+        const today = new Date();
+        let currentDate = new Date(today.getFullYear(), today.getMonth(), 1);
+        let selectedDate = new Date(today);
+
+        const dateScroll = document.getElementById("dateScroll");
+        const scheduleList = document.getElementById("scheduleList");
+        const monthTitle = document.getElementById("monthTitle");
+        const levelFilter = document.getElementById("levelFilter");
+        const timeFilter = document.getElementById("timeFilter");
+
+        function padNumber(num) {
+            return String(num).padStart(2, "0");
+        }
+
+        function getDaysInMonth(year, month) {
+            return new Date(year, month + 1, 0).getDate();
+        }
+
+        function sameDate(a, b) {
+            return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+        }
+
+        function isPastDate(date) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const compareDate = new Date(date);
+            compareDate.setHours(0, 0, 0, 0);
+            return compareDate < today;
+        }
+
+        function convertTimeToHour(time) {
+            const clean = time.trim();
+            const parts = clean.split(" ");
+            const hm = parts[0].split(":");
+            let hour = parseInt(hm[0], 10);
+            const period = parts[1];
+            if (period === "PM" && hour !== 12) hour += 12;
+            if (period === "AM" && hour === 12) hour = 0;
+            return hour;
+        }
+
+        function timeMatchesFilter(time) {
+            const filter = timeFilter.value;
+            if (filter === "all") return true;
+            const hour = convertTimeToHour(time);
+            if (filter === "morning") return hour < 12;
+            if (filter === "afternoon") return hour >= 12 && hour < 17;
+            if (filter === "evening") return hour >= 17;
+            return true;
+        }
+
+        function getTimesForDate(date) {
+            const day = date.getDay();
+            if (day === 0) return sundayTimes;
+            if (day === 6) return saturdayTimes;
+            return weekdayTimes;
+        }
+
+        function getDailyClasses(date) {
+            const day = date.getDay();
+            const dateNumber = date.getDate();
+            const month = date.getMonth();
+
+            const times = getTimesForDate(date);
+            const classStart = (dateNumber + month + day) % classTemplates.length;
+            const teacherStart = (dateNumber + day + month) % instructors.length;
+
+            return times.map((time, index) => {
+                const template = classTemplates[(classStart + index) % classTemplates.length];
+                const instructor = instructors[(teacherStart + index) % instructors.length];
+                const room = rooms[(dateNumber + index + day) % rooms.length];
+
+                return {
+                    time,
+                    name: template.name,
+                    level: template.level,
+                    duration: template.duration,
+                    instructor,
+                    room
+                };
+            });
+        }
+
+        function hasClassesOnDate(date) {
+            return getDailyClasses(date).length > 0;
+        }
+
+        function renderDates() {
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
-            const firstDayOfMonth = new Date(year, month, 1);
-            const lastDayOfMonth = new Date(year, month + 1, 0);
-            const startingDayOfWeek = firstDayOfMonth.getDay();
-            const daysInMonth = lastDayOfMonth.getDate();
-            const calendarDays = [];
+            const daysInMonth = getDaysInMonth(year, month);
 
-            for (let i = startingDayOfWeek - 1; i >= 0; i--) {
-                const date = new Date(year, month, -i);
-                calendarDays.push({ date, isCurrentMonth: false });
-            }
+            monthTitle.textContent = `${monthNames[month]} ${year}`;
 
-            for (let i = 1; i <= daysInMonth; i++) {
-                const date = new Date(year, month, i);
-                calendarDays.push({ date, isCurrentMonth: true });
-            }
-
-            const remainingCells = 42 - calendarDays.length;
-            for (let i = 1; i <= remainingCells; i++) {
-                const date = new Date(year, month + 1, i);
-                calendarDays.push({ date, isCurrentMonth: false });
-            }
-
-            const gridContainer = document.getElementById("calendarGrid");
-            const dayNames = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
-            let html = dayNames.map(day => `<div class="calendar-day-header">${day}</div>`).join("");
-
-            calendarDays.forEach(({ date, isCurrentMonth }) => {
-                const today = new Date();
-                const isToday = date.toDateString() === today.toDateString();
-                const isSelected = date.toDateString() === selectedDate.toDateString();
-                const hasClass = hasClasses(date);
+            let html = "";
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const isActive = sameDate(date, selectedDate);
+                const hasClasses = hasClassesOnDate(date);
+                const past = isPastDate(date);
 
                 html += `
-                    <div class="calendar-day ${!isCurrentMonth ? "other-month" : ""} ${isToday ? "today" : ""} ${isSelected ? "selected" : ""}" 
-                         onclick="selectDate('${date.toISOString()}')">
-                        <span class="day-number">${date.getDate()}</span>
-                        ${hasClass ? '<div class="day-class-indicator"><span class="class-dot"></span> <span>class</span></div>' : ""}
-                    </div>
+                    <button class="date-item ${isActive ? "active" : ""} ${past ? "past" : ""} ${hasClasses ? "has-classes" : ""}" type="button" data-day="${day}" ${past ? 'disabled' : ''}>
+                        <span class="date-day">${shortDays[date.getDay()]}</span>
+                        <span class="date-number">${padNumber(day)}</span>
+                        ${hasClasses ? '<span class="dot-indicator"></span>' : ''}
+                    </button>
                 `;
-            });
-
-            gridContainer.innerHTML = html;
-
-            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            document.getElementById("currentDisplay").innerHTML = `${monthNames[month]} ${year}`;
-        }
-
-        function renderWeekView() {
-            const container = document.getElementById("weekGrid");
-            const weekStart = new Date(selectedDate);
-            weekStart.setDate(selectedDate.getDate() - selectedDate.getDay());
-            const weekDays = [];
-            for (let i = 0; i < 7; i++) {
-                const date = new Date(weekStart);
-                date.setDate(weekStart.getDate() + i);
-                weekDays.push(date);
             }
 
-            let html = '<div class="week-grid">';
-            html += "<div></div>";
-            weekDays.forEach((day) => {
-                const dayName = day.toLocaleDateString("en-US", { weekday: "short" });
-                const dayDate = day.getDate();
-                html += `<div class="week-time-slot">${dayName}<br><span style="font-size:0.7rem;">${dayDate}</span></div>`;
-            });
+            dateScroll.innerHTML = html;
 
-            timeSlots.forEach((time) => {
-                html += `<div class="week-time-slot">${time}</div>`;
-                weekDays.forEach((day) => {
-                    const dayName = formatDateKey(day);
-                    const classObj = classSchedule[dayName]?.find(c => c.time === time);
-
-                    if (classObj && (currentFilter === "all" || classObj.category === currentFilter)) {
-                        html += `
-                            <div class="week-class-slot" onclick="goToPricing('${classObj.name}', '${dayName}', '${time}')">
-                                <div class="week-class-name">${classObj.name}</div>
-                                <div class="week-class-instructor">${classObj.instructor}</div>
-                                <button class="week-book-btn">Book →</button>
-                            </div>
-                        `;
-                    } else {
-                        html += `<div class="week-empty-slot">—</div>`;
-                    }
+            document.querySelectorAll(".date-item:not(.past)").forEach(button => {
+                button.addEventListener("click", () => {
+                    const selectedDay = parseInt(button.dataset.day, 10);
+                    selectedDate = new Date(year, month, selectedDay);
+                    renderDates();
+                    renderSchedule();
+                    scrollSelectedDateIntoView();
                 });
             });
 
-            html += "</div>";
-            container.innerHTML = html;
+            scrollSelectedDateIntoView();
         }
 
-        function selectDate(dateString) {
-            selectedDate = new Date(dateString);
-            updateCalendar();
-            renderSelectedDayClasses();
-        }
+        function renderSchedule() {
+            const classes = getDailyClasses(selectedDate);
 
-        function renderSelectedDayClasses() {
-            const classes = getClassesForDate(selectedDate);
-            const container = document.getElementById("selectedDayClasses");
-            const dayName = selectedDate.toLocaleDateString("en-US", { weekday: "long" });
-            const formattedDate = selectedDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+            const filteredClasses = classes.filter(cls => {
+                const levelOk = levelFilter.value === "all" || cls.level === levelFilter.value;
+                const timeOk = timeMatchesFilter(cls.time);
+                return levelOk && timeOk;
+            });
 
-            if (classes.length === 0) {
-                container.innerHTML = `
-                    <div class="selected-day-title">
-                        <h3>${dayName}, ${formattedDate}</h3>
-                    </div>
-                    <div class="no-classes">
-                        <i class="fas fa-calendar-times" style="font-size: 2rem; color: var(--stone); margin-bottom: 1rem; display: block;"></i>
-                        <p>No classes scheduled for this day.</p>
-                        <p style="font-size: 0.875rem;">Check another date or try a different filter.</p>
+            if (filteredClasses.length === 0) {
+                scheduleList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-times"></i>
+                        <h3>No classes found</h3>
+                        <p>Try another day, level, or time filter.</p>
                     </div>
                 `;
                 return;
             }
 
-            let html = `
-                <div class="selected-day-title">
-                    <h3>${dayName}, ${formattedDate}</h3>
-                    <span style="font-size: 0.875rem; color: var(--stone);">${classes.length} classes available</span>
-                </div>
-                <div class="classes-list">
-            `;
-
-            classes.forEach((cls) => {
-                let badgeClass = 'all-levels';
-                if (cls.level === 'beginner') badgeClass = 'beginner';
-                else if (cls.level === 'intermediate') badgeClass = 'intermediate';
-                else if (cls.level === 'advanced') badgeClass = 'advanced';
-                
-                const levelText = cls.level.charAt(0).toUpperCase() + cls.level.slice(1);
-
+            let html = "";
+            filteredClasses.forEach(cls => {
+                const levelClass = cls.level;
                 html += `
-                    <div class="class-item">
-                        <div class="class-info">
-                            <div class="class-time">
-                                <i class="far fa-clock"></i> ${cls.time}
-                            </div>
-                            <div class="class-name">${cls.name}</div>
-                            <div class="class-details">
-                                <span><i class="fas fa-user-circle"></i> ${cls.instructor}</span>
-                                <span><i class="far fa-hourglass"></i> ${cls.duration}</span>
-                                <span class="difficulty-badge ${badgeClass}">${levelText}</span>
-                                <span><i class="fas fa-users"></i> ${cls.spots} spots left</span>
-                            </div>
+                    <div class="time-heading"><i class="fas fa-clock"></i> ${cls.time}</div>
+                    <article class="class-card">
+                        <div>
+                            <div class="class-time-main">${cls.time}</div>
+                            <div class="class-duration"><i class="fas fa-hourglass-half"></i> ${cls.duration}</div>
                         </div>
-                        <a href="pricing.html" class="book-btn">
-                            Book Class <i class="fas fa-arrow-right"></i>
+                        <div>
+                            <h3 class="class-name">
+                                ${cls.name}
+                                <span class="level-badge ${levelClass}">${levelClass}</span>
+                            </h3>
+                            <p class="teacher-room">
+                                <i class="fas fa-user-circle"></i> ${cls.instructor}
+                                <span style="margin: 0 6px;">•</span>
+                                <i class="fas fa-door-open"></i> ${cls.room}
+                            </p>
+                        </div>
+                        <a href="package.html" class="btn-book-package">
+                            Book Now <i class="fas fa-arrow-right"></i>
                         </a>
-                    </div>
+                    </article>
                 `;
             });
 
-            html += `</div>`;
-            container.innerHTML = html;
+            scheduleList.innerHTML = html;
         }
 
-        function prevPeriod() {
-            if (currentView === "month") {
-                currentDate.setMonth(currentDate.getMonth() - 1);
-            } else {
-                selectedDate.setDate(selectedDate.getDate() - 7);
-                currentDate = new Date(selectedDate);
-            }
-            updateDropdowns();
-            updateCalendar();
-            if (currentView === "week") {
-                renderSelectedDayClasses();
-            }
+        function scrollSelectedDateIntoView() {
+            setTimeout(() => {
+                const activeDate = document.querySelector(".date-item.active");
+                if (activeDate) {
+                    activeDate.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                }
+            }, 50);
         }
 
-        function nextPeriod() {
-            if (currentView === "month") {
-                currentDate.setMonth(currentDate.getMonth() + 1);
+        function changeMonth(direction) {
+            const newMonth = currentDate.getMonth() + direction;
+            currentDate = new Date(currentDate.getFullYear(), newMonth, 1);
+            const maxDay = getDaysInMonth(currentDate.getFullYear(), currentDate.getMonth());
+            if (selectedDate.getDate() > maxDay) {
+                selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), maxDay);
             } else {
-                selectedDate.setDate(selectedDate.getDate() + 7);
-                currentDate = new Date(selectedDate);
+                selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), selectedDate.getDate());
             }
-            updateDropdowns();
-            updateCalendar();
-            if (currentView === "week") {
-                renderSelectedDayClasses();
-            }
+            renderDates();
+            renderSchedule();
         }
 
         function goToToday() {
-            currentDate = new Date();
-            selectedDate = new Date();
-            updateDropdowns();
-            updateCalendar();
-            renderSelectedDayClasses();
+            const today = new Date();
+            currentDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            selectedDate = new Date(today);
+            renderDates();
+            renderSchedule();
         }
 
-        function setView(view) {
-            currentView = view;
-            const monthContainer = document.getElementById("monthViewContainer");
-            const weekContainer = document.getElementById("weekViewContainer");
-            const viewBtns = document.querySelectorAll(".view-btn");
-
-            if (view === "month") {
-                monthContainer.style.display = "block";
-                weekContainer.style.display = "none";
-                renderMonthView();
-            } else {
-                monthContainer.style.display = "none";
-                weekContainer.style.display = "block";
-                renderWeekView();
-            }
-
-            viewBtns.forEach((btn) => {
-                if (btn.dataset.view === view) {
-                    btn.classList.add("active");
-                } else {
-                    btn.classList.remove("active");
-                }
-            });
-        }
-
-        function updateCalendar() {
-            if (currentView === "month") {
-                renderMonthView();
-            } else {
-                renderWeekView();
-            }
-            renderSelectedDayClasses();
-        }
-
-        function applyFilters() {
-            updateCalendar();
-        }
-
-        document.getElementById("prevBtn").addEventListener("click", prevPeriod);
-        document.getElementById("nextBtn").addEventListener("click", nextPeriod);
+        document.getElementById("prevMonth").addEventListener("click", () => changeMonth(-1));
+        document.getElementById("nextMonth").addEventListener("click", () => changeMonth(1));
         document.getElementById("todayBtn").addEventListener("click", goToToday);
 
-        document.querySelectorAll(".view-btn").forEach((btn) => {
-            btn.addEventListener("click", () => setView(btn.dataset.view));
-        });
+        levelFilter.addEventListener("change", renderSchedule);
+        timeFilter.addEventListener("change", renderSchedule);
 
-        document.querySelectorAll(".filter-chip").forEach((btn) => {
-            btn.addEventListener("click", () => {
-                document.querySelectorAll(".filter-chip").forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-                currentFilter = btn.dataset.filter;
-                applyFilters();
-            });
-        });
-
-        setView("month");
-        renderSelectedDayClasses();
+        renderDates();
+        renderSchedule();
     </script>
 
     <!-- Tawk.to Chat Widget -->
@@ -1100,7 +1038,7 @@
         (function() {
             var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
             s1.async = true;
-            s1.src = "https://embed.tawk.to/6a2c39a78705f01c3509b4f3/1jquc2ea7";
+            s1.src = "https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle";
             s1.charset = "UTF-8";
             s1.setAttribute("crossorigin", "*");
             s0.parentNode.insertBefore(s1, s0);

@@ -12,17 +12,234 @@
     <link rel="shortcut icon" href="./assets/img/sculpt_logo_round.png" type="image/x-icon" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <style>
-        /* Page background remains the same */
+        /* Page background */
         body {
             background: var(--bg-light);
         }
 
+        /* ============================================
+           CLASS SCHEDULE - MATCHING IMAGE
+           ============================================ */
+        .schedule-container {
+            background: #f5ede3;
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(209, 118, 79, 0.1);
+        }
+
+        .schedule-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .schedule-header h2 {
+            font-size: 1.5rem;
+            font-family: "Cormorant Garamond", serif;
+            color: var(--deep-charcoal);
+        }
+
+        .schedule-filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .schedule-filters .filter-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--stone);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .schedule-filters select {
+            padding: 0.4rem 0.8rem;
+            border: 1px solid rgba(209, 118, 79, 0.2);
+            border-radius: var(--radius-md);
+            background: var(--white);
+            font-family: "Manrope", sans-serif;
+            font-size: 0.8rem;
+            color: var(--deep-charcoal);
+        }
+
+        /* Calendar Week Navigation */
+        .week-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .week-nav-buttons {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .week-nav-btn {
+            background: var(--white);
+            border: 1px solid rgba(209, 118, 79, 0.2);
+            border-radius: var(--radius-full);
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            color: var(--stone);
+        }
+
+        .week-nav-btn:hover {
+            background: var(--terracotta);
+            color: var(--white);
+            border-color: var(--terracotta);
+        }
+
+        .week-label {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--deep-charcoal);
+        }
+
+        .week-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .week-day {
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--white);
+            border: 1px solid rgba(209, 118, 79, 0.08);
+        }
+
+        .week-day:hover {
+            background: var(--terracotta-soft);
+        }
+
+        .week-day.active {
+            background: var(--terracotta);
+            color: var(--white);
+            border-color: var(--terracotta);
+        }
+
+        .week-day .day-name {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--stone);
+        }
+
+        .week-day.active .day-name {
+            color: var(--white);
+        }
+
+        .week-day .day-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--deep-charcoal);
+        }
+
+        .week-day.active .day-number {
+            color: var(--white);
+        }
+
+        /* Class List - Matching Image */
+        .class-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .class-item {
+            display: grid;
+            grid-template-columns: 100px 1fr 120px 100px;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--terracotta);
+        }
+
+        .class-item:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .class-time {
+            font-weight: 800;
+            color: var(--terracotta);
+            font-size: 0.9rem;
+        }
+
+        .class-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--deep-charcoal);
+        }
+
+        .class-teacher {
+            font-size: 0.8rem;
+            color: var(--stone);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .class-teacher i {
+            color: var(--terracotta);
+            font-size: 0.7rem;
+        }
+
+        .class-room {
+            font-size: 0.7rem;
+            color: var(--stone);
+            background: var(--bg-warm);
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-full);
+            text-align: center;
+        }
+
+        .btn-book-small {
+            background: var(--terracotta);
+            color: var(--white);
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-book-small:hover {
+            background: var(--terracotta-dark);
+            transform: scale(1.02);
+        }
+
+        /* ============================================
+           CLASS CATEGORIES - SINGLE ROW, RESPONSIVE
+           ============================================ */
         .class-category {
             margin-bottom: 4rem;
         }
 
         .category-title {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
         }
@@ -37,7 +254,13 @@
             background: var(--terracotta);
         }
 
-        /* Card Design - Dimmer, Warmer Background (Not White) */
+        /* Single row grid that wraps responsively */
+        .grid-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
         .card {
             background: #f5ede3;
             border-radius: var(--radius-xl);
@@ -57,12 +280,6 @@
             background: #f2e8dc;
         }
 
-        .card-image {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-        }
-
         .card-content {
             padding: 1.5rem;
             flex: 1;
@@ -70,16 +287,18 @@
             flex-direction: column;
         }
 
-        /* Difficulty Indicators - Softer */
         .difficulty {
             display: inline-flex;
             align-items: center;
             gap: 0.25rem;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 700;
             padding: 0.25rem 0.75rem;
             border-radius: var(--radius-full);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             width: fit-content;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         .difficulty-beginner {
@@ -97,13 +316,29 @@
             color: #c62828;
         }
 
+        .card-content h3 {
+            font-size: 1.4rem;
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content p {
+            font-size: 0.85rem;
+            color: var(--stone);
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 1rem;
+        }
+
         .class-feature {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             font-size: 0.8rem;
             color: var(--stone);
-            margin-top: 0.5rem;
+            margin-top: 0.3rem;
         }
 
         .class-feature i {
@@ -111,15 +346,14 @@
             width: 20px;
         }
 
-        /* Book Button - Full Width */
         .btn-book-class {
             background: transparent;
             border: 1.5px solid var(--terracotta);
             color: var(--terracotta);
-            padding: 0.7rem 1rem;
+            padding: 0.6rem 1rem;
             border-radius: var(--radius-full);
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -135,6 +369,26 @@
             background: var(--terracotta);
             color: var(--white);
             transform: translateX(4px);
+        }
+
+        /* ─── RESPONSIVE BREAKPOINTS ─── */
+        @media (max-width: 1024px) {
+            .grid-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid-row {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .card-content {
+                padding: 1.2rem;
+            }
+            .card-content h3 {
+                font-size: 1.3rem;
+            }
         }
 
         /* Offer Section */
@@ -299,6 +553,25 @@
         }
 
         @media (max-width: 768px) {
+            .class-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            .schedule-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .week-days {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 0.3rem;
+            }
+            .week-day {
+                padding: 0.3rem;
+            }
+            .week-day .day-number {
+                font-size: 0.9rem;
+            }
             .offer-content {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -348,7 +621,7 @@
                 <a href="about.html">About Us</a>
                 <a href="classes.html" class="active">Classes</a>
                 <a href="schedule.html">Schedule</a>
-                <a href="pricing.html">Pricing</a>
+                <a href="package.html">Packages</a>
                 <a href="team.html">Our Team</a>
                 <a href="contact.html">Contact</a>
                 <a href="schedule.html" class="btn-book">Book Now</a>
@@ -357,180 +630,72 @@
     </header>
 
     <!-- Hero Banner -->
-    <section class="hero-banner" style="background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark)); padding: 5rem 0; text-align: center;">
+    <section class="hero-banner" style="background: linear-gradient(135deg, var(--deep-charcoal), var(--terracotta-dark)); padding: 5rem 0; text-align: center;">
         <div class="container">
             <span class="eyebrow" style="color: var(--cream);">DISCOVER YOUR PRACTICE</span>
-            <h1 style="color: var(--white);">Classes that transform</h1>
+            <h1 style="color: var(--white);">Find your class</h1>
             <p style="color: var(--cream); max-width: 600px; margin: 0 auto;">From foundations to advanced sculpting, find the perfect class for your fitness journey</p>
         </div>
     </section>
 
-    <!-- Beginner Classes -->
+    <!-- Class Categories - SINGLE ROW -->
     <section class="section">
         <div class="container">
             <div class="class-category">
                 <div class="category-title">
-                    <span class="eyebrow">FOR BEGINNERS</span>
-                    <h2>Start your journey</h2>
+                    <span class="eyebrow">OUR CLASSES</span>
+                    <h2>Find your perfect class</h2>
                 </div>
-                <div class="grid-3">
+                <div class="grid-row">
+                    <!-- Lagree Intro -->
                     <div class="card">
                         <div class="card-content">
                             <span class="difficulty difficulty-beginner">Beginner</span>
-                            <h3>Lagree Foundations</h3>
+                            <h3>Lagree Intro</h3>
                             <p>Perfect for first-timers. Learn the fundamentals of the Megaformer, proper alignment, breathing techniques, and basic movements.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 45 minutes</div>
+                            <div class="class-feature"><i class="fas fa-clock"></i> 50 minutes</div>
                             <div class="class-feature"><i class="fas fa-users"></i> Max 8 students</div>
                             <div class="class-feature"><i class="fas fa-dumbbell"></i> Low-impact, high-intensity</div>
-                            <a href="schedule.html" class="btn-book-class">Book Foundation →</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="difficulty difficulty-beginner">Beginner</span>
-                            <h3>Slow & Controlled</h3>
-                            <p>A slower-paced class focusing on mind-muscle connection, form precision, and building a strong foundation.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 45 minutes</div>
-                            <div class="class-feature"><i class="fas fa-users"></i> Max 8 students</div>
-                            <div class="class-feature"><i class="fas fa-heart"></i> Perfect for recovery</div>
                             <a href="schedule.html" class="btn-book-class">Book Class →</a>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="difficulty difficulty-beginner">Beginner</span>
-                            <h3>Intro to Lagree</h3>
-                            <p>Get comfortable on the machine. Learn the five foundational movements of the Lagree Method.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 45 minutes</div>
-                            <div class="class-feature"><i class="fas fa-users"></i> Max 8 students</div>
-                            <div class="class-feature"><i class="fas fa-graduation-cap"></i> No experience needed</div>
-                            <a href="schedule.html" class="btn-book-class">Book Class →</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Intermediate Classes -->
-            <div class="class-category">
-                <div class="category-title">
-                    <span class="eyebrow">FOR INTERMEDIATE</span>
-                    <h2>Elevate your strength</h2>
-                </div>
-                <div class="grid-3">
+                    <!-- Lagree Burn -->
                     <div class="card">
                         <div class="card-content">
                             <span class="difficulty difficulty-intermediate">Intermediate</span>
-                            <h3>Signature Sculpt</h3>
-                            <p>Our most popular class! Full-body Lagree training using slow resistance, controlled transitions, and deep core activation.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 45 minutes</div>
-                            <div class="class-feature"><i class="fas fa-fire"></i> 400-600 calories burned</div>
-                            <div class="class-feature"><i class="fas fa-muscle"></i> Full body workout</div>
-                            <a href="schedule.html" class="btn-book-class">Book Sculpt →</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="difficulty difficulty-intermediate">Intermediate</span>
-                            <h3>Cardio Lagree</h3>
+                            <h3>Lagree Burn</h3>
                             <p>Higher-paced movements mixed with strength holds. Elevate your heart rate while building lean muscle.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 45 minutes</div>
+                            <div class="class-feature"><i class="fas fa-clock"></i> 50 minutes</div>
+                            <div class="class-feature"><i class="fas fa-fire"></i> 400-600 cal</div>
                             <div class="class-feature"><i class="fas fa-heartbeat"></i> Cardio + strength</div>
-                            <div class="class-feature"><i class="fas fa-chart-line"></i> Progressive challenge</div>
                             <a href="schedule.html" class="btn-book-class">Book Class →</a>
                         </div>
                     </div>
+
+                    <!-- Lagree Core -->
                     <div class="card">
                         <div class="card-content">
                             <span class="difficulty difficulty-intermediate">Intermediate</span>
-                            <h3>Women Only Sculpt</h3>
-                            <p>A safe, empowering space for women to build strength and confidence in a supportive environment.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 45 minutes</div>
-                            <div class="class-feature"><i class="fas fa-female"></i> Women only</div>
-                            <div class="class-feature"><i class="fas fa-users"></i> Intimate setting</div>
+                            <h3>Lagree Core</h3>
+                            <p>Full-body Lagree training using slow resistance, controlled transitions, and deep core activation.</p>
+                            <div class="class-feature"><i class="fas fa-clock"></i> 50 minutes</div>
+                            <div class="class-feature"><i class="fas fa-muscle"></i> Full body workout</div>
+                            <div class="class-feature"><i class="fas fa-certificate"></i> Build core strength</div>
                             <a href="schedule.html" class="btn-book-class">Book Class →</a>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Advanced Classes -->
-            <div class="class-category">
-                <div class="category-title">
-                    <span class="eyebrow">FOR ADVANCED</span>
-                    <h2>Master your practice</h2>
-                </div>
-                <div class="grid-3">
+                    <!-- Lagree Sculpt -->
                     <div class="card">
                         <div class="card-content">
                             <span class="difficulty difficulty-advanced">Advanced</span>
-                            <h3>Lagree X</h3>
+                            <h3>Lagree Sculpt</h3>
                             <p>Fast-paced, high-intensity for experienced clients. Advanced variations, minimal rest, maximum burn.</p>
                             <div class="class-feature"><i class="fas fa-clock"></i> 50 minutes</div>
                             <div class="class-feature"><i class="fas fa-bolt"></i> High intensity</div>
-                            <div class="class-feature"><i class="fas fa-certificate"></i> Prior experience required</div>
-                            <a href="schedule.html" class="btn-book-class">Book Lagree X →</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="difficulty difficulty-advanced">Advanced</span>
-                            <h3>Advanced Sculpt</h3>
-                            <p>Take your practice to the next level with complex sequences, heavier springs, and advanced transitions.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 50 minutes</div>
-                            <div class="class-feature"><i class="fas fa-chart-line"></i> Advanced progressions</div>
-                            <div class="class-feature"><i class="fas fa-dumbbell"></i> Heavy resistance</div>
+                            <div class="class-feature"><i class="fas fa-certificate"></i> Prior experience</div>
                             <a href="schedule.html" class="btn-book-class">Book Class →</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="difficulty difficulty-advanced">All Levels</span>
-                            <h3>Private Training</h3>
-                            <p>One-on-one coaching for personalized results, rehabilitation support, or technique refinement.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 60 minutes</div>
-                            <div class="class-feature"><i class="fas fa-user-check"></i> Fully personalized</div>
-                            <div class="class-feature"><i class="fas fa-calendar-alt"></i> Flexible scheduling</div>
-                            <a href="contact.html" class="btn-book-class">Inquire →</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Specialty Classes -->
-            <div class="class-category">
-                <div class="category-title">
-                    <span class="eyebrow">SPECIALTY</span>
-                    <h2>Recovery & wellness</h2>
-                </div>
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="difficulty difficulty-beginner">All Levels</span>
-                            <h3>Stretch & Recovery</h3>
-                            <p>Deep stretching and mobility work to complement your Lagree practice. Improve flexibility and reduce soreness.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 45 minutes</div>
-                            <div class="class-feature"><i class="fas fa-spa"></i> Relaxing environment</div>
-                            <a href="schedule.html" class="btn-book-class">Book Stretch →</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="difficulty difficulty-intermediate">All Levels</span>
-                            <h3>Duet Session</h3>
-                            <p>Train with a friend or partner. Shared plan with individual cues from your instructor.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 60 minutes</div>
-                            <div class="class-feature"><i class="fas fa-user-friends"></i> 2 students per session</div>
-                            <a href="contact.html" class="btn-book-class">Book Duet →</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="difficulty difficulty-beginner">All Levels</span>
-                            <h3>Group Private</h3>
-                            <p>Book the studio for a private group session. Perfect for birthdays, team building, or special events.</p>
-                            <div class="class-feature"><i class="fas fa-clock"></i> 2.5 hours</div>
-                            <div class="class-feature"><i class="fas fa-champagne-glasses"></i> Celebrations welcome</div>
-                            <a href="contact.html" class="btn-book-class">Inquire →</a>
                         </div>
                     </div>
                 </div>
@@ -538,8 +703,8 @@
         </div>
     </section>
 
-    <!-- New Client Offer Section -->
-    <section class="section offer-section">
+    <!-- New Client Offer (commented out as per your request) -->
+    <!-- <section class="section offer-section">
         <div class="container">
             <div class="offer-card">
                 <div class="offer-badge"><i class="fas fa-gift"></i> LIMITED TIME</div>
@@ -553,7 +718,7 @@
                             <span class="offer-feature"><i class="fas fa-calendar-alt"></i> 30-day validity</span>
                             <span class="offer-feature"><i class="fas fa-grip-socks"></i> Free grip socks</span>
                         </div>
-                        <a href="pricing.html" class="btn-offer">Claim Offer <i class="fas fa-arrow-right"></i></a>
+                        <a href="package.html" class="btn-offer">Claim Offer <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="offer-visual">
                         <div class="offer-circle"><i class="fas fa-tags"></i></div>
@@ -561,7 +726,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -585,7 +750,7 @@
                     <a href="about.html">About Us</a>
                     <a href="classes.html">Classes</a>
                     <a href="schedule.html">Schedule</a>
-                    <a href="pricing.html">Pricing</a>
+                    <a href="package.html">Packages</a>
                     <a href="team.html">Our Team</a>
                     <a href="contact.html">Contact</a>
                 </div>
@@ -594,7 +759,7 @@
                     <a href="classes.html">Signature Sculpt</a>
                     <a href="classes.html">Beginner Foundations</a>
                     <a href="classes.html">Private Sessions</a>
-                    <a href="pricing.html">Memberships</a>
+                    <a href="package.html">Packages</a>
                 </div>
                 <div>
                     <h4>Contact</h4>
@@ -613,19 +778,6 @@
         function toggleMenu() {
             document.getElementById("nav").classList.toggle("active");
         }
-    </script>
-
-    <!-- Tawk.to Chat Widget -->
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function() {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = "https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle";
-            s1.charset = "UTF-8";
-            s1.setAttribute("crossorigin", "*");
-            s0.parentNode.insertBefore(s1, s0);
-        })();
     </script>
 </body>
 </html>

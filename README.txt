@@ -1,1 +1,1 @@
-Scuplt Lagree for Pilates studio 
+Scuplt Lagree studio 

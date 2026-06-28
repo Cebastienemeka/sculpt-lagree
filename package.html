@@ -408,6 +408,37 @@
             display: block;
         }
 
+        /* App Store Badges in Footer */
+        .app-store-badges {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .app-store-badges a {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .app-store-badges a:hover {
+            transform: scale(1.05);
+        }
+
+        .app-store-badges img {
+            height: 40px;
+            width: auto;
+            border-radius: 6px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
         @media (max-width: 1200px) {
             .pricing-grid-4 {
                 grid-template-columns: repeat(2, 1fr);
@@ -439,6 +470,9 @@
                 padding: 1.25rem;
                 max-width: 340px;
             }
+            .app-store-badges img {
+                height: 35px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -447,6 +481,9 @@
             }
             .modal-title {
                 font-size: 1.1rem;
+            }
+            .app-store-badges img {
+                height: 30px;
             }
         }
     </style>
@@ -623,10 +660,25 @@
                         </div>
                     </div>
                     <p>Lagos' first Lagree studio. Strong, graceful movement through expertly guided classes in the heart of Lagos.</p>
-                    <div style="display: flex; gap: 1rem; margin-top: 1rem">
+                    <div class="footer-social">
                         <a href="https://www.instagram.com/sculptlagree_lagos/"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <!-- App Store Badges -->
+                    <div class="app-store-badges">
+                        <a href="#" target="_blank">
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                                alt="Get it on Google Play"
+                            />
+                        </a>
+                        <a href="#" target="_blank">
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
+                                alt="Download on the App Store"
+                            />
+                        </a>
                     </div>
                 </div>
                 <div>

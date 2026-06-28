@@ -82,7 +82,7 @@
       .form-container h3 {
         margin-bottom: 1.5rem;
         color: var(--deep-charcoal);
-        font-family: "Cormorant Garamond", serif;
+        font-family: 'Cormorant Garamond', serif;
         font-size: 1.5rem;
       }
 
@@ -98,7 +98,7 @@
         padding: 1rem;
         border: 1px solid rgba(209, 118, 79, 0.2);
         border-radius: var(--radius-md);
-        font-family: "Manrope", sans-serif;
+        font-family: 'Manrope', sans-serif;
         transition: all 0.3s ease;
         background: #f2e8dc;
         color: var(--deep-charcoal);
@@ -396,7 +396,11 @@
     <section
       class="hero-banner"
       style="
-        background: linear-gradient(135deg, var(--terracotta-dark), var(--deep-charcoal));
+        background: linear-gradient(
+          135deg,
+          var(--terracotta-dark),
+          var(--deep-charcoal)
+        );
         padding: 5rem 0;
         text-align: center;
       "
@@ -420,14 +424,14 @@
               <i class="fas fa-map-marker-alt"></i>
             </div>
             <h3>Visit Us</h3>
-            <p>23b Karimu Kotun, Victoria Island<br />Lagos, Nigeria</p>
+            <p>10 Agoro Odiyan St, Victoria Island,<br />Lagos, Nigeria</p>
           </div>
           <div class="contact-card">
             <div class="contact-icon">
               <i class="fas fa-envelope"></i>
             </div>
             <h3>Email Us</h3>
-            <p>hello@sculptlagree.com<br />info@sculptlagree.com</p>
+            <p>infoo@sculptlagree.ng</p>
           </div>
           <div class="contact-card">
             <div class="contact-icon">
@@ -669,21 +673,32 @@
                 />
               </div>
             </div>
-            <p>Boutique Lagree and reformer-inspired training in Lagos.</p>
+            <p>
+              First certified Lagree studio in Nigeria. Strong, graceful
+              movement through expertly guided classes.
+            </p>
             <div class="footer-social">
-              <a href="https://www.instagram.com/sculptlagree_lagos/"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.instagram.com/sculptlagree_lagos/"
+                ><i class="fab fa-instagram"></i
+              ></a>
               <a href="#"><i class="fab fa-facebook-f"></i></a>
               <a href="#"><i class="fab fa-tiktok"></i></a>
             </div>
             <!-- App Store Badges -->
             <div class="app-store-badges">
-              <a href="#" target="_blank">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.codefish.in.sclptlgr&pcampaignid=web_share&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnKv7ShP7JTuomY-WlWxz1PAT8JYKCdpzeErcmR8xlE3sVTo6C9UpoGKAc6Xo_aem_-F4PRH6afx_EER5uzhawuA"
+                target="_blank"
+              >
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                   alt="Get it on Google Play"
                 />
               </a>
-              <a href="#" target="_blank">
+              <a
+                href="https://apps.apple.com/lb/app/sculpt/id6761377670"
+                target="_blank"
+              >
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
                   alt="Download on the App Store"
@@ -709,8 +724,8 @@
           </div>
           <div>
             <h4>Contact</h4>
-            <p>23b Karimu Kotun, Victoria Island<br />Lagos, Nigeria</p>
-            <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
+            <p>10 Agoro Odiyan St, Victoria Island,<br />Lagos, Nigeria</p>
+            <p>info@sculptlagree.ng<br />+234 812 345 6789</p>
           </div>
         </div>
         <div class="copyright">
@@ -723,25 +738,25 @@
     <script>
       // Mobile menu toggle
       function toggleMenu() {
-        document.getElementById("nav").classList.toggle("active");
+        document.getElementById('nav').classList.toggle('active');
       }
 
       // Contact Form Submission
-      const contactForm = document.getElementById("contactForm");
+      const contactForm = document.getElementById('contactForm');
       if (contactForm) {
-        contactForm.addEventListener("submit", function (e) {
+        contactForm.addEventListener('submit', function (e) {
           e.preventDefault();
-          alert("Thank you for your message! We will respond within 24 hours.");
+          alert('Thank you for your message! We will respond within 24 hours.');
           this.reset();
         });
       }
 
       // FAQ Accordion - Clean toggle
-      const faqItems = document.querySelectorAll(".faq-item");
+      const faqItems = document.querySelectorAll('.faq-item');
       faqItems.forEach(function (item) {
-        item.addEventListener("click", function (e) {
+        item.addEventListener('click', function (e) {
           e.stopPropagation();
-          this.classList.toggle("active");
+          this.classList.toggle('active');
         });
       });
     </script>
@@ -751,12 +766,12 @@
       var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();
       (function () {
-        var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
+        var s1 = document.createElement('script'),
+          s0 = document.getElementsByTagName('script')[0];
         s1.async = true;
-        s1.src = "https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle";
-        s1.charset = "UTF-8";
-        s1.setAttribute("crossorigin", "*");
+        s1.src = 'https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
         s0.parentNode.insertBefore(s1, s0);
       })();
     </script>

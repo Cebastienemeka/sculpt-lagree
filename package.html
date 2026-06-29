@@ -1,923 +1,1072 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="View class packages and private sessions at Sculpt Lagree Lagos. Find the perfect plan for your fitness journey." />
+    <meta
+      name="description"
+      content="View class packages and private sessions at Sculpt Lagree Lagos. Find the perfect plan for your fitness journey."
+    />
     <title>Packages | Sculpt Lagree Lagos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="shortcut icon" href="./assets/img/sculpt_logo_round.png" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="./assets/img/sculpt_logo_round.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
     <!-- Paystack Script -->
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <style>
-        /* 4-Column Grid for Class Packages */
+      /* 4-Column Grid for Class Packages */
+      .pricing-grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      /* 3-Column Grid for Private Sessions */
+      .pricing-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .pricing-card {
+        background: #f5ede3;
+        border-radius: var(--radius-xl);
+        padding: 1.75rem;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(209, 118, 79, 0.1);
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(209, 118, 79, 0.25);
+        background: #f2e8dc;
+      }
+
+      .pricing-card.featured {
+        border: 2px solid var(--terracotta);
+        background: #f2e8dc;
+      }
+
+      .popular-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--terracotta);
+        color: var(--white);
+        padding: 0.35rem 1.25rem;
+        border-radius: var(--radius-full);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+      }
+
+      .pricing-card h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+        color: var(--deep-charcoal);
+        font-family: "Cormorant Garamond", serif;
+        text-align: center;
+      }
+
+      .price {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--terracotta);
+        font-family: "Cormorant Garamond", serif;
+        margin: 0.75rem 0 0.25rem;
+        text-align: center;
+      }
+
+      .price small {
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: var(--stone);
+      }
+
+      .price-sub {
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--stone);
+        margin-bottom: 1rem;
+      }
+
+      .feature-list {
+        text-align: left;
+        margin: 1rem 0;
+        padding: 0;
+        list-style: none;
+        flex: 1;
+      }
+
+      .feature-list li {
+        padding: 0.4rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.8rem;
+        color: var(--stone);
+        border-bottom: 1px solid rgba(209, 118, 79, 0.06);
+      }
+
+      .feature-list li:last-child {
+        border-bottom: none;
+      }
+
+      .feature-list li i {
+        color: var(--terracotta);
+        width: 18px;
+        font-size: 0.8rem;
+      }
+
+      .btn-pricing {
+        background: transparent;
+        border: 1.5px solid var(--terracotta);
+        color: var(--terracotta);
+        padding: 0.7rem 1rem;
+        border-radius: var(--radius-full);
+        font-weight: 600;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        margin-top: 0.75rem;
+      }
+
+      .btn-pricing:hover {
+        background: var(--terracotta);
+        color: var(--white);
+        transform: translateX(4px);
+      }
+
+      .btn-pricing-primary {
+        background: var(--terracotta);
+        color: var(--white);
+        border: 1.5px solid var(--terracotta);
+      }
+
+      .btn-pricing-primary:hover {
+        background: var(--terracotta-dark);
+        transform: translateX(4px);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        color: var(--stone);
+        margin-bottom: 1.5rem;
+      }
+
+      /* Highlight animation for class packages section */
+      .class-packages-section {
+        scroll-margin-top: 80px;
+        transition: all 0.3s ease;
+      }
+
+      .class-packages-section.highlight {
+        animation: highlightPulse 1.5s ease;
+      }
+
+      @keyframes highlightPulse {
+        0% {
+          background: transparent;
+        }
+        30% {
+          background: rgba(209, 118, 79, 0.08);
+          border-radius: var(--radius-xl);
+        }
+        70% {
+          background: rgba(209, 118, 79, 0.05);
+        }
+        100% {
+          background: transparent;
+        }
+      }
+
+      .membership-note {
+        background: #f5ede3;
+        padding: 2.5rem;
+        border-radius: var(--radius-xl);
+        text-align: center;
+        margin-top: 3rem;
+        border: 1px solid rgba(209, 118, 79, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .membership-note:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(209, 118, 79, 0.25);
+        background: #f2e8dc;
+      }
+
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(6px);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .modal-overlay.active {
+        display: flex;
+      }
+
+      .modal-container {
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        max-width: 380px;
+        width: 100%;
+        padding: 1.5rem;
+        position: relative;
+        animation: modalSlideIn 0.3s ease;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      @keyframes modalSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background: var(--bg-warm);
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 0.8rem;
+        color: var(--stone);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-close:hover {
+        background: var(--terracotta);
+        color: var(--white);
+      }
+
+      .modal-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(209, 118, 79, 0.12);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 0.5rem;
+      }
+
+      .modal-icon i {
+        font-size: 1.2rem;
+        color: var(--terracotta);
+      }
+
+      .modal-title {
+        text-align: center;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0.15rem;
+        color: var(--deep-charcoal);
+      }
+
+      .modal-subtitle {
+        text-align: center;
+        color: var(--stone);
+        font-size: 0.7rem;
+        margin-bottom: 1rem;
+      }
+
+      .modal-plan {
+        background: var(--bg-warm);
+        border-radius: var(--radius-lg);
+        padding: 0.6rem 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .modal-plan-name {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--deep-charcoal);
+      }
+
+      .modal-plan-price {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--terracotta);
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      .modal-plan-price small {
+        font-size: 0.7rem;
+        font-weight: 400;
+        color: var(--stone);
+      }
+
+      .form-group-modal {
+        margin-bottom: 0.6rem;
+      }
+
+      .form-group-modal label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.7rem;
+        color: var(--deep-charcoal);
+        margin-bottom: 0.2rem;
+      }
+
+      .form-group-modal input {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        border: 1px solid rgba(209, 118, 79, 0.2);
+        border-radius: var(--radius-md);
+        font-family: "Manrope", sans-serif;
+        transition: all 0.3s ease;
+        background: #f2e8dc;
+        color: var(--deep-charcoal);
+        font-size: 0.8rem;
+      }
+
+      .form-group-modal input:focus {
+        outline: none;
+        border-color: var(--terracotta);
+        box-shadow: 0 0 0 2px rgba(209, 118, 79, 0.15);
+        background: #f5ede3;
+      }
+
+      .form-group-modal input::placeholder {
+        color: var(--stone);
+      }
+
+      .modal-btn-pay {
+        width: 100%;
+        padding: 0.7rem;
+        background: linear-gradient(
+          135deg,
+          var(--terracotta),
+          var(--terracotta-dark)
+        );
+        color: var(--white);
+        border: none;
+        border-radius: var(--radius-full);
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .modal-btn-pay:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(209, 118, 79, 0.3);
+      }
+
+      .modal-btn-pay:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .modal-error {
+        color: #d32f2f;
+        font-size: 0.65rem;
+        margin-top: 0.2rem;
+        display: none;
+      }
+
+      .modal-error.show {
+        display: block;
+      }
+
+      /* App Store Badges in Footer */
+      .app-store-badges {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .app-store-badges a {
+        display: inline-block;
+        transition: transform 0.3s ease;
+      }
+
+      .app-store-badges a:hover {
+        transform: scale(1.05);
+      }
+
+      .app-store-badges img {
+        height: 40px;
+        width: auto;
+        border-radius: 6px;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      @media (max-width: 1200px) {
         .pricing-grid-4 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
+          grid-template-columns: repeat(2, 1fr);
         }
-
-        /* 3-Column Grid for Private Sessions */
         .pricing-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
+          grid-template-columns: repeat(2, 1fr);
         }
+      }
 
-        .pricing-card {
-            background: #f5ede3;
-            border-radius: var(--radius-xl);
-            padding: 1.75rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(209, 118, 79, 0.1);
-            position: relative;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+      @media (max-width: 768px) {
+        .pricing-grid-4 {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
         }
-
-        .pricing-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(209, 118, 79, 0.25);
-            background: #f2e8dc;
+        .pricing-grid-3 {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
         }
-
-        .pricing-card.featured {
-            border: 2px solid var(--terracotta);
-            background: #f2e8dc;
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--terracotta);
-            color: var(--white);
-            padding: 0.35rem 1.25rem;
-            border-radius: var(--radius-full);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            white-space: nowrap;
-        }
-
-        .pricing-card h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-            color: var(--deep-charcoal);
-            font-family: "Cormorant Garamond", serif;
-            text-align: center;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--terracotta);
-            font-family: "Cormorant Garamond", serif;
-            margin: 0.75rem 0 0.25rem;
-            text-align: center;
-        }
-
-        .price small {
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: var(--stone);
-        }
-
-        .price-sub {
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--stone);
-            margin-bottom: 1rem;
-        }
-
-        .feature-list {
-            text-align: left;
-            margin: 1rem 0;
-            padding: 0;
-            list-style: none;
-            flex: 1;
-        }
-
-        .feature-list li {
-            padding: 0.4rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.8rem;
-            color: var(--stone);
-            border-bottom: 1px solid rgba(209, 118, 79, 0.06);
-        }
-
-        .feature-list li:last-child {
-            border-bottom: none;
-        }
-
-        .feature-list li i {
-            color: var(--terracotta);
-            width: 18px;
-            font-size: 0.8rem;
-        }
-
-        .btn-pricing {
-            background: transparent;
-            border: 1.5px solid var(--terracotta);
-            color: var(--terracotta);
-            padding: 0.7rem 1rem;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            width: 100%;
-            margin-top: 0.75rem;
-        }
-
-        .btn-pricing:hover {
-            background: var(--terracotta);
-            color: var(--white);
-            transform: translateX(4px);
-        }
-
-        .btn-pricing-primary {
-            background: var(--terracotta);
-            color: var(--white);
-            border: 1.5px solid var(--terracotta);
-        }
-
-        .btn-pricing-primary:hover {
-            background: var(--terracotta-dark);
-            transform: translateX(4px);
-        }
-
         .section-title {
-            text-align: center;
-            margin-bottom: 0.5rem;
-            font-size: 2rem;
+          font-size: 1.6rem;
         }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--stone);
-            margin-bottom: 1.5rem;
+        .pricing-card {
+          padding: 1.5rem;
         }
-
-        /* Highlight animation for class packages section */
-        .class-packages-section {
-            scroll-margin-top: 80px;
-            transition: all 0.3s ease;
+        .price {
+          font-size: 2rem;
         }
-
-        .class-packages-section.highlight {
-            animation: highlightPulse 1.5s ease;
-        }
-
-        @keyframes highlightPulse {
-            0% { background: transparent; }
-            30% { background: rgba(209, 118, 79, 0.08); border-radius: var(--radius-xl); }
-            70% { background: rgba(209, 118, 79, 0.05); }
-            100% { background: transparent; }
-        }
-
-        .membership-note {
-            background: #f5ede3;
-            padding: 2.5rem;
-            border-radius: var(--radius-xl);
-            text-align: center;
-            margin-top: 3rem;
-            border: 1px solid rgba(209, 118, 79, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .membership-note:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(209, 118, 79, 0.25);
-            background: #f2e8dc;
-        }
-
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(6px);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
         .modal-container {
-            background: var(--white);
-            border-radius: var(--radius-xl);
-            max-width: 380px;
-            width: 100%;
-            padding: 1.5rem;
-            position: relative;
-            animation: modalSlideIn 0.3s ease;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+          padding: 1.25rem;
+          max-width: 340px;
         }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.96);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background: var(--bg-warm);
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 0.8rem;
-            color: var(--stone);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-close:hover {
-            background: var(--terracotta);
-            color: var(--white);
-        }
-
-        .modal-icon {
-            width: 44px;
-            height: 44px;
-            background: rgba(209, 118, 79, 0.12);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 0.5rem;
-        }
-
-        .modal-icon i {
-            font-size: 1.2rem;
-            color: var(--terracotta);
-        }
-
-        .modal-title {
-            text-align: center;
-            font-family: "Cormorant Garamond", serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.15rem;
-            color: var(--deep-charcoal);
-        }
-
-        .modal-subtitle {
-            text-align: center;
-            color: var(--stone);
-            font-size: 0.7rem;
-            margin-bottom: 1rem;
-        }
-
-        .modal-plan {
-            background: var(--bg-warm);
-            border-radius: var(--radius-lg);
-            padding: 0.6rem 1rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .modal-plan-name {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--deep-charcoal);
-        }
-
-        .modal-plan-price {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--terracotta);
-            font-family: "Cormorant Garamond", serif;
-        }
-
-        .modal-plan-price small {
-            font-size: 0.7rem;
-            font-weight: 400;
-            color: var(--stone);
-        }
-
-        .form-group-modal {
-            margin-bottom: 0.6rem;
-        }
-
-        .form-group-modal label {
-            display: block;
-            font-weight: 600;
-            font-size: 0.7rem;
-            color: var(--deep-charcoal);
-            margin-bottom: 0.2rem;
-        }
-
-        .form-group-modal input {
-            width: 100%;
-            padding: 0.6rem 0.8rem;
-            border: 1px solid rgba(209, 118, 79, 0.2);
-            border-radius: var(--radius-md);
-            font-family: "Manrope", sans-serif;
-            transition: all 0.3s ease;
-            background: #f2e8dc;
-            color: var(--deep-charcoal);
-            font-size: 0.8rem;
-        }
-
-        .form-group-modal input:focus {
-            outline: none;
-            border-color: var(--terracotta);
-            box-shadow: 0 0 0 2px rgba(209, 118, 79, 0.15);
-            background: #f5ede3;
-        }
-
-        .form-group-modal input::placeholder {
-            color: var(--stone);
-        }
-
-        .modal-btn-pay {
-            width: 100%;
-            padding: 0.7rem;
-            background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark));
-            color: var(--white);
-            border: none;
-            border-radius: var(--radius-full);
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .modal-btn-pay:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(209, 118, 79, 0.3);
-        }
-
-        .modal-btn-pay:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .modal-error {
-            color: #d32f2f;
-            font-size: 0.65rem;
-            margin-top: 0.2rem;
-            display: none;
-        }
-
-        .modal-error.show {
-            display: block;
-        }
-
-        /* App Store Badges in Footer */
-        .app-store-badges {
-            display: flex;
-            gap: 0.75rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .app-store-badges a {
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-
-        .app-store-badges a:hover {
-            transform: scale(1.05);
-        }
-
         .app-store-badges img {
-            height: 40px;
-            width: auto;
-            border-radius: 6px;
+          height: 35px;
         }
+      }
 
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
+      @media (max-width: 480px) {
+        .modal-plan-price {
+          font-size: 1.2rem;
         }
-
-        @media (max-width: 1200px) {
-            .pricing-grid-4 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .pricing-grid-3 {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .modal-title {
+          font-size: 1.1rem;
         }
-
-        @media (max-width: 768px) {
-            .pricing-grid-4 {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .pricing-grid-3 {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .section-title {
-                font-size: 1.6rem;
-            }
-            .pricing-card {
-                padding: 1.5rem;
-            }
-            .price {
-                font-size: 2rem;
-            }
-            .modal-container {
-                padding: 1.25rem;
-                max-width: 340px;
-            }
-            .app-store-badges img {
-                height: 35px;
-            }
+        .app-store-badges img {
+          height: 30px;
         }
-
-        @media (max-width: 480px) {
-            .modal-plan-price {
-                font-size: 1.2rem;
-            }
-            .modal-title {
-                font-size: 1.1rem;
-            }
-            .app-store-badges img {
-                height: 30px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Sticky Booking Button -->
     <a href="schedule.html" class="sticky-book">
-        <i class="fas fa-calendar-check"></i>
-        <span>Book Your Class</span>
+      <i class="fas fa-calendar-check"></i>
+      <span>Book Your Class</span>
     </a>
 
     <!-- Floating WhatsApp -->
     <a href="#" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+      <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- Header -->
     <header class="header">
-        <div class="container">
-            <a href="index.html" class="brand">
-                <div class="logo-icon">
-                    <img src="./assets/img/sculpt-logo.jpg" alt="Sculpt Lagree Logo" class="logo-img" />
-                </div>
-            </a>
-            <button class="menu-btn" onclick="toggleMenu()">☰</button>
-            <nav class="nav" id="nav">
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="classes.html">Classes</a>
-                <a href="schedule.html">Schedule</a>
-                <a href="package.html" class="active">Packages</a>
-                <a href="team.html">Our Team</a>
-                <a href="contact.html">Contact</a>
-                <a href="schedule.html" class="btn-book">Book Now</a>
-            </nav>
-        </div>
+      <div class="container">
+        <a href="index.html" class="brand">
+          <div class="logo-icon">
+            <img
+              src="./assets/img/sculpt-logo.jpg"
+              alt="Sculpt Lagree Logo"
+              class="logo-img"
+            />
+          </div>
+        </a>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <nav class="nav" id="nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="classes.html">Classes</a>
+          <a href="schedule.html">Schedule</a>
+          <a href="package.html" class="active">Packages</a>
+          <a href="team.html">Our Team</a>
+          <a href="contact.html">Contact</a>
+          <a href="schedule.html" class="btn-book">Book Now</a>
+        </nav>
+      </div>
     </header>
 
     <!-- Hero Banner -->
-    <section class="hero-banner" style="background: linear-gradient(135deg, var(--deep-charcoal), var(--terracotta-dark)); padding: 5rem 0; text-align: center;">
-        <div class="container">
-            <span class="eyebrow" style="color: var(--cream);">INVEST IN YOURSELF</span>
-            <h1 style="color: var(--white);">Packages</h1>
-            <p style="color: var(--cream);">Choose the plan that fits your lifestyle and commitment level</p>
-        </div>
+    <section
+      class="hero-banner"
+      style="
+        background: linear-gradient(
+          135deg,
+          var(--deep-charcoal),
+          var(--terracotta-dark)
+        );
+        padding: 5rem 0;
+        text-align: center;
+      "
+    >
+      <div class="container">
+        <span class="eyebrow" style="color: var(--cream)"
+          >INVEST IN YOURSELF</span
+        >
+        <h1 style="color: var(--white)">Packages</h1>
+        <p style="color: var(--cream)">
+          Choose the plan that fits your lifestyle and commitment level
+        </p>
+      </div>
     </section>
 
     <!-- Class Packages Section - 4 Cards in 1 Line -->
     <section class="section class-packages-section" id="class-packages">
-        <div class="container">
-            <h2 class="section-title">Class Package</h2>
-            <p class="section-subtitle">Flexible class packs for your fitness journey</p>
-            
-            <div class="pricing-grid-4">
-                <!-- The Drop-in - 1 Class -->
-                <div class="pricing-card">
-                    <h3>The Drop-in</h3>
-                    <div class="price">₦49,000</div>
-                    <div class="price-sub">1 class</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Passes: 1</li>
-                        <li><i class="fas fa-calendar-alt"></i> Validity: 1 Week</li>
-                    </ul>
-                    <button class="btn-pricing" onclick="openPricingModal('The Drop-in', 49000)">Purchase →</button>
-                </div>
+      <div class="container">
+        <h2 class="section-title">Class Package</h2>
+        <p class="section-subtitle">
+          Flexible class packs for your fitness journey
+        </p>
 
-                <!-- The Momentum - 5 Classes -->
-                <div class="pricing-card">
-                    <h3>The Momentum</h3>
-                    <div class="price">₦230,000</div>
-                    <div class="price-sub">5 classes</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Passes: 5</li>
-                        <li><i class="fas fa-calendar-alt"></i> Validity: 1 Month</li>
-                    </ul>
-                    <button class="btn-pricing" onclick="openPricingModal('The Momentum', 230000)">Purchase →</button>
-                </div>
+        <div class="pricing-grid-4">
+          <!-- The Drop-in - 1 Class -->
+          <div class="pricing-card">
+            <h3>The Drop-in</h3>
+            <div class="price">₦49,000</div>
+            <div class="price-sub">1 class</div>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> Passes: 1</li>
+              <li><i class="fas fa-calendar-alt"></i> Validity: 1 Week</li>
+            </ul>
+            <button
+              class="btn-pricing"
+              onclick="openPricingModal('The Drop-in', 49000)"
+            >
+              Purchase →
+            </button>
+          </div>
 
-                <!-- The Regular - 10 Classes -->
-                <div class="pricing-card featured">
-                    <div class="popular-badge">MOST POPULAR</div>
-                    <h3>The Regular</h3>
-                    <div class="price">₦425,000</div>
-                    <div class="price-sub">10 classes</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Passes: 10</li>
-                        <li><i class="fas fa-calendar-alt"></i> Validity: 2 Months</li>
-                    </ul>
-                    <button class="btn-pricing btn-pricing-primary" onclick="openPricingModal('The Regular', 425000)">Purchase →</button>
-                </div>
+          <!-- The Momentum - 5 Classes -->
+          <div class="pricing-card" id="momentum">
+            <h3>The Momentum</h3>
+            <div class="price">₦230,000</div>
+            <div class="price-sub">5 classes</div>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> Passes: 5</li>
+              <li><i class="fas fa-calendar-alt"></i> Validity: 1 Month</li>
+            </ul>
+            <button
+              class="btn-pricing"
+              onclick="openPricingModal('The Momentum', 230000)"
+            >
+              Purchase →
+            </button>
+          </div>
 
-                <!-- The Addict - 15 Classes -->
-                <div class="pricing-card">
-                    <h3>The Addict</h3>
-                    <div class="price">₦540,000</div>
-                    <div class="price-sub">15 classes</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Passes: 15</li>
-                        <li><i class="fas fa-calendar-alt"></i> Validity: 10 Weeks</li>
-                    </ul>
-                    <button class="btn-pricing" onclick="openPricingModal('The Addict', 540000)">Purchase →</button>
-                </div>
-            </div>
+          <!-- The Regular - 10 Classes -->
+          <div class="pricing-card featured">
+            <div class="popular-badge">MOST POPULAR</div>
+            <h3>The Regular</h3>
+            <div class="price">₦425,000</div>
+            <div class="price-sub">10 classes</div>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> Passes: 10</li>
+              <li><i class="fas fa-calendar-alt"></i> Validity: 2 Months</li>
+            </ul>
+            <button
+              class="btn-pricing btn-pricing-primary"
+              onclick="openPricingModal('The Regular', 425000)"
+            >
+              Purchase →
+            </button>
+          </div>
+
+          <!-- The Addict - 15 Classes -->
+          <div class="pricing-card">
+            <h3>The Addict</h3>
+            <div class="price">₦540,000</div>
+            <div class="price-sub">15 classes</div>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> Passes: 15</li>
+              <li><i class="fas fa-calendar-alt"></i> Validity: 10 Weeks</li>
+            </ul>
+            <button
+              class="btn-pricing"
+              onclick="openPricingModal('The Addict', 540000)"
+            >
+              Purchase →
+            </button>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Private Sessions Section - 3 Cards in 1 Line -->
-    <section class="section" style="background: var(--bg-warm); padding-top: 2rem;">
-        <div class="container">
-            <h2 class="section-title">Private Sessions</h2>
-            <p class="section-subtitle">Personalized coaching for focused results</p>
-            
-            <div class="pricing-grid-3">
-                <!-- The Trial (PT) - 1 Class -->
-                <div class="pricing-card">
-                    <h3>The Trial (PT)</h3>
-                    <div class="price">₦89,000</div>
-                    <div class="price-sub">1 class</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Passes: 1</li>
-                        <li><i class="fas fa-calendar-alt"></i> Validity: 1 Week</li>
-                    </ul>
-                    <button class="btn-pricing" onclick="openPricingModal('The Trial (PT)', 89000)">Book →</button>
-                </div>
+    <section
+      class="section"
+      style="background: var(--bg-warm); padding-top: 2rem"
+    >
+      <div class="container">
+        <h2 class="section-title">Private Sessions</h2>
+        <p class="section-subtitle">
+          Personalized coaching for focused results
+        </p>
 
-                <!-- The Serious (PT) - 5 Classes -->
-                <div class="pricing-card featured">
-                    <div class="popular-badge">MOST POPULAR</div>
-                    <h3>The Serious (PT)</h3>
-                    <div class="price">₦415,000</div>
-                    <div class="price-sub">5 classes</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Passes: 5</li>
-                        <li><i class="fas fa-calendar-alt"></i> Validity: 1 Month</li>
-                    </ul>
-                    <button class="btn-pricing btn-pricing-primary" onclick="openPricingModal('The Serious (PT)', 415000)">Book →</button>
-                </div>
+        <div class="pricing-grid-3">
+          <!-- The Trial (PT) - 1 Class -->
+          <div class="pricing-card">
+            <h3>The Trial (PT)</h3>
+            <div class="price">₦89,000</div>
+            <div class="price-sub">1 class</div>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> Passes: 1</li>
+              <li><i class="fas fa-calendar-alt"></i> Validity: 1 Week</li>
+            </ul>
+            <button
+              class="btn-pricing"
+              onclick="openPricingModal('The Trial (PT)', 89000)"
+            >
+              Book →
+            </button>
+          </div>
 
-                <!-- The Sculpted (PT) - 10 Classes -->
-                <div class="pricing-card">
-                    <h3>The Sculpted (PT)</h3>
-                    <div class="price">₦770,000</div>
-                    <div class="price-sub">10 classes</div>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Passes: 10</li>
-                        <li><i class="fas fa-calendar-alt"></i> Validity: 2 Months</li>
-                    </ul>
-                    <button class="btn-pricing" onclick="openPricingModal('The Sculpted (PT)', 770000)">Book →</button>
-                </div>
-            </div>
+          <!-- The Serious (PT) - 5 Classes -->
+          <div class="pricing-card featured">
+            <div class="popular-badge">MOST POPULAR</div>
+            <h3>The Serious (PT)</h3>
+            <div class="price">₦415,000</div>
+            <div class="price-sub">5 classes</div>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> Passes: 5</li>
+              <li><i class="fas fa-calendar-alt"></i> Validity: 1 Month</li>
+            </ul>
+            <button
+              class="btn-pricing btn-pricing-primary"
+              onclick="openPricingModal('The Serious (PT)', 415000)"
+            >
+              Book →
+            </button>
+          </div>
+
+          <!-- The Sculpted (PT) - 10 Classes -->
+          <div class="pricing-card">
+            <h3>The Sculpted (PT)</h3>
+            <div class="price">₦770,000</div>
+            <div class="price-sub">10 classes</div>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> Passes: 10</li>
+              <li><i class="fas fa-calendar-alt"></i> Validity: 2 Months</li>
+            </ul>
+            <button
+              class="btn-pricing"
+              onclick="openPricingModal('The Sculpted (PT)', 770000)"
+            >
+              Book →
+            </button>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Not Sure Which Plan? -->
     <section class="section">
-        <div class="container">
-            <div class="membership-note">
-                <i class="fas fa-question-circle"></i>
-                <h3>Not sure which plan is right for you?</h3>
-                <p>We offer a free consultation to help you find the perfect package for your goals. Book a call with our team.</p>
-                <a href="contact.html" class="btn-pricing" style="width: auto; padding: 0.8rem 2rem;">Book Consultation →</a>
-            </div>
+      <div class="container">
+        <div class="membership-note">
+          <i class="fas fa-question-circle"></i>
+          <h3>Not sure which plan is right for you?</h3>
+          <p>
+            We offer a free consultation to help you find the perfect package
+            for your goals. Book a call with our team.
+          </p>
+          <a
+            href="contact.html"
+            class="btn-pricing"
+            style="width: auto; padding: 0.8rem 2rem"
+            >Book Consultation →</a
+          >
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="brand" style="margin-bottom: 1rem">
-                        <div class="logo-icon" style="width: 40px; height: 40px">
-                            <img src="./assets/img/sculpt-logo.jpg" alt="Sculpt Lagree Logo" class="logo-img" />
-                        </div>
-                    </div>
-                    <p>Lagos' first Lagree studio. Strong, graceful movement through expertly guided classes in the heart of Lagos.</p>
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/sculptlagree_lagos/"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                    <!-- App Store Badges -->
-                    <div class="app-store-badges">
-                        <a href="#" target="_blank">
-                            <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                                alt="Get it on Google Play"
-                            />
-                        </a>
-                        <a href="#" target="_blank">
-                            <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
-                                alt="Download on the App Store"
-                            />
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h4>Studio</h4>
-                    <a href="about.html">About Us</a>
-                    <a href="classes.html">Classes</a>
-                    <a href="schedule.html">Schedule</a>
-                    <a href="package.html">Packages</a>
-                    <a href="team.html">Our Team</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div>
-                    <h4>Programs</h4>
-                    <a href="classes.html">Signature Sculpt</a>
-                    <a href="classes.html">Beginner Foundations</a>
-                    <a href="classes.html">Private Sessions</a>
-                    <a href="package.html">Packages</a>
-                </div>
-                <div>
-                    <h4>Contact</h4>
-                    <p>23b Karimu Kotun, Victoria Island<br />Lagos, Nigeria</p>
-                    <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
-                </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="brand" style="margin-bottom: 1rem">
+              <div class="logo-icon" style="width: 40px; height: 40px">
+                <img
+                  src="./assets/img/sculpt-logo.jpg"
+                  alt="Sculpt Lagree Logo"
+                  class="logo-img"
+                />
+              </div>
             </div>
-            <div class="copyright">
-                <p>© 2026 Sculpt Lagree. All rights reserved.</p>
+            <p>
+              Lagos' first Lagree studio. Strong, graceful movement through
+              expertly guided classes in the heart of Lagos.
+            </p>
+            <div class="footer-social">
+              <a href="https://www.instagram.com/sculptlagree_lagos/"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-tiktok"></i></a>
             </div>
+            <!-- App Store Badges -->
+            <div class="app-store-badges">
+              <a href="#" target="_blank">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                  alt="Get it on Google Play"
+                />
+              </a>
+              <a href="#" target="_blank">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
+                  alt="Download on the App Store"
+                />
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4>Studio</h4>
+            <a href="about.html">About Us</a>
+            <a href="classes.html">Classes</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div>
+            <h4>Packages</h4>
+            <a href="package.html#class-packages">The Drop-in - 1 class</a>
+            <a href="package.html#class-packages">The Momentum - 5 classes</a>
+            <a href="package.html#class-packages">The Regular - 10 classes</a>
+            <a href="package.html#class-packages">The Addict - 15 classes</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <p>23b Karimu Kotun, Victoria Island<br />Lagos, Nigeria</p>
+            <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
+          </div>
         </div>
+        <div class="copyright">
+          <p>© 2026 Sculpt Lagree. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <!-- Payment Modal -->
     <div class="modal-overlay" id="paymentModal">
-        <div class="modal-container">
-            <button class="modal-close" id="modalCloseBtn">
-                <i class="fas fa-times"></i>
-            </button>
+      <div class="modal-container">
+        <button class="modal-close" id="modalCloseBtn">
+          <i class="fas fa-times"></i>
+        </button>
 
-            <div class="modal-icon">
-                <i class="fas fa-credit-card"></i>
-            </div>
-
-            <h2 class="modal-title">Complete Payment</h2>
-            <p class="modal-subtitle">Secure your plan instantly</p>
-
-            <div class="modal-plan">
-                <div class="modal-plan-name" id="modalPlanName">The Regular</div>
-                <div class="modal-plan-price" id="modalPlanPrice">₦425,000 <small>one-time</small></div>
-            </div>
-
-            <form id="paymentForm">
-                <div class="form-group-modal">
-                    <label for="modalFullName">Full Name</label>
-                    <input type="text" id="modalFullName" placeholder="Enter your name" required />
-                </div>
-
-                <div class="form-group-modal">
-                    <label for="modalEmail">Email</label>
-                    <input type="email" id="modalEmail" placeholder="Enter your email" required />
-                </div>
-
-                <div class="form-group-modal">
-                    <label for="modalPhone">Phone</label>
-                    <input type="tel" id="modalPhone" placeholder="Phone number" />
-                </div>
-
-                <div class="modal-error" id="modalError">Please fill in all required fields.</div>
-
-                <button type="submit" class="modal-btn-pay" id="modalPayBtn">
-                    <i class="fas fa-lock"></i> Pay Now
-                </button>
-            </form>
+        <div class="modal-icon">
+          <i class="fas fa-credit-card"></i>
         </div>
+
+        <h2 class="modal-title">Complete Payment</h2>
+        <p class="modal-subtitle">Secure your plan instantly</p>
+
+        <div class="modal-plan">
+          <div class="modal-plan-name" id="modalPlanName">The Regular</div>
+          <div class="modal-plan-price" id="modalPlanPrice">
+            ₦425,000 <small>one-time</small>
+          </div>
+        </div>
+
+        <form id="paymentForm">
+          <div class="form-group-modal">
+            <label for="modalFullName">Full Name</label>
+            <input
+              type="text"
+              id="modalFullName"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          <div class="form-group-modal">
+            <label for="modalEmail">Email</label>
+            <input
+              type="email"
+              id="modalEmail"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="form-group-modal">
+            <label for="modalPhone">Phone</label>
+            <input type="tel" id="modalPhone" placeholder="Phone number" />
+          </div>
+
+          <div class="modal-error" id="modalError">
+            Please fill in all required fields.
+          </div>
+
+          <button type="submit" class="modal-btn-pay" id="modalPayBtn">
+            <i class="fas fa-lock"></i> Pay Now
+          </button>
+        </form>
+      </div>
     </div>
 
     <script src="assets/js/main.js"></script>
     <script>
-        // Mobile menu toggle
-        function toggleMenu() {
-            document.getElementById("nav").classList.toggle("active");
+      // Mobile menu toggle
+      function toggleMenu() {
+        document.getElementById("nav").classList.toggle("active");
+      }
+
+      // ============================================
+      // CHECK FOR URL PARAMETER TO SCROLL TO CLASS PACKAGES
+      // ============================================
+      (function () {
+        // Check if URL has ?section=class-packages
+        const urlParams = new URLSearchParams(window.location.search);
+        const section = urlParams.get("section");
+
+        if (section === "class-packages") {
+          // Scroll to class packages section after a slight delay
+          setTimeout(function () {
+            const classPackagesSection =
+              document.getElementById("class-packages");
+            if (classPackagesSection) {
+              classPackagesSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+              // Add highlight class for visual feedback
+              classPackagesSection.classList.add("highlight");
+              // Remove highlight after animation completes
+              setTimeout(function () {
+                classPackagesSection.classList.remove("highlight");
+              }, 2000);
+            }
+          }, 300);
+        }
+      })();
+
+      // ============================================
+      // PAYMENT MODAL CONTROLS
+      // ============================================
+      const modalOverlay = document.getElementById("paymentModal");
+      const modalCloseBtn = document.getElementById("modalCloseBtn");
+      const paymentForm = document.getElementById("paymentForm");
+      const modalPayBtn = document.getElementById("modalPayBtn");
+      const modalError = document.getElementById("modalError");
+
+      let currentPlan = {
+        name: "",
+        amount: 0,
+      };
+
+      function openPricingModal(planName, amount) {
+        currentPlan.name = planName;
+        currentPlan.amount = amount;
+
+        document.getElementById("modalPlanName").textContent = planName;
+        document.getElementById("modalPlanPrice").innerHTML =
+          `₦${amount.toLocaleString()} <small>one-time</small>`;
+
+        paymentForm.reset();
+        modalError.classList.remove("show");
+        modalPayBtn.disabled = false;
+        modalPayBtn.innerHTML = '<i class="fas fa-lock"></i> Pay Now';
+
+        modalOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closePaymentModal() {
+        modalOverlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      modalCloseBtn.addEventListener("click", closePaymentModal);
+      modalOverlay.addEventListener("click", function (e) {
+        if (e.target === modalOverlay) {
+          closePaymentModal();
+        }
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closePaymentModal();
+        }
+      });
+
+      // ============================================
+      // PAYSTACK INTEGRATION
+      // ============================================
+      const PAYSTACK_PUBLIC_KEY =
+        "pk_test_faa8396a1e3ce90b576ce8e6eb25af226eacff34";
+
+      paymentForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const fullName = document.getElementById("modalFullName").value.trim();
+        const email = document.getElementById("modalEmail").value.trim();
+        const phone = document.getElementById("modalPhone").value.trim();
+
+        if (!fullName || !email) {
+          modalError.textContent = "Please enter your name and email.";
+          modalError.classList.add("show");
+          return;
         }
 
-        // ============================================
-        // CHECK FOR URL PARAMETER TO SCROLL TO CLASS PACKAGES
-        // ============================================
-        (function() {
-            // Check if URL has ?section=class-packages
-            const urlParams = new URLSearchParams(window.location.search);
-            const section = urlParams.get('section');
-            
-            if (section === 'class-packages') {
-                // Scroll to class packages section after a slight delay
-                setTimeout(function() {
-                    const classPackagesSection = document.getElementById('class-packages');
-                    if (classPackagesSection) {
-                        classPackagesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        // Add highlight class for visual feedback
-                        classPackagesSection.classList.add('highlight');
-                        // Remove highlight after animation completes
-                        setTimeout(function() {
-                            classPackagesSection.classList.remove('highlight');
-                        }, 2000);
-                    }
-                }, 300);
-            }
-        })();
+        if (!email.includes("@") || !email.includes(".")) {
+          modalError.textContent = "Please enter a valid email address.";
+          modalError.classList.add("show");
+          return;
+        }
 
-        // ============================================
-        // PAYMENT MODAL CONTROLS
-        // ============================================
-        const modalOverlay = document.getElementById('paymentModal');
-        const modalCloseBtn = document.getElementById('modalCloseBtn');
-        const paymentForm = document.getElementById('paymentForm');
-        const modalPayBtn = document.getElementById('modalPayBtn');
-        const modalError = document.getElementById('modalError');
+        modalError.classList.remove("show");
+        modalPayBtn.disabled = true;
+        modalPayBtn.innerHTML =
+          '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
-        let currentPlan = {
-            name: '',
-            amount: 0
-        };
-
-        function openPricingModal(planName, amount) {
-            currentPlan.name = planName;
-            currentPlan.amount = amount;
-
-            document.getElementById('modalPlanName').textContent = planName;
-            document.getElementById('modalPlanPrice').innerHTML = `₦${amount.toLocaleString()} <small>one-time</small>`;
-
-            paymentForm.reset();
-            modalError.classList.remove('show');
+        const amount = currentPlan.amount;
+        const handler = PaystackPop.setup({
+          key: PAYSTACK_PUBLIC_KEY,
+          email: email,
+          amount: amount * 100,
+          currency: "NGN",
+          ref:
+            "SCULPT_PACK_" +
+            Math.floor(Math.random() * 1000000000 + 1) +
+            "_" +
+            Date.now(),
+          metadata: {
+            custom_fields: [
+              {
+                display_name: "Plan Name",
+                variable_name: "plan_name",
+                value: currentPlan.name,
+              },
+              {
+                display_name: "Customer Name",
+                variable_name: "customer_name",
+                value: fullName,
+              },
+              {
+                display_name: "Phone",
+                variable_name: "phone",
+                value: phone || "N/A",
+              },
+            ],
+          },
+          label: "Purchase Pack - Sculpt Lagree",
+          onClose: function () {
             modalPayBtn.disabled = false;
             modalPayBtn.innerHTML = '<i class="fas fa-lock"></i> Pay Now';
-
-            modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePaymentModal() {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        modalCloseBtn.addEventListener('click', closePaymentModal);
-        modalOverlay.addEventListener('click', function(e) {
-            if (e.target === modalOverlay) {
-                closePaymentModal();
-            }
+          },
+          callback: function (response) {
+            closePaymentModal();
+            alert(
+              "✅ Payment Successful!\n\n" +
+                "Plan: " +
+                currentPlan.name +
+                "\n" +
+                "Amount: ₦" +
+                amount.toLocaleString() +
+                "\n" +
+                "Reference: " +
+                response.reference +
+                "\n\n" +
+                "Your package has been activated! A confirmation email has been sent.",
+            );
+            console.log("Payment Success:", response);
+            console.log("Plan:", currentPlan);
+          },
         });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closePaymentModal();
-            }
+        handler.openIframe();
+      });
+
+      // WhatsApp Auto Message
+      (function () {
+        const phoneNumber = "2348123456789";
+        const message =
+          "Good day Sir/Ma, this is Sculpt Pilates. Please drop your message and you will be attended to.";
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappLinks = document.querySelectorAll(".whatsapp-float");
+        whatsappLinks.forEach(function (link) {
+          link.href =
+            "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
         });
-
-        // ============================================
-        // PAYSTACK INTEGRATION
-        // ============================================
-        const PAYSTACK_PUBLIC_KEY = 'pk_test_faa8396a1e3ce90b576ce8e6eb25af226eacff34';
-
-        paymentForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const fullName = document.getElementById('modalFullName').value.trim();
-            const email = document.getElementById('modalEmail').value.trim();
-            const phone = document.getElementById('modalPhone').value.trim();
-
-            if (!fullName || !email) {
-                modalError.textContent = 'Please enter your name and email.';
-                modalError.classList.add('show');
-                return;
-            }
-
-            if (!email.includes('@') || !email.includes('.')) {
-                modalError.textContent = 'Please enter a valid email address.';
-                modalError.classList.add('show');
-                return;
-            }
-
-            modalError.classList.remove('show');
-            modalPayBtn.disabled = true;
-            modalPayBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-
-            const amount = currentPlan.amount;
-            const handler = PaystackPop.setup({
-                key: PAYSTACK_PUBLIC_KEY,
-                email: email,
-                amount: amount * 100,
-                currency: 'NGN',
-                ref: 'SCULPT_PACK_' + Math.floor(Math.random() * 1000000000 + 1) + '_' + Date.now(),
-                metadata: {
-                    custom_fields: [
-                        { display_name: "Plan Name", variable_name: "plan_name", value: currentPlan.name },
-                        { display_name: "Customer Name", variable_name: "customer_name", value: fullName },
-                        { display_name: "Phone", variable_name: "phone", value: phone || 'N/A' }
-                    ]
-                },
-                label: "Purchase Pack - Sculpt Lagree",
-                onClose: function() {
-                    modalPayBtn.disabled = false;
-                    modalPayBtn.innerHTML = '<i class="fas fa-lock"></i> Pay Now';
-                },
-                callback: function(response) {
-                    closePaymentModal();
-                    alert(
-                        '✅ Payment Successful!\n\n' +
-                        'Plan: ' + currentPlan.name + '\n' +
-                        'Amount: ₦' + amount.toLocaleString() + '\n' +
-                        'Reference: ' + response.reference + '\n\n' +
-                        'Your package has been activated! A confirmation email has been sent.'
-                    );
-                    console.log('Payment Success:', response);
-                    console.log('Plan:', currentPlan);
-                }
-            });
-            handler.openIframe();
-        });
-
-        // WhatsApp Auto Message
-        (function() {
-            const phoneNumber = '2348123456789';
-            const message = "Good day Sir/Ma, this is Sculpt Pilates. Please drop your message and you will be attended to.";
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappLinks = document.querySelectorAll('.whatsapp-float');
-            whatsappLinks.forEach(function(link) {
-                link.href = 'https://wa.me/' + phoneNumber + '?text=' + encodedMessage;
-            });
-        })();
+      })();
     </script>
 
     <!-- Tawk.to Chat Widget -->
     <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function() {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = "https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle";
-            s1.charset = "UTF-8";
-            s1.setAttribute("crossorigin", "*");
-            s0.parentNode.insertBefore(s1, s0);
-        })();
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
     </script>
-</body>
+  </body>
 </html>

@@ -50,7 +50,6 @@
 
       .schedule-hero::before {
         content: "";
-        content: '';
         position: absolute;
         top: -50%;
         right: -20%;
@@ -63,7 +62,6 @@
 
       .schedule-hero::after {
         content: "";
-        content: '';
         position: absolute;
         bottom: -30%;
         left: -10%;
@@ -209,7 +207,6 @@
         min-width: 160px;
         text-align: center;
         font-family: "Cormorant Garamond", serif;
-        font-family: 'Cormorant Garamond', serif;
       }
 
       .today-btn {
@@ -223,7 +220,6 @@
         cursor: pointer;
         transition: all 0.3s ease;
         font-family: "Manrope", sans-serif;
-        font-family: 'Manrope', sans-serif;
       }
 
       .today-btn:hover {
@@ -375,7 +371,6 @@
 
       .class-card::before {
         content: "";
-        content: '';
         position: absolute;
         left: 0;
         top: 0;
@@ -833,8 +828,6 @@
             <p>
               Lagos' first Lagree studio. Strong, graceful movement through
               expertly guided classes in the heart of Lagos.
-              First certified Lagree studio in Nigeria. Strong, graceful
-              movement through expertly guided classes.
             </p>
             <div class="footer-social">
               <a href="https://www.instagram.com/sculptlagree_lagos/"
@@ -845,21 +838,13 @@
             </div>
             <!-- App Store Badges -->
             <div class="app-store-badges">
-              <a href="#" target="_blank">
-              <a
-                href="https://play.google.com/store/apps/details?id=com.codefish.in.sclptlgr&pcampaignid=web_share&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnKv7ShP7JTuomY-WlWxz1PAT8JYKCdpzeErcmR8xlE3sVTo6C9UpoGKAc6Xo_aem_-F4PRH6afx_EER5uzhawuA"
-                target="_blank"
-              >
+              <a href="https://play.google.com/store/apps/details?id=com.codefish.in.sclptlgr&pcampaignid=web_share&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnKv7ShP7JTuomY-WlWxz1PAT8JYKCdpzeErcmR8xlE3sVTo6C9UpoGKAc6Xo_aem_-F4PRH6afx_EER5uzhawuA" target="_blank">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                   alt="Get it on Google Play"
                 />
               </a>
-              <a href="#" target="_blank">
-              <a
-                href="https://apps.apple.com/lb/app/sculpt/id6761377670"
-                target="_blank"
-              >
+              <a href="https://apps.apple.com/lb/app/sculpt/id6761377670" target="_blank">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
                   alt="Download on the App Store"
@@ -887,7 +872,6 @@
               10 Agoro Odiyan St, Victoria Island,<br />Lagos 106104, Nigeria
             </p>
             <p>hello@sculptlagree.com<br />+234 812 345 6789</p>
-            <p>info@sculptlagree.ng<br />+234 812 345 6789</p>
           </div>
         </div>
         <div class="copyright">
@@ -909,12 +893,6 @@
       document.querySelectorAll(".nav a").forEach((link) => {
         link.addEventListener("click", () => {
           document.getElementById("nav").classList.remove("active");
-        document.getElementById('nav').classList.toggle('active');
-      }
-
-      document.querySelectorAll('.nav a').forEach((link) => {
-        link.addEventListener('click', () => {
-          document.getElementById('nav').classList.remove('active');
         });
       });
 
@@ -977,61 +955,6 @@
         "12:00 PM",
       ];
       const sundayTimes = ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"];
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-      ];
-      const shortDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-      const classTemplates = [
-        { name: 'Lagree Intro', level: 'intro', duration: '50 min' },
-        { name: 'Lagree Burn', level: 'intermediate', duration: '50 min' },
-        { name: 'Lagree Core', level: 'beginner', duration: '50 min' },
-        { name: 'Lagree Sculpt', level: 'intermediate', duration: '50 min' },
-        { name: 'Lagree Strength', level: 'advanced', duration: '50 min' },
-        { name: 'Lagree Flow', level: 'beginner', duration: '50 min' },
-        { name: 'Lagree Power', level: 'advanced', duration: '50 min' },
-        { name: 'Lagree Stretch', level: 'beginner', duration: '50 min' },
-      ];
-
-      const instructors = [
-        'Rachel',
-        'Farah',
-        'Amaka',
-        'Nadia',
-        'Toni',
-        'Zara',
-        'Chen',
-        'Maria',
-      ];
-      const rooms = ['Main Room', 'Studio Room', 'Loft Studio'];
-
-      const weekdayTimes = [
-        '07:00 AM',
-        '09:00 AM',
-        '10:00 AM',
-        '12:00 PM',
-        '05:00 PM',
-        '06:00 PM',
-        '07:00 PM',
-      ];
-      const saturdayTimes = [
-        '08:00 AM',
-        '09:00 AM',
-        '10:00 AM',
-        '11:00 AM',
-        '12:00 PM',
-      ];
-      const sundayTimes = ['09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM'];
 
       const today = new Date();
       let currentDate = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -1045,14 +968,6 @@
 
       function padNumber(num) {
         return String(num).padStart(2, "0");
-      const dateScroll = document.getElementById('dateScroll');
-      const scheduleList = document.getElementById('scheduleList');
-      const monthTitle = document.getElementById('monthTitle');
-      const levelFilter = document.getElementById('levelFilter');
-      const timeFilter = document.getElementById('timeFilter');
-
-      function padNumber(num) {
-        return String(num).padStart(2, '0');
       }
 
       function getDaysInMonth(year, month) {
@@ -1083,12 +998,6 @@
         const period = parts[1];
         if (period === "PM" && hour !== 12) hour += 12;
         if (period === "AM" && hour === 12) hour = 0;
-        const parts = clean.split(' ');
-        const hm = parts[0].split(':');
-        let hour = parseInt(hm[0], 10);
-        const period = parts[1];
-        if (period === 'PM' && hour !== 12) hour += 12;
-        if (period === 'AM' && hour === 12) hour = 0;
         return hour;
       }
 
@@ -1099,11 +1008,6 @@
         if (filter === "morning") return hour < 12;
         if (filter === "afternoon") return hour >= 12 && hour < 17;
         if (filter === "evening") return hour >= 17;
-        if (filter === 'all') return true;
-        const hour = convertTimeToHour(time);
-        if (filter === 'morning') return hour < 12;
-        if (filter === 'afternoon') return hour >= 12 && hour < 17;
-        if (filter === 'evening') return hour >= 17;
         return true;
       }
 
@@ -1153,7 +1057,6 @@
         monthTitle.textContent = `${monthNames[month]} ${year}`;
 
         let html = "";
-        let html = '';
         for (let day = 1; day <= daysInMonth; day++) {
           const date = new Date(year, month, day);
           const isActive = sameDate(date, selectedDate);
@@ -1162,7 +1065,6 @@
 
           html += `
                     <button class="date-item ${isActive ? "active" : ""} ${past ? "past" : ""} ${hasClasses ? "has-classes" : ""}" type="button" data-day="${day}" ${past ? "disabled" : ""}>
-                    <button class="date-item ${isActive ? 'active' : ''} ${past ? 'past' : ''} ${hasClasses ? 'has-classes' : ''}" type="button" data-day="${day}" ${past ? 'disabled' : ''}>
                         <span class="date-day">${shortDays[date.getDay()]}</span>
                         <span class="date-number">${padNumber(day)}</span>
                         ${hasClasses ? '<span class="dot-indicator"></span>' : ""}
@@ -1174,8 +1076,6 @@
 
         document.querySelectorAll(".date-item:not(.past)").forEach((button) => {
           button.addEventListener("click", () => {
-        document.querySelectorAll('.date-item:not(.past)').forEach((button) => {
-          button.addEventListener('click', () => {
             const selectedDay = parseInt(button.dataset.day, 10);
             selectedDate = new Date(year, month, selectedDay);
             renderDates();
@@ -1193,7 +1093,6 @@
         const filteredClasses = classes.filter((cls) => {
           const levelOk =
             levelFilter.value === "all" || cls.level === levelFilter.value;
-            levelFilter.value === 'all' || cls.level === levelFilter.value;
           const timeOk = timeMatchesFilter(cls.time);
           return levelOk && timeOk;
         });
@@ -1210,7 +1109,6 @@
         }
 
         let html = "";
-        let html = '';
         filteredClasses.forEach((cls) => {
           const levelClass = cls.level;
           html += `
@@ -1249,12 +1147,6 @@
               behavior: "smooth",
               inline: "center",
               block: "nearest",
-          const activeDate = document.querySelector('.date-item.active');
-          if (activeDate) {
-            activeDate.scrollIntoView({
-              behavior: 'smooth',
-              inline: 'center',
-              block: 'nearest',
             });
           }
         }, 50);
@@ -1302,15 +1194,6 @@
 
       levelFilter.addEventListener("change", renderSchedule);
       timeFilter.addEventListener("change", renderSchedule);
-        .getElementById('prevMonth')
-        .addEventListener('click', () => changeMonth(-1));
-      document
-        .getElementById('nextMonth')
-        .addEventListener('click', () => changeMonth(1));
-      document.getElementById('todayBtn').addEventListener('click', goToToday);
-
-      levelFilter.addEventListener('change', renderSchedule);
-      timeFilter.addEventListener('change', renderSchedule);
 
       renderDates();
       renderSchedule();
@@ -1327,12 +1210,6 @@
         s1.src = "https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle";
         s1.charset = "UTF-8";
         s1.setAttribute("crossorigin", "*");
-        var s1 = document.createElement('script'),
-          s0 = document.getElementsByTagName('script')[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/6a3513702fa5b31d456f8768/1jrfl7tle';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
         s0.parentNode.insertBefore(s1, s0);
       })();
     </script>
